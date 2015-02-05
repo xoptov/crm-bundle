@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="perfico_dosales.call.manager" class="Perfico\DosalesBundle\Service\CallManager">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+
+        <service id="perfico_dosales.pbx_event_manager" class="Perfico\DosalesBundle\Service\PBXEventManager">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="core.manager.client"/>
+            <argument type="service" id="core.manager.user"/>
+            <argument type="service" id="translator.default"/>
+        </service>
+
+        <service id="perfico_dosales.api.transformer" class="Perfico\DosalesBundle\Transformer\Transformer">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="api.permission.manager"/>
+        </service>
+
+        <service id="perfico_dosales.api.reverse_transformer" class="Perfico\DosalesBundle\Transformer\ReverseTransformer">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="perfico_dosales.api.error_converter" class="Perfico\DosalesBundle\Transformer\ErrorConverter">
+            <argument type="service" id="validator"/>
+        </service>
+
+        <service id="perfico_dosales.api.entity_converter" class="Perfico\DosalesBundle\Transformer\Converter\AbstractEntityConverter" abstract="true">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+
+        <service id="perfico_dosales.api.client_converter" class="Perfico\DosalesBundle\Transformer\Converter\ClientConverter" parent="perfico_dosales.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%converter_mapping_client%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_dosales.api.deal_converter" class="Perfico\DosalesBundle\Transformer\Converter\DealConverter" parent="perfico_dosales.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%converter_mapping_deal%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_dosales.api.deal_state_converter" class="Perfico\DosalesBundle\Transformer\Converter\DealStateConverter" parent="perfico_dosales.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%converter_mapping_deal_state%</argument>
+            </call>
+        </service>
+
+    </services>
+</container>
