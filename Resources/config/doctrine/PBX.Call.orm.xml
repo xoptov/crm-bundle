@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Perfico\DosalesBundle\Entity\PBX\Call" table="call">
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onCreate"/>
+        </lifecycle-callbacks>
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="pbxCallId" column="pbx_call_id" type="string"/>
+        <field name="createdAt" column="created_at" type="datetime"/>
+
+        <one-to-one target-entity="Perfico\DosalesBundle\Entity\ActivityInterface" field="activity">
+            <join-column name="activity_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+        </one-to-one>
+
+        <many-to-one target-entity="Perfico\DosalesBundle\Entity\AccountInterface" field="account">
+            <join-column name="account_id" referenced-column-name="id" nullable="true"/>
+        </many-to-one>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

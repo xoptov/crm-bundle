@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Perfico\DosalesBundle\Entity\Payment" table="payment">
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onCreate"/>
+            <lifecycle-callback type="preUpdate" method="onUpdate"/>
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="createdAt" type="datetime" column="created_at" precision="0" scale="0" nullable="false"/>
+        <field name="updatedAt" type="datetime" column="updated_at" precision="0" scale="0" nullable="true"/>
+        <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
+        <field name="amount" type="float" column="amount" precision="0" scale="0" nullable="true"/>
+
+        <many-to-one field="account" target-entity="Perfico\DosalesBundle\Entity\AccountInterface">
+            <join-columns>
+                <join-column name="account_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
+        <many-to-one field="deal" target-entity="Perfico\DosalesBundle\Entity\DealInterface" inversed-by="payments">
+            <join-columns>
+                <join-column name="deal_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            </join-columns>
+        </many-to-one>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

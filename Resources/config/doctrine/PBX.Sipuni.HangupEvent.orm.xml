@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Perfico\DosalesBundle\Entity\PBX\Sipuni\HangupEvent">
+
+        <field name="status" type="string" column="status" nullable="false"/>
+        <field name="startDate" type="datetime" column="start_date" nullable="false"/>
+        <field name="answerDate" type="datetime" column="answer_date" nullable="true"/>
+        <field name="recordLink" type="string" column="record_link" nullable="true"/>
+
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,17 @@
+{
+    "name": "perfico/dosales-bundle",
+    "description": "Symfony DosalesBundle for make CRM",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maksim Khortov",
+            "email": "xoptov@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.4",
+        "doctrine/doctrine-bundle": "~2.4"
+    }
+}

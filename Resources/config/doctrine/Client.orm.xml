@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Perfico\DosalesBundle\Entity\Client" table="client">
+        
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onCreate"/>
+        </lifecycle-callbacks>
+        
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        
+        <field name="firstName" type="string" column="first_name" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="lastName" type="string" column="last_name" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="middleName" type="string" column="middle_name" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
+        <field name="createdAt" type="datetime" column="created_at" precision="0" scale="0" nullable="false"/>
+        <field name="email" type="string" column="email" length="255" precision="0" scale="0" nullable="true"/>
+        
+        <many-to-one field="company" target-entity="Perfico\DosalesBundle\Entity\CompanyInterface">
+            <join-columns>
+                <join-column name="company_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+        
+        <many-to-one field="channel" target-entity="Perfico\DosalesBundle\Entity\ChannelInterface">
+            <join-columns>
+                <join-column name="channel_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+        
+        <many-to-one field="user" target-entity="Perfico\DosalesBundle\Entity\UserInterface">
+            <join-columns>
+                <join-column name="user_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+        
+        <many-to-one field="account" target-entity="Perfico\DosalesBundle\Entity\AccountInterface">
+            <join-columns>
+                <join-column name="account_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+    
+    </mapped-superclass>
+
+</doctrine-mapping>

@@ -1,0 +1,20 @@
+activity:
+    type:
+        call: Звонок
+        email: Email
+        message: Сообщение
+        meeting: Встреча
+    status:
+        ANSWER: вызов принят
+        BUSY: занято
+        NOANSWER: истекло время ожидания ответа
+        CANCEL: вызов сброшен
+        CONGESTION: перегрузка сети
+        CHANUNAVAIL: абонент недоступен
+    note:
+        datetime: "Дата: %dateTime%\n"
+        status: "Статус: %status%\n"
+        duration: "Продолжительность: %duration%\n"
+        record: "Прослушать запись: %record%\n"
+        user: "Менеджер: %firstName% %phone%\n"
+
