@@ -4,7 +4,7 @@ namespace Perfico\DosalesBundle\Transformer;
 
 use Perfico\DosalesBundle\Transformer\Converter\ConverterInterface;
 use Perfico\DosalesBundle\Transformer\Mapping\MapInterface;
-use Perfico\ApiBundle\Permissions\PermissionManager;
+use Perfico\DosalesBundle\Permissions\PermissionManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
