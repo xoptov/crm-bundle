@@ -135,4 +135,12 @@ abstract class Payment implements PaymentInterface
     {
         return $this->account;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser()
+    {
+        return $this->deal->getUser();
+    }
 } 
