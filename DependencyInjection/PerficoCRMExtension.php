@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\DependencyInjection;
+namespace Perfico\CRMBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Perfico\DosalesBundle\Controller;
+namespace Perfico\CRMBundle\Controller;
 
 use Monolog\Handler\StreamHandler;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\CallEvent;
-use Perfico\DosalesBundle\Event\PBXEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEvent;
+use Perfico\CRMBundle\Event\PBXEvent;
 use Symfony\Bridge\Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Perfico\DosalesBundle\Service\CallManager;
+use Perfico\CRMBundle\Service\CallManager;
 
 class PBXController extends Controller
 {
@@ -27,8 +27,8 @@ class PBXController extends Controller
 
         /** @var CallManager $callManager */
         $entityManager = $this->get('doctrine.orm.entity_manager');
-        $callManager = $this->get('perfico_dosales.call.manager');
-        $pvm = $this->get('perfico_dosales.pbx_event_manager');
+        $callManager = $this->get('perfico_crm.call.manager');
+        $pvm = $this->get('perfico_crm.pbx_event_manager');
         $dispatcher = $this->get('event_dispatcher');
 
         $account = $this->get('core.manager.account')->getCurrentAccount();
@@ -43,11 +43,11 @@ class PBXController extends Controller
 
         switch (get_class($callEvent)) {
 
-            case 'Perfico\DosalesBundle\Entity\PBX\Sipuni\AnswerEvent':
+            case 'Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent':
                 $pvm->relateAnswerEvent($callEvent);
                 break;
 
-            case 'Perfico\DosalesBundle\Entity\PBX\Sipuni\HangupEvent':
+            case 'Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEvent':
                 $pvm->relateHangupEvent($callEvent);
                 $pvm->prepareActivityNote($callEvent);
                 break;

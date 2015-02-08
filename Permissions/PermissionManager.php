@@ -1,8 +1,8 @@
 <?php
 
-namespace Perfico\DosalesBundle\Permissions;
+namespace Perfico\CRMBundle\Permissions;
 
-use Perfico\DosalesBundle\Permissions\Handlers\HandlerInterface;
+use Perfico\CRMBundle\Permissions\Handlers\HandlerInterface;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class PermissionManager

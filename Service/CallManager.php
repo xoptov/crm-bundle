@@ -1,12 +1,12 @@
 <?php
 
-namespace Perfico\DosalesBundle\Service;
+namespace Perfico\CRMBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Perfico\CoreBundle\Entity\Activity;
 use Perfico\CoreBundle\Entity\Call;
-use Perfico\DosalesBundle\Entity\AccountInterface;
-use Perfico\DosalesBundle\Entity\ActivityInterface;
+use Perfico\CRMBundle\Entity\AccountInterface;
+use Perfico\CRMBundle\Entity\ActivityInterface;
 
 class CallManager
 {

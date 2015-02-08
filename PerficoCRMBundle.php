@@ -1,12 +1,12 @@
 <?php
 
-namespace Perfico\DosalesBundle;
+namespace Perfico\CRMBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Perfico\DosalesBundle\DependencyInjection\Compiler\PermissionCompilerPass;
+use Perfico\CRMBundle\DependencyInjection\Compiler\PermissionCompilerPass;
 
-class PerficoDosalesBundle extends Bundle
+class PerficoCRMBundle extends Bundle
 {
     /**
      * {@inheritDoc}

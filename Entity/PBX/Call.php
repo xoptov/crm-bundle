@@ -1,12 +1,12 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity\PBX;
+namespace Perfico\CRMBundle\Entity\PBX;
 
-use Perfico\DosalesBundle\Entity\ActivityInterface;
-use Perfico\DosalesBundle\Entity\AccountInterface;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\CallEventInterface;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\AnswerEvent;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\HangupEventInterface;
+use Perfico\CRMBundle\Entity\ActivityInterface;
+use Perfico\CRMBundle\Entity\AccountInterface;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEventInterface;
 
 abstract class Call
 {

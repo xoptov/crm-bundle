@@ -1,9 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Permissions\Handlers;
-
-
-use Symfony\Component\Security\Core\User\UserInterface;
+namespace Perfico\CRMBundle\Permissions\Handlers;
 
 interface HandlerInterface
 {

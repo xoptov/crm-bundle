@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity\PBX\Sipuni;
+namespace Perfico\CRMBundle\Entity\PBX\Sipuni;
 
 class HangupEvent extends CallEvent implements HangupEventInterface
 {

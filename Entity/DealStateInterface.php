@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity;
+namespace Perfico\CRMBundle\Entity;
 
 
 interface DealStateInterface

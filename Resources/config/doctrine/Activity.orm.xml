@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Perfico\DosalesBundle\Entity\Activity" table="activity">
+    <mapped-superclass name="Perfico\CRMBundle\Entity\Activity" table="activity">
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onCreate"/>
@@ -21,19 +21,19 @@
         <field name="rememberAt" type="datetime" column="remember_at" precision="0" scale="0" nullable="true"/>
         <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
 
-        <many-to-one field="account" target-entity="Perfico\DosalesBundle\Entity\AccountInterface">
+        <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
                 <join-column name="account_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
 
-        <many-to-one field="client" target-entity="Perfico\DosalesBundle\Entity\ClientInterface" inversed-by="activities">
+        <many-to-one field="client" target-entity="Perfico\CRMBundle\Entity\ClientInterface" inversed-by="activities">
             <join-columns>
                 <join-column name="client_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
             </join-columns>
         </many-to-one>
 
-        <many-to-one field="user" target-entity="Perfico\DosalesBundle\Entity\UserInterface">
+        <many-to-one field="user" target-entity="Perfico\CRMBundle\Entity\UserInterface">
             <join-columns>
                 <join-column name="user_id" referenced-column-name="id" nullable="true"/>
             </join-columns>

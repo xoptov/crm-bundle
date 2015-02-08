@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Transformer\Mapping;
+namespace Perfico\CRMBundle\Transformer\Mapping;
 
 
 interface MapInterface {

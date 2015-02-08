@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity;
+namespace Perfico\CRMBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;

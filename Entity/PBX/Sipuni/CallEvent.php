@@ -1,8 +1,8 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity\PBX\Sipuni;
+namespace Perfico\CRMBundle\Entity\PBX\Sipuni;
 
-use Perfico\DosalesBundle\Entity\PBX\Call;
+use Perfico\CRMBundle\Entity\PBX\Call;
 
 class CallEvent implements CallEventInterface
 {
