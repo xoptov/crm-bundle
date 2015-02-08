@@ -1,14 +1,14 @@
 <?php
 
-namespace Perfico\DosalesBundle\Transformer;
+namespace Perfico\CRMBundle\Transformer;
 
-use Perfico\DosalesBundle\Transformer\Converter\ConverterInterface;
-use Perfico\DosalesBundle\Transformer\Mapping\MapInterface;
+use Perfico\CRMBundle\Transformer\Converter\ConverterInterface;
+use Perfico\CRMBundle\Transformer\Mapping\MapInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ReverseTransformer {
-
+class ReverseTransformer
+{
     /**
      * @var ContainerInterface
      */
@@ -51,7 +51,7 @@ class ReverseTransformer {
      * @return array|bool
      */
     public function validate($object) {
-        $errorList = $this->container->get('perfico_dosales.api.error_converter')->validate($object);
+        $errorList = $this->container->get('perfico_crm.api.error_converter')->validate($object);
 
         if (($errorList)&&(count($errorList) > 0)) {
             foreach ($errorList as $name => $err) {

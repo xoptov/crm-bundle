@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Transformer;
+namespace Perfico\CRMBundle\Transformer;
 
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;

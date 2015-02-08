@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Permissions\Handlers;
+namespace Perfico\CRMBundle\Permissions\Handlers;
 
 use Symfony\Component\Security\Core\SecurityContextInterface;
 

@@ -1,6 +1,6 @@
 {
-    "name": "perfico/dosales-bundle",
-    "description": "Symfony DosalesBundle for make CRM",
+    "name": "perfico/crm-bundle",
+    "description": "Symfony CRMBundle for make CRM",
     "license": "MIT",
     "authors": [
         {
@@ -14,6 +14,6 @@
         "symfony/symfony": "2.6.x-dev"
     },
     "autoload": {
-        "psr-4": { "Perfico\\DosalesBundle\\": "" }
+        "psr-4": { "Perfico\\CRMBundle\\": "" }
     }
 }

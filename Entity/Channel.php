@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Entity;
+namespace Perfico\CRMBundle\Entity;
 
 abstract class Channel implements ChannelInterface
 {

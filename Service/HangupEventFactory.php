@@ -1,10 +1,10 @@
 <?php
 
-namespace Perfico\DosalesBundle\Service;
+namespace Perfico\CRMBundle\Service;
 
-use Perfico\DosalesBundle\Entity\PBX\Call;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\CallEvent;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\HangupEvent;
+use Perfico\CRMBundle\Entity\PBX\Call;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 class HangupEventFactory extends CallEventFactory

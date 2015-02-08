@@ -1,13 +1,13 @@
 <?php
 
-namespace Perfico\DosalesBundle\Service;
+namespace Perfico\CRMBundle\Service;
 
 use Perfico\CoreBundle\Entity\Client;
 use Perfico\CoreBundle\Entity\Phone;
 use Perfico\CoreBundle\Manager\UserManager;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\AnswerEvent;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\CallEventInterface;
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\HangupEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
 use Perfico\CoreBundle\Manager\ClientManager;

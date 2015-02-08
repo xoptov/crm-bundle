@@ -1,8 +1,8 @@
 <?php
 
-namespace Perfico\DosalesBundle\Event;
+namespace Perfico\CRMBundle\Event;
 
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\CallEventInterface;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 class PBXEvent extends Event

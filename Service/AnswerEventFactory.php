@@ -1,9 +1,8 @@
 <?php
 
-namespace Perfico\DosalesBundle\Service;
+namespace Perfico\CRMBundle\Service;
 
-use Perfico\DosalesBundle\Entity\PBX\Sipuni\AnswerEvent;
-use Symfony\Component\HttpFoundation\Request;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent;
 
 class AnswerEventFactory extends CallEventFactory
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\DependencyInjection\Compiler;
+namespace Perfico\CRMBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -39,7 +39,7 @@ class PermissionCompilerPass implements CompilerPassInterface
             $types[$tag[0]['object_class']] = new Reference($serviceId);
         }
 
-        $definition = $container->getDefinition('perfico_dosales.permission_manager');
+        $definition = $container->getDefinition('perfico_crm.permission_manager');
         $definition->addMethodCall('setHandlers', array($types));
     }
 } 

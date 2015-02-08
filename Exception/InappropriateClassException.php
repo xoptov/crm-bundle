@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Exception;
+namespace Perfico\CRMBundle\Exception;
 
 class InappropriateClassException extends \Exception
 {

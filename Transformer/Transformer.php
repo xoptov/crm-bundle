@@ -1,10 +1,10 @@
 <?php
 
-namespace Perfico\DosalesBundle\Transformer;
+namespace Perfico\CRMBundle\Transformer;
 
-use Perfico\DosalesBundle\Transformer\Converter\ConverterInterface;
-use Perfico\DosalesBundle\Transformer\Mapping\MapInterface;
-use Perfico\DosalesBundle\Permissions\PermissionManager;
+use Perfico\CRMBundle\Transformer\Converter\ConverterInterface;
+use Perfico\CRMBundle\Transformer\Mapping\MapInterface;
+use Perfico\CRMBundle\Permissions\PermissionManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 

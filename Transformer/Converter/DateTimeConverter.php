@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\DosalesBundle\Transformer\Converter;
+namespace Perfico\CRMBundle\Transformer\Converter;
 
 class DateTimeConverter implements ConverterInterface
 {

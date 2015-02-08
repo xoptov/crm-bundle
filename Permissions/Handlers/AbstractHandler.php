@@ -1,9 +1,9 @@
 <?php
 
-namespace Perfico\DosalesBundle\Permissions\Handlers;
+namespace Perfico\CRMBundle\Permissions\Handlers;
 
-use Perfico\DosalesBundle\Entity\UserInterface;
-use Perfico\DosalesBundle\Exception\InappropriateClassException;
+use Perfico\CRMBundle\Entity\UserInterface;
+use Perfico\CRMBundle\Exception\InappropriateClassException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 abstract class AbstractHandler implements HandlerInterface
