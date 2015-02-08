@@ -21,6 +21,17 @@ interface CompanyInterface
     public function getName();
 
     /**
+     * @param UserInterface $user
+     * @return CompanyInterface
+     */
+    public function setUser(UserInterface $user);
+
+    /**
+     * @return UserInterface
+     */
+    public function getUser();
+
+    /**
      * @param AccountInterface $account
      * @return CompanyInterface
      */
