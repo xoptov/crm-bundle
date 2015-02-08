@@ -2,13 +2,24 @@
 
 namespace Perfico\CRMBundle\Permissions\Handlers;
 
+use Symfony\Component\Security\Core\SecurityContextInterface;
+
 interface HandlerInterface
 {
     /**
-     * Must return className of object.
-     * @return string
+     * @param string $prefix
      */
-    public static function getObjectClass();
+    public function setRolePrefix($prefix);
+
+    /**
+     * @param SecurityContextInterface $securityContext
+     */
+    public function setSecurityContext(SecurityContextInterface $securityContext);
+
+    /**
+     * @param string $class
+     */
+    public function setObjectClass($class);
 
     /**
      * Must return array of permissions by object:

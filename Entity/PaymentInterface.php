@@ -62,4 +62,9 @@ interface PaymentInterface
      * @return AccountInterface
      */
     public function getAccount();
+
+    /**
+     * @return UserInterface
+     */
+    public function getUser();
 } 
