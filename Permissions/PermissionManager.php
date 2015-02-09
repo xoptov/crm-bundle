@@ -35,13 +35,14 @@ class PermissionManager
 
     /**
      * @param $object
+     * @param $context
      * @return array
      */
-    public function getPermissions($object)
+    public function getPermissions($object, $context)
     {
         $class = get_class($object);
         if (array_key_exists($class, $this->handlers)) {
-            return ['_permissions' => $this->handlers[$class]->permissions($object)];
+            return ['_permissions' => $this->handlers[$class]->permissions($object, $context)];
         }
         return ['_permissions' => []];
     }

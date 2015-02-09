@@ -46,10 +46,11 @@ abstract class AbstractHandler implements HandlerInterface
 
     /**
      * @param $object
+     * @param $context
      * @return array
      * @throws InappropriateClassException
      */
-    public function permissions($object)
+    public function permissions($object, $context)
     {
         if (get_class($object) != $this->objectClass) {
             throw new InappropriateClassException('Inappropriate class of object');
@@ -59,21 +60,23 @@ abstract class AbstractHandler implements HandlerInterface
         $this->user = $this->securityContext->getToken()->getUser();
 
         $permission = [
-            'view' => false,
-            'edit' => false,
-            'remove' => false,
-            'add' => false
+            $context => [
+                'view' => false,
+                'edit' => false,
+                'remove' => false,
+                'add' => false
+            ]
         ];
 
         if ($this->securityContext->isGranted($this->rolePrefix . 'VIEW_ALL'))
-            $permission['view'] = true;
+            $permission[$context]['view'] = true;
 
         if ($this->securityContext->isGranted($this->rolePrefix . 'VIEW_OWN') && $object->getUser() == $this->user)
-            $permission['view'] = true;
+            $permission[$context]['view'] = true;
 
-        $permission['edit'] = $this->securityContext->isGranted($this->rolePrefix . 'EDIT');
-        $permission['remove'] = $this->securityContext->isGranted($this->rolePrefix . 'REMOVE');
-        $permission['add'] = $this->securityContext->isGranted($this->rolePrefix . 'ADD');
+        $permission[$context]['edit'] = $this->securityContext->isGranted($this->rolePrefix . 'EDIT');
+        $permission[$context]['remove'] = $this->securityContext->isGranted($this->rolePrefix . 'REMOVE');
+        $permission[$context]['add'] = $this->securityContext->isGranted($this->rolePrefix . 'ADD');
 
         return $permission;
     }
