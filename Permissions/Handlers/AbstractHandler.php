@@ -71,8 +71,10 @@ abstract class AbstractHandler implements HandlerInterface
         if ($this->securityContext->isGranted($this->rolePrefix . 'VIEW_ALL'))
             $permission[$context]['view'] = true;
 
-        if ($this->securityContext->isGranted($this->rolePrefix . 'VIEW_OWN') && $object->getUser() == $this->user)
-            $permission[$context]['view'] = true;
+        if (method_exists($object, 'getUser')) {
+            if ($this->securityContext->isGranted($this->rolePrefix . 'VIEW_OWN') && $object->getUser() == $this->user)
+                $permission[$context]['view'] = true;
+        }
 
         $permission[$context]['edit'] = $this->securityContext->isGranted($this->rolePrefix . 'EDIT');
         $permission[$context]['remove'] = $this->securityContext->isGranted($this->rolePrefix . 'REMOVE');
