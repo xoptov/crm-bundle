@@ -33,9 +33,10 @@ class Transformer {
      *
      * @param $object
      * @param MapInterface $map
+     * @param string $context
      * @return array
      */
-    public function transform($object, MapInterface $map)
+    public function transform($object, MapInterface $map, $context)
     {
         // Iterate by map
         $fields = [];
@@ -53,7 +54,7 @@ class Transformer {
             }
         }
 
-        $fields += $this->permissionManager->getPermissions($object);
+        $fields += $this->permissionManager->getPermissions($object, $context);
 
         return $fields;
     }
@@ -61,14 +62,15 @@ class Transformer {
     /**
      * @param array|ArrayCollection $objects
      * @param MapInterface $map
+     * @param string $context
      * @return array
      */
-    public function transformCollection($objects, MapInterface $map)
+    public function transformCollection($objects, MapInterface $map, $context)
     {
         $output = [];
         foreach ($objects as $object) {
             // Iterate by map
-            $fields = $this->transform($object, $map);
+            $fields = $this->transform($object, $map, $context);
             array_push($output, $fields);
         }
 

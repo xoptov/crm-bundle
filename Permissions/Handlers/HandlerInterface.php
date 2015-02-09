@@ -28,9 +28,10 @@ interface HandlerInterface
      *  deals => true
      *
      * @param $object
+     * @param string $context
      * @return array
      */
-    public function permissions($object);
+    public function permissions($object, $context);
 
     /**
      * Action: VIEW, EDIT, REMOVE, ADD
