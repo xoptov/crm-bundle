@@ -31,6 +31,10 @@
             <argument type="service" id="service_container"/>
         </service>
 
+        <service id="perfico_crm.api.reverse_collection_transformer" class="Perfico\CRMBundle\Transformer\ReverseCollectionTransformer">
+            <argument type="service" id="service_container"/>
+        </service>
+
         <service id="perfico_crm.api.error_converter" class="Perfico\CRMBundle\Transformer\ErrorConverter">
             <argument type="service" id="validator"/>
         </service>
