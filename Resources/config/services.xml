@@ -7,6 +7,9 @@
         <parameter key="perfico_crm.client_class" type="string">PerficoCRMBundle:Client</parameter>
         <parameter key="perfico_crm.deal_class" type="string">PerficoCRMBundle:Deal</parameter>
         <parameter key="perfico_crm.deal_state_class" type="string">PerficoCRMBundle:DealSate</parameter>
+        <parameter key="perfico_crm.user_provider">~</parameter>
+        <parameter key="perfico_crm.provider_id">~</parameter>
+        <parameter key="perfico_crm.secret_key">~</parameter>
     </parameters>
 
     <services>
@@ -20,6 +23,27 @@
             <argument type="service" id="core.manager.client"/>
             <argument type="service" id="core.manager.user"/>
             <argument type="service" id="translator.default"/>
+        </service>
+        
+        <service id="perfico_crm.auth_token_manager" class="Perfico\CRMBundle\Service\AuthTokenManager"/>
+
+        <service id="perfico_crm.auth_provider" class="Perfico\CRMBundle\Security\Authentication\Provider\ApiProvider">
+            <argument type="string">%perfico_crm.user_provider%</argument>
+            <argument type="string">%perfico_crm.provider_id%</argument>
+            <argument type="string">%perfico_crm.secret_key%</argument>
+            <argument type="service" id="security.user_checker"/>
+        </service>
+
+        <service id="perfico_crm.auth_listener" class="Perfico\CRMBundle\Security\Firewall\ApiListener">
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.authentication.manager"/>
+            <argument type="service" id="perfico_crm.auth_user_provider"/>
+            <argument type="string">%perfico_crm.provider_id%</argument>
+            <argument type="string">%perfico_crm.secret_key%</argument>
+        </service>
+
+        <service id="perfico_crm.auth_user_provider" class="Perfico\CRMBundle\Security\Authentication\Provider\UserProvider">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
         </service>
 
         <service id="perfico_crm.api.transformer" class="Perfico\CRMBundle\Transformer\Transformer">
