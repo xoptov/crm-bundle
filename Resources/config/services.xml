@@ -7,6 +7,7 @@
         <parameter key="perfico_crm.client_class" type="string">PerficoCRMBundle:Client</parameter>
         <parameter key="perfico_crm.deal_class" type="string">PerficoCRMBundle:Deal</parameter>
         <parameter key="perfico_crm.deal_state_class" type="string">PerficoCRMBundle:DealSate</parameter>
+        <parameter key="perfico_crm.company_class" type="string">PerficoCRMBundle:Company</parameter>
         <parameter key="perfico_crm.user_provider">~</parameter>
         <parameter key="perfico_crm.provider_id">~</parameter>
         <parameter key="perfico_crm.secret_key">~</parameter>
@@ -82,6 +83,12 @@
         <service id="perfico_crm.api.deal_state_converter" class="Perfico\CRMBundle\Transformer\Converter\DealStateConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.deal_state_class%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.company_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.company_class%</argument>
             </call>
         </service>
 
