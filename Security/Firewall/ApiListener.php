@@ -65,7 +65,7 @@ class ApiListener implements ListenerInterface
     {
         $request = $event->getRequest();
 
-        if ($token = $this->securityContext->getToken() !== null) {
+        if ($this->securityContext->getToken() !== null) {
             return ;
         }
 

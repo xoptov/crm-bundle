@@ -41,6 +41,7 @@ class PermissionManager
     public function getPermissions($object, $context)
     {
         $class = get_class($object);
+        $class = str_replace('Proxies\\__CG__\\', '', $class);
         if (array_key_exists($class, $this->handlers)) {
             return ['_permissions' => $this->handlers[$class]->permissions($object, $context)];
         }
