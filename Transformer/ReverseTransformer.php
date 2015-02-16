@@ -76,9 +76,10 @@ class ReverseTransformer
 
     /**
      * @param $object
+     * @param $groups
      * @return array|bool
      */
-    public function validate($object) {
-        return $this->container->get('perfico_crm.api.error_converter')->validate($object);
+    public function validate($object, $groups = null) {
+        return $this->container->get('perfico_crm.api.error_converter')->validate($object, $groups);
     }
 }
