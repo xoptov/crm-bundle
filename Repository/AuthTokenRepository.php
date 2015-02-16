@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\CRMBundle\Entity;
+namespace Perfico\CRMBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -17,9 +17,9 @@ class AuthTokenRepository extends EntityRepository
         $now = new \DateTime();
         $qb = $this->createQueryBuilder('at');
 
-        $query = $qb->where('a.token = :token')
+        $query = $qb->where('at.token = :token')
             ->setParameter('token', $token)
-            ->andWhere('a.expireAt > :now')
+            ->andWhere('at.expireAt > :now')
             ->setParameter('now', $now)
             ->setMaxResults(1)
             ->getQuery();

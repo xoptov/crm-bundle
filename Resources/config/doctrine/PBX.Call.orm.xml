@@ -3,7 +3,7 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Perfico\CRMBundle\Entity\PBX\Call" table="call">
+    <mapped-superclass name="Perfico\CRMBundle\Entity\PBX\Call" table="pbx_call">
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onCreate"/>
@@ -21,7 +21,7 @@
         </one-to-one>
 
         <many-to-one target-entity="Perfico\CRMBundle\Entity\AccountInterface" field="account">
-            <join-column name="account_id" referenced-column-name="id" nullable="true"/>
+            <join-column name="account_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
         </many-to-one>
 
     </mapped-superclass>

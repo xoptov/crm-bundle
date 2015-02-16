@@ -17,7 +17,7 @@ use Perfico\CRMBundle\Service\CallManager;
 class PBXController extends Controller
 {
     /**
-     * @Route("/api/pbx/callback")
+     * @Route("/pbx/callback")
      */
     public function indexAction(Request $request)
     {

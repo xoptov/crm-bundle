@@ -27,7 +27,7 @@ class UserProvider
      */
     public function findUserByToken($token)
     {
-        $authToken = $this->entityManager->getRepository('CRMBundle:AuthToken')->getNotExpired($token);
+        $authToken = $this->entityManager->getRepository('PerficoCRMBundle:AuthToken')->getNotExpired($token);
 
         if ($authToken) {
             return $authToken->getUser();
