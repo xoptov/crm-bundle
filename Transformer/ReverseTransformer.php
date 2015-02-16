@@ -39,10 +39,12 @@ class ReverseTransformer
                 if (is_string($value['converter'])) {
                     /** @var ConverterInterface $converter */
                     $converter = $this->container->get($value['converter']);
-                    $object->$method($converter->convert($request->get($value['path'])));
+                    $child = $converter->convert($request->get($value['path']));
+                    $child && $object->$method($child);
 
                 } elseif ($value['converter'] instanceof ConverterInterface) {
-                    $object->$method($value['converter']->convert($request->get($value['path'])));
+                    $child = $value['converter']->convert($request->get($value['path']));
+                    $child && $object->$method($child);
                 }
             }
         }
@@ -65,11 +67,13 @@ class ReverseTransformer
             } elseif (isset($value['converter']) && is_string($value['converter'])) { // if converter is service then using as service
                 /** @var ConverterInterface $converter */
                 $converter = $this->container->get($value['converter']);
-                $object->$method($converter->convert($model[$value['path']]));
+                $child = $converter->convert($model[$value['path']]);
+                $child && $object->$method($child);
 
             } elseif (isset($value['converter']) && $value['converter'] instanceof ConverterInterface) { // else trying use object as converter
                 $converter = $value['converter'];
-                $object->$method($converter->convert($model[$value['path']]));
+                $child = $converter->convert($model[$value['path']]);
+                $child && $object->$method($child);
             }
         }
     }
