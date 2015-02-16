@@ -23,11 +23,12 @@ class ErrorConverter
 
     /**
      * @param $object
+     * @param $groups
      * @return array|bool
      */
-    public function validate($object) {
+    public function validate($object, $groups = null) {
 
-        $errors = $this->validator->validate($object);
+        $errors = $this->validator->validate($object, null, $groups);
         if (count($errors)) {
 
             return $this->toArray($errors);
