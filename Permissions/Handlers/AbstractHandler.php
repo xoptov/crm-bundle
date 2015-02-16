@@ -52,7 +52,10 @@ abstract class AbstractHandler implements HandlerInterface
      */
     public function permissions($object, $context)
     {
-        if (get_class($object) != $this->objectClass) {
+        /**
+         * Object can be regular object or Doctrine Proxy object
+         */
+        if (!$object instanceof $this->objectClass) {
             throw new InappropriateClassException('Inappropriate class of object');
         }
 
