@@ -33,11 +33,15 @@ abstract class AbstractEntityConverter implements ConverterInterface
 
     /**
      * @param $value
-     * @return mixed|void
+     * @return mixed|null
      */
     public function convert($value)
     {
-        return $this->em->getReference($this->entityClass, $value);
+        if ($value) {
+            return $this->em->getReference($this->entityClass, $value);
+        }
+
+        return null;
     }
 
     /**
