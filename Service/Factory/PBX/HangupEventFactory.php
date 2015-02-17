@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\CRMBundle\Service;
+namespace Perfico\CRMBundle\Service\Factory\PBX;
 
 use Perfico\CRMBundle\Entity\PBX\Call;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEvent;

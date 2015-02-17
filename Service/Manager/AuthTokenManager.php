@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\CRMBundle\Service;
+namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CRMBundle\Entity\UserInterface;
 use Perfico\CRMBundle\Entity\AuthToken;

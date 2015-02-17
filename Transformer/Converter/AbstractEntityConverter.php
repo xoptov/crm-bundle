@@ -46,12 +46,14 @@ abstract class AbstractEntityConverter implements ConverterInterface
 
     /**
      * @param $object
-     * @return integer
+     * @return integer|null
      */
     public function reverseConvert($object)
     {
         if (is_object($object) && method_exists($object, 'getId')) {
             return $object->getId();
         }
+
+        return null;
     }
 } 

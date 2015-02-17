@@ -23,6 +23,20 @@ class PerficoCRMExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // load common services
         $loader->load('services.xml');
+
+        // load managers
+        $loader->load('managers.xml');
+
+        // load transformers
+        $loader->load('transformers.xml');
+
+        // load converters
+        $loader->load('converters.xml');
+
+        // load pbx services
+        $loader->load('pbx.xml');
     }
 }
