@@ -5,7 +5,7 @@ namespace Perfico\CRMBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Perfico\CRMBundle\Entity\PBX\Call;
+use Perfico\CoreBundle\Entity\Call;
 use Perfico\CRMBundle\Transformer\Mapping\CallMap;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
