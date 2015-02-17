@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="perfico_crm.api.transformer" class="Perfico\CRMBundle\Transformer\Transformer">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="perfico_crm.permission_manager"/>
+        </service>
+
+        <service id="perfico_crm.api.reverse_transformer" class="Perfico\CRMBundle\Transformer\ReverseTransformer">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="perfico_crm.api.reverse_collection_transformer" class="Perfico\CRMBundle\Transformer\ReverseCollectionTransformer">
+            <argument type="service" id="service_container"/>
+        </service>
+
+    </services>
+
+</container>

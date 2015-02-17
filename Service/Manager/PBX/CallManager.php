@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\CRMBundle\Service;
+namespace Perfico\CRMBundle\Service\Manager\PBX;
 
 use Doctrine\ORM\EntityManager;
 use Perfico\CoreBundle\Entity\Activity;

@@ -4,29 +4,18 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="perfico_crm.client_class" type="string">PerficoCRMBundle:Client</parameter>
-        <parameter key="perfico_crm.deal_class" type="string">PerficoCRMBundle:Deal</parameter>
-        <parameter key="perfico_crm.deal_state_class" type="string">PerficoCRMBundle:DealSate</parameter>
-        <parameter key="perfico_crm.company_class" type="string">PerficoCRMBundle:Company</parameter>
+
         <parameter key="perfico_crm.user_provider">~</parameter>
+
         <parameter key="perfico_crm.provider_id">~</parameter>
+
         <parameter key="perfico_crm.secret_key">~</parameter>
+
     </parameters>
 
     <services>
 
-        <service id="perfico_crm.call.manager" class="Perfico\CRMBundle\Service\CallManager">
-            <argument type="service" id="doctrine.orm.default_entity_manager"/>
-        </service>
-
-        <service id="perfico_crm.pbx_event_manager" class="Perfico\CRMBundle\Service\PBXEventManager">
-            <argument type="service" id="doctrine.orm.default_entity_manager"/>
-            <argument type="service" id="core.manager.client"/>
-            <argument type="service" id="core.manager.user"/>
-            <argument type="service" id="translator.default"/>
-        </service>
-        
-        <service id="perfico_crm.auth_token_manager" class="Perfico\CRMBundle\Service\AuthTokenManager"/>
+        <service id="perfico_crm.auth_token_manager" class="Perfico\CRMBundle\Service\Manager\AuthTokenManager"/>
 
         <service id="perfico_crm.auth_provider" class="Perfico\CRMBundle\Security\Authentication\Provider\ApiProvider">
             <argument type="string">%perfico_crm.user_provider%</argument>
@@ -45,55 +34,6 @@
 
         <service id="perfico_crm.auth_user_provider" class="Perfico\CRMBundle\Security\Authentication\Provider\UserProvider">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
-        </service>
-
-        <service id="perfico_crm.api.transformer" class="Perfico\CRMBundle\Transformer\Transformer">
-            <argument type="service" id="service_container"/>
-            <argument type="service" id="perfico_crm.permission_manager"/>
-        </service>
-
-        <service id="perfico_crm.api.reverse_transformer" class="Perfico\CRMBundle\Transformer\ReverseTransformer">
-            <argument type="service" id="service_container"/>
-        </service>
-
-        <service id="perfico_crm.api.reverse_collection_transformer" class="Perfico\CRMBundle\Transformer\ReverseCollectionTransformer">
-            <argument type="service" id="service_container"/>
-        </service>
-
-        <service id="perfico_crm.api.error_converter" class="Perfico\CRMBundle\Transformer\ErrorConverter">
-            <argument type="service" id="validator"/>
-        </service>
-
-        <service id="perfico_crm.api.entity_converter" class="Perfico\CRMBundle\Transformer\Converter\AbstractEntityConverter" abstract="true">
-            <argument type="service" id="doctrine.orm.default_entity_manager"/>
-        </service>
-
-        <service id="perfico_crm.api.client_converter" class="Perfico\CRMBundle\Transformer\Converter\ClientConverter" parent="perfico_crm.api.entity_converter">
-            <call method="setEntityClass">
-                <argument type="string">%perfico_crm.client_class%</argument>
-            </call>
-        </service>
-
-        <service id="perfico_crm.api.deal_converter" class="Perfico\CRMBundle\Transformer\Converter\DealConverter" parent="perfico_crm.api.entity_converter">
-            <call method="setEntityClass">
-                <argument type="string">%perfico_crm.deal_class%</argument>
-            </call>
-        </service>
-
-        <service id="perfico_crm.api.deal_state_converter" class="Perfico\CRMBundle\Transformer\Converter\DealStateConverter" parent="perfico_crm.api.entity_converter">
-            <call method="setEntityClass">
-                <argument type="string">%perfico_crm.deal_state_class%</argument>
-            </call>
-        </service>
-
-        <service id="perfico_crm.api.company_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyConverter" parent="perfico_crm.api.entity_converter">
-            <call method="setEntityClass">
-                <argument type="string">%perfico_crm.company_class%</argument>
-            </call>
-        </service>
-
-        <service id="perfico_crm.permission_manager" class="Perfico\CRMBundle\Permissions\PermissionManager">
-            <argument type="service" id="security.context"/>
         </service>
 
     </services>

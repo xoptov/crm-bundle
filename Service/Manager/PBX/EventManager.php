@@ -1,6 +1,6 @@
 <?php
 
-namespace Perfico\CRMBundle\Service;
+namespace Perfico\CRMBundle\Service\Manager\PBX;
 
 use Perfico\CoreBundle\Entity\Client;
 use Perfico\CoreBundle\Entity\Phone;
@@ -12,8 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
 use Perfico\CoreBundle\Manager\ClientManager;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Perfico\CRMBundle\Service\Factory\PBX\AnswerEventFactory;
+use Perfico\CRMBundle\Service\Factory\PBX\CallEventFactory;
+use Perfico\CRMBundle\Service\Factory\PBX\HangupEventFactory;
 
-class PBXEventManager
+class EventManager
 {
     /** @var EntityManager */
     protected $em;
