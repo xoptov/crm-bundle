@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Call;
+use Perfico\CRMBundle\Entity\ClientInterface;
 
 class CallManager extends GenericManager
 {
@@ -18,5 +19,21 @@ class CallManager extends GenericManager
     {
         return $this->em->getRepository('CoreBundle:Call')
             ->findBy(array('account' => $this->accountManager->getCurrentAccount()));
+    }
+
+    /**
+     * @param ClientInterface $client
+     * @return array|Call[]
+     */
+    public function getClientCalls(ClientInterface $client)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $query = $qb->select('c')
+            ->from('CoreBundle:Call', 'c')
+            ->innerJoin('c.activity', 'a')
+            ->where('a.client = :client ')->setParameter('client', $client)
+            ->getQuery();
+
+        return $query->getResult();
     }
 }
