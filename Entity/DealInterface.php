@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Entity;
 
 interface DealInterface
 {
+    public function onCreate();
     /**
      * @return integer
      */

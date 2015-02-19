@@ -13,12 +13,27 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="firstName" type="string" column="first_name" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="lastName" type="string" column="last_name" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="middleName" type="string" column="middle_name" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
-        <field name="createdAt" type="datetime" column="created_at" precision="0" scale="0" nullable="false"/>
-        <field name="email" type="string" column="email" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="firstName" type="string" column="first_name" length="255" nullable="true"/>
+        <field name="lastName" type="string" column="last_name" length="255" nullable="true"/>
+        <field name="middleName" type="string" column="middle_name" length="255" nullable="true"/>
+        <field name="note" type="text" column="note" nullable="true"/>
+        <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+        <field name="email" type="string" column="email" length="255" nullable="true"/>
+        <field name="customField1" type="text" column="custom_field_1" nullable="true"/>
+        <field name="customField2" type="text" column="custom_field_2" nullable="true"/>
+        <field name="customField3" type="text" column="custom_field_3" nullable="true"/>
+        <field name="customField4" type="text" column="custom_field_4" nullable="true"/>
+        <field name="customField5" type="text" column="custom_field_5" nullable="true"/>
+        <field name="customField6" type="text" column="custom_field_6" nullable="true"/>
+        <field name="customField7" type="text" column="custom_field_7" nullable="true"/>
+        <field name="customField8" type="text" column="custom_field_8" nullable="true"/>
+        <field name="customField9" type="text" column="custom_field_9" nullable="true"/>
+        <field name="customField10" type="text" column="custom_field_10" nullable="true"/>
+        <field name="customField11" type="text" column="custom_field_11" nullable="true"/>
+        <field name="customField12" type="text" column="custom_field_12" nullable="true"/>
+        <field name="customField13" type="text" column="custom_field_13" nullable="true"/>
+        <field name="customField14" type="text" column="custom_field_14" nullable="true"/>
+        <field name="customField15" type="text" column="custom_field_15" nullable="true"/>
         
         <many-to-one field="company" target-entity="Perfico\CRMBundle\Entity\CompanyInterface">
             <join-columns>

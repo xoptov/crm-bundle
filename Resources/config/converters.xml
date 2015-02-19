@@ -5,13 +5,29 @@
 
     <parameters>
 
-        <parameter key="perfico_crm.client_class" type="string">PerficoCRMBundle:Client</parameter>
+        <parameter key="perfico_crm.entity_alias.activity" type="string">PerficoCRMBundle:Activity</parameter>
 
-        <parameter key="perfico_crm.deal_class" type="string">PerficoCRMBundle:Deal</parameter>
+        <parameter key="perfico_crm.entity_alias.channel" type="string">PerficoCRMBundle:Channel</parameter>
 
-        <parameter key="perfico_crm.deal_state_class" type="string">PerficoCRMBundle:DealSate</parameter>
+        <parameter key="perfico_crm.entity_alias.client" type="string">PerficoCRMBundle:Client</parameter>
 
-        <parameter key="perfico_crm.company_class" type="string">PerficoCRMBundle:Company</parameter>
+        <parameter key="perfico_crm.entity_alias.company" type="string">PerficoCRMBundle:Company</parameter>
+
+        <parameter key="perfico_crm.entity_alias.deal" type="string">PerficoCRMBundle:Deal</parameter>
+
+        <parameter key="perfico_crm.entity_alias.deal_state" type="string">PerficoCRMBundle:DealSate</parameter>
+
+        <parameter key="perfico_crm.entity_alias.payment" type="string">PerficoCRMBundle:Payment</parameter>
+
+        <parameter key="perfico_crm.entity_alias.phone" type="string">PerficoCRMBundle:Phone</parameter>
+
+        <parameter key="perfico_crm.entity_alias.product" type="string">PerficoCRMBundle:Product</parameter>
+
+        <parameter key="perfico_crm.entity_alias.tag" type="string">PerficoCRMBundle:Tag</parameter>
+
+        <parameter key="perfico_crm.entity_alias.user" type="string">PerficoCRMBundle:User</parameter>
+
+        <parameter key="perfico_crm.entity_alias.group" type="string">PerficoCRMBundle:Group</parameter>
 
     </parameters>
 
@@ -25,27 +41,72 @@
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
         </service>
 
+        <service id="perfico_crm.api.channel_converter" class="Perfico\CRMBundle\Transformer\Converter\ChannelConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.channel%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.client_converter" class="Perfico\CRMBundle\Transformer\Converter\ClientConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.client_class%</argument>
+                <argument type="string">%perfico_crm.entity_alias.client%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.clients_list_statuses_converter" class="Perfico\CRMBundle\Transformer\Converter\ClientsListDealStatesConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.deal%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.deal_converter" class="Perfico\CRMBundle\Transformer\Converter\DealConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.deal_class%</argument>
+                <argument type="string">%perfico_crm.entity_alias.deal%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.deal_state_converter" class="Perfico\CRMBundle\Transformer\Converter\DealStateConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.deal_state_class%</argument>
+                <argument type="string">%perfico_crm.entity_alias.deal_state%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.company_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.company_class%</argument>
+                <argument type="string">%perfico_crm.entity_alias.company%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.tag_converter" class="Perfico\CRMBundle\Transformer\Converter\TagConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.tag%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.product_converter" class="Perfico\CRMBundle\Transformer\Converter\ProductConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.product%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.product_child_converter" class="Perfico\CRMBundle\Transformer\Converter\ProductChildConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.product%</argument>
+            </call>
+            <call method="setProductManager">
+                <argument type="service" id="core.manager.product"/>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.user_converter" class="Perfico\CRMBundle\Transformer\Converter\UserConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.group_converter" class="Perfico\CRMBundle\Transformer\Converter\GroupConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.group%</argument>
             </call>
         </service>
 
