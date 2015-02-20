@@ -12,6 +12,7 @@ use Perfico\CoreBundle\Entity\Deal;
 use Perfico\CRMBundle\Transformer\Mapping\PaymentMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\ProductMap;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DealController extends Controller
 {
@@ -50,6 +51,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}")
+     * @ParamConverter("deal", converter="safe.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse|Response
      */
@@ -75,6 +77,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}/product")
+     * @ParamConverter("deal", converter="safe.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse|Response
      */
@@ -125,6 +128,7 @@ class DealController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/deals/{id}")
+     * @ParamConverter("deal", converter="safe.doctrine.orm")
      * @param Deal $deal
      * @return Response
      */
@@ -157,6 +161,7 @@ class DealController extends Controller
      * )
      * @Method("PUT")
      * @Route("/deals/{id}")
+     * @ParamConverter("deal", converter="safe.doctrine.orm")
      * @param Deal $deal
      * @return Response
      */
@@ -179,6 +184,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}/payments")
+     * @ParamConverter("deal", converter="safe.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse
      */

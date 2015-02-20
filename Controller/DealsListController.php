@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DealsListController extends Controller
 {
@@ -23,6 +24,7 @@ class DealsListController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/deals-list")
+     * @ParamConverter("client", converter="safe.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */

@@ -110,6 +110,12 @@
             </call>
         </service>
 
+        <service id="perfico_crm.safe_doctrine_param_converter" class="Perfico\CRMBundle\Request\ParamConverter\SafeDoctrineParamConverter">
+            <argument type="service" id="doctrine"/>
+            <argument type="service" id="perfico_crm.account_manager"/>
+            <tag name="request.param_converter" converter="safe.doctrine.orm"/>
+        </service>
+
     </services>
 
 </container>

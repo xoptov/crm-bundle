@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Perfico\UserBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class GroupController extends Controller
 {
@@ -54,6 +55,7 @@ class GroupController extends Controller
      * )
      * @Method("GET")
      * @Route("/groups/{id}", requirements = {"id" = "\d+" })
+     * @ParamConverter("group", converter="safe.doctrine.orm")
      * @param Group $group
      * @return JsonResponse
      */
@@ -149,6 +151,7 @@ class GroupController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/groups/{id}")
+     * @ParamConverter("group", converter="safe.doctrine.orm")
      * @param Group $group
      * @return Response
      */
@@ -177,6 +180,7 @@ class GroupController extends Controller
      * )
      * @Method("PUT")
      * @Route("/groups/{id}")
+     * @ParamConverter("group", converter="safe.doctrine.orm")
      * @param Group $group
      * @return Response
      */

@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CustomFieldController extends Controller
 {
@@ -48,6 +49,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("GET")
      * @Route("/custom-fields/{id}")
+     * @ParamConverter("customField", converter="safe.doctrine.orm")
      * @param CustomField $customField
      * @return JsonResponse
      */
@@ -98,6 +100,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/custom-fields/{id}")
+     * @ParamConverter("customField", converter="safe.doctrine.orm")
      * @param CustomField $customField
      * @return Response
      */
@@ -126,6 +129,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("PUT")
      * @Route("/custom-fields/{id}")
+     * @ParamConverter("customField", converter="safe.doctrine.orm")
      * @param CustomField $customField
      * @return Response
      */

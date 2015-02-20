@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ProductController extends Controller
 {
@@ -45,6 +46,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return JsonResponse|Response
      */
@@ -89,6 +91,7 @@ class ProductController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/products/{id}")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return Response
      */
@@ -115,6 +118,7 @@ class ProductController extends Controller
      * )
      * @Method("PUT")
      * @Route("/products/{id}")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return Response
      */
@@ -133,6 +137,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/parent")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */
@@ -159,6 +164,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/deals")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */
@@ -185,6 +191,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/children")
+     * @ParamConverter("product", converter="safe.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */

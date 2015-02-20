@@ -10,6 +10,7 @@ use Perfico\CRMBundle\Transformer\Mapping\CallMap;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CallController extends Controller
 {
@@ -48,6 +49,7 @@ class CallController extends Controller
      * )
      * @Method("GET")
      * @Route("/calls/{id}")
+     * @ParamConverter("call", converter="safe.doctrine.orm")
      * @param Call $call
      * @return JsonResponse|Response
      */
@@ -73,6 +75,7 @@ class CallController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/calls/{id}")
+     * @ParamConverter("call", converter="safe.doctrine.orm")
      * @param Call $call
      * @return Response
      */

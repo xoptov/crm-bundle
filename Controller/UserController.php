@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Perfico\UserBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class UserController extends Controller
 {
@@ -98,6 +99,7 @@ class UserController extends Controller
      * )
      * @Method("GET")
      * @Route("/users/{id}", requirements = {"id" = "\d+" })
+     * @ParamConverter("user", converter="safe.doctrine.orm")
      * @param User $user
      * @return JsonResponse
      */
@@ -144,6 +146,7 @@ class UserController extends Controller
      * )
      * @Method("POST")
      * @Route("/users/{id}/change-password")
+     * @ParamConverter("user", converter="safe.doctrine.orm")
      * @param User $user
      * @return JsonResponse
      */
@@ -206,6 +209,7 @@ class UserController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/users/{id}")
+     * @ParamConverter("user", converter="safe.doctrine.orm")
      * @param User $user
      * @return Response
      */
@@ -238,6 +242,7 @@ class UserController extends Controller
      * )
      * @Method("PUT")
      * @Route("/users/{id}")
+     * @ParamConverter("user", converter="safe.doctrine.orm")
      * @param User $user
      * @return Response
      */
