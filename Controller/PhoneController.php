@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Perfico\CRMBundle\Transformer\Mapping\PhoneMap;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PhoneController extends Controller
 {
@@ -45,6 +46,7 @@ class PhoneController extends Controller
      * )
      * @Method("GET")
      * @Route("/phones/client/{id}", requirements={"id" = "\d+"})
+     * @ParamConverter("client", converter="account.doctrine.orm")
      */
     public function getClientPhonesAction(Client $client)
     {
@@ -69,6 +71,7 @@ class PhoneController extends Controller
      *  }
      * )
      * @Route("/phones/{id}", requirements={"id" = "\d+"})
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @Method("GET")
      * @param Phone $phone
      * @return JsonResponse;
@@ -146,6 +149,7 @@ class PhoneController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/phones/{id}")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone
      * @return Response
      */
@@ -171,6 +175,7 @@ class PhoneController extends Controller
      * )
      * @Method("PUT")
      * @Route("/phones/{id}")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone
      * @return Response
      */

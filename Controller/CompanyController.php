@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CompanyController extends Controller
 {
@@ -50,6 +51,7 @@ class CompanyController extends Controller
      * )
      * @Method("GET")
      * @Route("/companies/{id}")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return JsonResponse
      */
@@ -98,6 +100,7 @@ class CompanyController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/companies/{id}")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return Response
      */
@@ -125,6 +128,7 @@ class CompanyController extends Controller
      * )
      * @Method("PUT")
      * @Route("/companies/{id}")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return Response
      */

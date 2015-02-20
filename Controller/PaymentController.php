@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Perfico\CoreBundle\Entity\Payment;
 use Perfico\CRMBundle\Transformer\Mapping\PaymentMap;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PaymentController extends Controller
 {
@@ -48,6 +49,7 @@ class PaymentController extends Controller
      * )
      * @Method("GET")
      * @Route("/payments/{id}")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment)
      * @return JsonResponse
      */
@@ -100,6 +102,7 @@ class PaymentController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/payments/{id}")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
      * @return Response
      */
@@ -128,6 +131,7 @@ class PaymentController extends Controller
      * )
      * @Method("PUT")
      * @Route("/payments/{id}")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
      * @return Response
      */

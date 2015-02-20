@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ActivitiesListController extends Controller
 {
@@ -23,6 +24,7 @@ class ActivitiesListController extends Controller
      * @Method("GET")
      * @Route("/clients/{id}/activities-list")
      * @param Client $client
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @return JsonResponse
      */
     public function indexAction(Client $client)

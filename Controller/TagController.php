@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TagController extends Controller
 {
@@ -48,6 +49,7 @@ class TagController extends Controller
      * )
      * @Method("GET")
      * @Route("/tags/{id}")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return JsonResponse
      */
@@ -96,6 +98,7 @@ class TagController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/tags/{id}")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return Response
      */
@@ -123,6 +126,7 @@ class TagController extends Controller
      * )
      * @Method("PUT")
      * @Route("/tags/{id}")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return Response
      */

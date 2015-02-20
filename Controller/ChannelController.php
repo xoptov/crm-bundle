@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ChannelController extends Controller
 {
@@ -48,6 +49,7 @@ class ChannelController extends Controller
      * )
      * @Method("GET")
      * @Route("/channels/{id}")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return JsonResponse|Response
      */
@@ -97,6 +99,7 @@ class ChannelController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/channels/{id}")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return Response
      */
@@ -124,6 +127,7 @@ class ChannelController extends Controller
      * )
      * @Method("PUT")
      * @Route("/channels/{id}")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return Response
      */

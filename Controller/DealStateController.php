@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DealStateController extends Controller
 {
@@ -44,10 +45,11 @@ class DealStateController extends Controller
      * )
      * @Method("GET")
      * @Route("/deal-states/{id}")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return JsonResponse|Response
      */
-    public function getAction( DealState $dealState)
+    public function getAction(DealState $dealState)
     {
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
@@ -86,6 +88,7 @@ class DealStateController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/deal-states/{id}")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return Response
      */
@@ -110,6 +113,7 @@ class DealStateController extends Controller
      * )
      * @Method("PUT")
      * @Route("/deal-states/{id}")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return Response
      */
