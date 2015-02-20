@@ -11,8 +11,8 @@
 
         <service id="perfico_crm.pbx.event_manager" class="Perfico\CRMBundle\Service\Manager\PBX\EventManager">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
-            <argument type="service" id="core.manager.client"/>
-            <argument type="service" id="core.manager.user"/>
+            <argument type="service" id="perfico_crm.client_manager"/>
+            <argument type="service" id="perfico_crm.user_manager"/>
             <argument type="service" id="translator.default"/>
         </service>
 
