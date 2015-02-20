@@ -3,7 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Perfico\CoreBundle\Entity\Product;
-use Perfico\CoreBundle\Manager\ProductManager;
+use Perfico\CRMBundle\Service\Manager\ProductManager;
 
 class ProductChildConverter extends AbstractEntityConverter
 {
