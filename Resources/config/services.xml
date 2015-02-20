@@ -4,13 +4,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-
         <parameter key="perfico_crm.user_provider">~</parameter>
-
         <parameter key="perfico_crm.provider_id">~</parameter>
-
         <parameter key="perfico_crm.secret_key">~</parameter>
-
     </parameters>
 
     <services>
@@ -34,6 +30,48 @@
 
         <service id="perfico_crm.auth_user_provider" class="Perfico\CRMBundle\Security\Authentication\Provider\UserProvider">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+
+        <service id="perfico_crm.api.logout_handler" class="Perfico\CRMBundle\Security\Firewall\ApiLogoutHandler"/>
+
+        <service id="perfico_crm.security.client_handler" class="Perfico\CRMBundle\Permissions\Handlers\ClientHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_CLIENT_" object_class="Perfico\CoreBundle\Entity\Client"/>
+        </service>
+
+        <service id="perfico_crm.security.deal_handler" class="Perfico\CRMBundle\Permissions\Handlers\DealHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_DEAL_" object_class="Perfico\CoreBundle\Entity\Deal"/>
+        </service>
+
+        <service id="perfico_crm.security.company_handler" class="Perfico\CRMBundle\Permissions\Handlers\CompanyHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_COMPANY_" object_class="Perfico\CoreBundle\Entity\Company"/>
+        </service>
+
+        <service id="perfico_crm.security.tag_handler" class="Perfico\CRMBundle\Permissions\Handlers\TagHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_TAG_" object_class="Perfico\CoreBundle\Entity\Tag"/>
+        </service>
+
+        <service id="perfico_crm.security.payment_handler" class="Perfico\CRMBundle\Permissions\Handlers\PaymentHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_PAYMENT_" object_class="Perfico\CoreBundle\Entity\Payment"/>
+        </service>
+
+        <service id="perfico_crm.security.custom_field" class="Perfico\CRMBundle\Permissions\Handlers\CustomFieldHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_CUSTOM_FIELD_" object_class="Perfico\CoreBundle\Entity\CustomField"/>
+        </service>
+
+        <service id="perfico_crm.security.user_handler" class="Perfico\CRMBundle\Permissions\Handlers\UserHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_USER_" object_class="Perfico\UserBundle\Entity\User"/>
+        </service>
+
+        <service id="perfico_crm.account_listener" class="Perfico\CRMBundle\EventListener\AccountListener">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="perfico_crm.account_manager"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+        </service>
+
+        <service id="perfico_crm.custom_filed_subscriber" class="Perfico\CRMBundle\EventListener\CustomFieldSubscriber">
+            <tag name="doctrine.event_subscriber"/>
         </service>
 
     </services>
