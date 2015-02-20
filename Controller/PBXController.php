@@ -2,9 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
-use Monolog\Handler\StreamHandler;
 use Perfico\CRMBundle\Event\PBXEvent;
-use Symfony\Bridge\Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

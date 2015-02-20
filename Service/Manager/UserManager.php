@@ -107,6 +107,7 @@ class UserManager extends GenericManager
         $query = $qb->select('u')
             ->from('UserBundle:User', 'u')
             ->where('u.phone LIKE :phone')->setParameter('phone', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
+            ->andWhere('u.account = :account')->setParameter('account', $this->accountManager->getCurrentAccount())
             ->setMaxResults(1)
             ->getQuery();
 

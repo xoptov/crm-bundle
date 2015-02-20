@@ -4,13 +4,13 @@ namespace Perfico\CRMBundle\Service\Manager\PBX;
 
 use Perfico\CoreBundle\Entity\Client;
 use Perfico\CoreBundle\Entity\Phone;
-use Perfico\CoreBundle\Manager\UserManager;
+use Perfico\CRMBundle\Service\Manager\UserManager;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
-use Perfico\CoreBundle\Manager\ClientManager;
+use Perfico\CRMBundle\Service\Manager\ClientManager;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Perfico\CRMBundle\Service\Factory\PBX\AnswerEventFactory;
 use Perfico\CRMBundle\Service\Factory\PBX\CallEventFactory;
