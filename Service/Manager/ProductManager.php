@@ -3,12 +3,13 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Doctrine\ORM\EntityRepository;
+use Perfico\CRMBundle\Entity\ProductInterface;
 use Perfico\CoreBundle\Entity\Product;
 
 class ProductManager extends GenericManager
 {
     /**
-     * @return Product[]
+     * @return ProductInterface[]
      * @todo need refactoring this method
      */
     public function getAccountProducts()
@@ -24,7 +25,7 @@ class ProductManager extends GenericManager
     }
 
     /**
-     * @return Product
+     * @return ProductInterface
      */
     public function create()
     {
@@ -37,10 +38,10 @@ class ProductManager extends GenericManager
     /**
      * Check child exists
      *
-     * @param Product $product
+     * @param ProductInterface $product
      * @return bool
      */
-    public function hasChild(Product $product)
+    public function hasChild(ProductInterface $product)
     {
         /** @var EntityRepository $repo */
         $repo = $this->em->getRepository('CoreBundle:Product');
@@ -65,10 +66,10 @@ class ProductManager extends GenericManager
     /**
      * Get product children
      *
-     * @param Product $product
-     * @return Product[]
+     * @param ProductInterface $product
+     * @return ProductInterface[]
      */
-    public function getChildren(Product $product)
+    public function getChildren(ProductInterface $product)
     {
         /** @var EntityRepository $repo */
         $repo = $this->em->getRepository('CoreBundle:Product');
