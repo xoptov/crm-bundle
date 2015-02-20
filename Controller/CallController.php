@@ -49,7 +49,7 @@ class CallController extends Controller
      * )
      * @Method("GET")
      * @Route("/calls/{id}")
-     * @ParamConverter("call", converter="safe.doctrine.orm")
+     * @ParamConverter("call", converter="account.doctrine.orm")
      * @param Call $call
      * @return JsonResponse|Response
      */
@@ -75,7 +75,7 @@ class CallController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/calls/{id}")
-     * @ParamConverter("call", converter="safe.doctrine.orm")
+     * @ParamConverter("call", converter="account.doctrine.orm")
      * @param Call $call
      * @return Response
      */

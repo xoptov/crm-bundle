@@ -51,7 +51,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}")
-     * @ParamConverter("deal", converter="safe.doctrine.orm")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse|Response
      */
@@ -77,7 +77,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}/product")
-     * @ParamConverter("deal", converter="safe.doctrine.orm")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse|Response
      */
@@ -128,7 +128,7 @@ class DealController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/deals/{id}")
-     * @ParamConverter("deal", converter="safe.doctrine.orm")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return Response
      */
@@ -161,7 +161,7 @@ class DealController extends Controller
      * )
      * @Method("PUT")
      * @Route("/deals/{id}")
-     * @ParamConverter("deal", converter="safe.doctrine.orm")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return Response
      */
@@ -184,7 +184,7 @@ class DealController extends Controller
      * )
      * @Method("GET")
      * @Route("/deals/{id}/payments")
-     * @ParamConverter("deal", converter="safe.doctrine.orm")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return JsonResponse
      */

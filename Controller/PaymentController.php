@@ -49,7 +49,7 @@ class PaymentController extends Controller
      * )
      * @Method("GET")
      * @Route("/payments/{id}")
-     * @ParamConverter("payment", converter="safe.doctrine.orm")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment)
      * @return JsonResponse
      */
@@ -102,7 +102,7 @@ class PaymentController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/payments/{id}")
-     * @ParamConverter("payment", converter="safe.doctrine.orm")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
      * @return Response
      */
@@ -131,7 +131,7 @@ class PaymentController extends Controller
      * )
      * @Method("PUT")
      * @Route("/payments/{id}")
-     * @ParamConverter("payment", converter="safe.doctrine.orm")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
      * @return Response
      */

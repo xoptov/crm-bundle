@@ -51,7 +51,7 @@ class CompanyController extends Controller
      * )
      * @Method("GET")
      * @Route("/companies/{id}")
-     * @ParamConverter("company", converter="safe.doctrine.orm")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return JsonResponse
      */
@@ -100,7 +100,7 @@ class CompanyController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/companies/{id}")
-     * @ParamConverter("company", converter="safe.doctrine.orm")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return Response
      */
@@ -128,7 +128,7 @@ class CompanyController extends Controller
      * )
      * @Method("PUT")
      * @Route("/companies/{id}")
-     * @ParamConverter("company", converter="safe.doctrine.orm")
+     * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return Response
      */

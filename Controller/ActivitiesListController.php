@@ -24,7 +24,7 @@ class ActivitiesListController extends Controller
      * @Method("GET")
      * @Route("/clients/{id}/activities-list")
      * @param Client $client
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @return JsonResponse
      */
     public function indexAction(Client $client)

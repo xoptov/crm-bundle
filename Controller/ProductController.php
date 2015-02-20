@@ -46,7 +46,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return JsonResponse|Response
      */
@@ -91,7 +91,7 @@ class ProductController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/products/{id}")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return Response
      */
@@ -118,7 +118,7 @@ class ProductController extends Controller
      * )
      * @Method("PUT")
      * @Route("/products/{id}")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return Response
      */
@@ -137,7 +137,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/parent")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */
@@ -164,7 +164,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/deals")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */
@@ -191,7 +191,7 @@ class ProductController extends Controller
      * )
      * @Method("GET")
      * @Route("/products/{id}/children")
-     * @ParamConverter("product", converter="safe.doctrine.orm")
+     * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return JsonResponse
      */

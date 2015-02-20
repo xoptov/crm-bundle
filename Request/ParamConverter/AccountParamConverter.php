@@ -10,7 +10,7 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Perfico\CRMBundle\Service\Manager\AccountManager;
 
-class SafeDoctrineParamConverter extends DoctrineParamConverter
+class AccountParamConverter extends DoctrineParamConverter
 {
     /** @var AccountManager */
     protected $accountManager;

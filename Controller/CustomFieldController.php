@@ -49,7 +49,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("GET")
      * @Route("/custom-fields/{id}")
-     * @ParamConverter("customField", converter="safe.doctrine.orm")
+     * @ParamConverter("customField", converter="account.doctrine.orm")
      * @param CustomField $customField
      * @return JsonResponse
      */
@@ -100,7 +100,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/custom-fields/{id}")
-     * @ParamConverter("customField", converter="safe.doctrine.orm")
+     * @ParamConverter("customField", converter="account.doctrine.orm")
      * @param CustomField $customField
      * @return Response
      */
@@ -129,7 +129,7 @@ class CustomFieldController extends Controller
      * )
      * @Method("PUT")
      * @Route("/custom-fields/{id}")
-     * @ParamConverter("customField", converter="safe.doctrine.orm")
+     * @ParamConverter("customField", converter="account.doctrine.orm")
      * @param CustomField $customField
      * @return Response
      */

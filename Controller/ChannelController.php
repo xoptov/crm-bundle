@@ -49,7 +49,7 @@ class ChannelController extends Controller
      * )
      * @Method("GET")
      * @Route("/channels/{id}")
-     * @ParamConverter("channel", converter="safe.doctrine.orm")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return JsonResponse|Response
      */
@@ -99,7 +99,7 @@ class ChannelController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/channels/{id}")
-     * @ParamConverter("channel", converter="safe.doctrine.orm")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return Response
      */
@@ -127,7 +127,7 @@ class ChannelController extends Controller
      * )
      * @Method("PUT")
      * @Route("/channels/{id}")
-     * @ParamConverter("channel", converter="safe.doctrine.orm")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel
      * @return Response
      */

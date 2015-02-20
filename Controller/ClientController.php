@@ -58,7 +58,7 @@ class ClientController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
@@ -84,7 +84,7 @@ class ClientController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/deals")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
@@ -110,7 +110,7 @@ class ClientController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/activities")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
@@ -136,7 +136,7 @@ class ClientController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/phones")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
@@ -161,7 +161,7 @@ class ClientController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/calls")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
@@ -297,7 +297,7 @@ class ClientController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/clients/{id}")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return Response
      */
@@ -347,7 +347,7 @@ class ClientController extends Controller
      * )
      * @Method("PUT")
      * @Route("/clients/{id}")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return Response
      */
@@ -374,7 +374,7 @@ class ClientController extends Controller
      * )
      * @Method("PUT")
      * @Route("/clients-custom-field/{id}")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return Response
      * @todo непонятно зачем пладить одинаковый код? нужно переделать в будущем

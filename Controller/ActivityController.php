@@ -70,7 +70,7 @@ class ActivityController extends Controller
      * )
      * @Method("GET")
      * @Route("/activities/{id}")
-     * @ParamConverter("activity", converter="safe.doctrine.orm")
+     * @ParamConverter("activity", converter="account.doctrine.orm")
      * @param Activity $activity
      * @return JsonResponse
      */
@@ -123,7 +123,7 @@ class ActivityController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/activities/{id}")
-     * @ParamConverter("activity", converter="safe.doctrine.orm")
+     * @ParamConverter("activity", converter="account.doctrine.orm")
      * @param Activity $activity
      * @return Response
      */
@@ -153,7 +153,7 @@ class ActivityController extends Controller
      * )
      * @Method("PUT")
      * @Route("/activities/{id}")
-     * @ParamConverter("activity", converter="safe.doctrine.orm")
+     * @ParamConverter("activity", converter="account.doctrine.orm")
      * @param Activity $activity
      * @return Response
      */

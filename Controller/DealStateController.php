@@ -45,7 +45,7 @@ class DealStateController extends Controller
      * )
      * @Method("GET")
      * @Route("/deal-states/{id}")
-     * @ParamConverter("dealState", converter="safe.doctrine.orm")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return JsonResponse|Response
      */
@@ -88,7 +88,7 @@ class DealStateController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/deal-states/{id}")
-     * @ParamConverter("dealState", converter="safe.doctrine.orm")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return Response
      */
@@ -113,7 +113,7 @@ class DealStateController extends Controller
      * )
      * @Method("PUT")
      * @Route("/deal-states/{id}")
-     * @ParamConverter("dealState", converter="safe.doctrine.orm")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return Response
      */

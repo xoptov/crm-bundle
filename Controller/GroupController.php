@@ -55,7 +55,7 @@ class GroupController extends Controller
      * )
      * @Method("GET")
      * @Route("/groups/{id}", requirements = {"id" = "\d+" })
-     * @ParamConverter("group", converter="safe.doctrine.orm")
+     * @ParamConverter("group", converter="account.doctrine.orm")
      * @param Group $group
      * @return JsonResponse
      */
@@ -151,7 +151,7 @@ class GroupController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/groups/{id}")
-     * @ParamConverter("group", converter="safe.doctrine.orm")
+     * @ParamConverter("group", converter="account.doctrine.orm")
      * @param Group $group
      * @return Response
      */
@@ -180,7 +180,7 @@ class GroupController extends Controller
      * )
      * @Method("PUT")
      * @Route("/groups/{id}")
-     * @ParamConverter("group", converter="safe.doctrine.orm")
+     * @ParamConverter("group", converter="account.doctrine.orm")
      * @param Group $group
      * @return Response
      */

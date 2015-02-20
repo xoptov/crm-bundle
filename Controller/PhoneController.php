@@ -46,7 +46,7 @@ class PhoneController extends Controller
      * )
      * @Method("GET")
      * @Route("/phones/client/{id}", requirements={"id" = "\d+"})
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      */
     public function getClientPhonesAction(Client $client)
     {
@@ -71,7 +71,7 @@ class PhoneController extends Controller
      *  }
      * )
      * @Route("/phones/{id}", requirements={"id" = "\d+"})
-     * @ParamConverter("phone", converter="safe.doctrine.orm")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @Method("GET")
      * @param Phone $phone
      * @return JsonResponse;
@@ -149,7 +149,7 @@ class PhoneController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/phones/{id}")
-     * @ParamConverter("phone", converter="safe.doctrine.orm")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone
      * @return Response
      */
@@ -175,7 +175,7 @@ class PhoneController extends Controller
      * )
      * @Method("PUT")
      * @Route("/phones/{id}")
-     * @ParamConverter("phone", converter="safe.doctrine.orm")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone
      * @return Response
      */

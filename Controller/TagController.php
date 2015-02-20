@@ -49,7 +49,7 @@ class TagController extends Controller
      * )
      * @Method("GET")
      * @Route("/tags/{id}")
-     * @ParamConverter("tag", converter="safe.doctrine.orm")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return JsonResponse
      */
@@ -98,7 +98,7 @@ class TagController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/tags/{id}")
-     * @ParamConverter("tag", converter="safe.doctrine.orm")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return Response
      */
@@ -126,7 +126,7 @@ class TagController extends Controller
      * )
      * @Method("PUT")
      * @Route("/tags/{id}")
-     * @ParamConverter("tag", converter="safe.doctrine.orm")
+     * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag
      * @return Response
      */

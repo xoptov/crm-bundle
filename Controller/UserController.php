@@ -99,7 +99,7 @@ class UserController extends Controller
      * )
      * @Method("GET")
      * @Route("/users/{id}", requirements = {"id" = "\d+" })
-     * @ParamConverter("user", converter="safe.doctrine.orm")
+     * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user
      * @return JsonResponse
      */
@@ -146,7 +146,7 @@ class UserController extends Controller
      * )
      * @Method("POST")
      * @Route("/users/{id}/change-password")
-     * @ParamConverter("user", converter="safe.doctrine.orm")
+     * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user
      * @return JsonResponse
      */
@@ -209,7 +209,7 @@ class UserController extends Controller
      * )
      * @Method("DELETE")
      * @Route("/users/{id}")
-     * @ParamConverter("user", converter="safe.doctrine.orm")
+     * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user
      * @return Response
      */
@@ -242,7 +242,7 @@ class UserController extends Controller
      * )
      * @Method("PUT")
      * @Route("/users/{id}")
-     * @ParamConverter("user", converter="safe.doctrine.orm")
+     * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user
      * @return Response
      */

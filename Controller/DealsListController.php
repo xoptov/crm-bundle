@@ -24,7 +24,7 @@ class DealsListController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients/{id}/deals-list")
-     * @ParamConverter("client", converter="safe.doctrine.orm")
+     * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
      */
