@@ -31,7 +31,8 @@ class CallManager extends GenericManager
         $query = $qb->select('c')
             ->from('CoreBundle:Call', 'c')
             ->innerJoin('c.activity', 'a')
-            ->where('a.client = :client ')->setParameter('client', $client)
+            ->where('a.client = :client')->setParameter('client', $client)
+            ->andWhere('a.account = :account')->setParameter('account', $this->accountManager->getCurrentAccount())
             ->getQuery();
 
         return $query->getResult();

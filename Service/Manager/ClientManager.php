@@ -254,6 +254,7 @@ class ClientManager extends GenericManager
             ->from('CoreBundle:Client', 'c')
             ->leftJoin('c.phones', 'p')
             ->where('p.number LIKE :number')->setParameter('number', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
+            ->andWhere('c.account = :account')->setParameter('account', $this->accountManager->getCurrentAccount())
             ->setMaxResults(1)
             ->getQuery();
 

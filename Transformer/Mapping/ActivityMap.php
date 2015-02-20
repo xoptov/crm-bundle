@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
-class ClientActivityMap implements MapInterface
+class ActivityMap implements MapInterface
 {
     /**
      * @return array
