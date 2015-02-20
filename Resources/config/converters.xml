@@ -94,7 +94,7 @@
                 <argument type="string">%perfico_crm.entity_alias.product%</argument>
             </call>
             <call method="setProductManager">
-                <argument type="service" id="core.manager.product"/>
+                <argument type="service" id="perfico_crm.product_manager"/>
             </call>
         </service>
 

@@ -9,7 +9,9 @@
             <argument type="service" id="security.context"/>
         </service>
 
-        <service id="perfico_crm.account_manager" class="Perfico\CRMBundle\Service\Manager\AccountManager"/>
+        <service id="perfico_crm.account_manager" class="Perfico\CRMBundle\Service\Manager\AccountManager">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
 
         <service id="perfico_crm.generic_manager" class="Perfico\CRMBundle\Service\Manager\GenericManager" abstract="true">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
@@ -18,6 +20,38 @@
         </service>
 
         <service id="perfico_crm.call_manager" class="Perfico\CRMBundle\Service\Manager\CallManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.client_manager" class="Perfico\CRMBundle\Service\Manager\ClientManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.company_manager" class="Perfico\CRMBundle\Service\Manager\CompanyManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.tag_manager" class="Perfico\CRMBundle\Service\Manager\TagManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.phone_manager" class="Perfico\CRMBundle\Service\Manager\PhoneManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.deal_manager" class="Perfico\CRMBundle\Service\Manager\DealManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.deal_state_manager" class="Perfico\CRMBundle\Service\Manager\DealStateManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.activity_manager" class="Perfico\CRMBundle\Service\Manager\ActivityManager" parent="perfico_crm.generic_manager">
+            <call method="setTranslator">
+                <argument type="service" id="translator.default"/>
+            </call>
+        </service>
+
+        <service id="perfico_crm.payment_manager" class="Perfico\CRMBundle\Service\Manager\PaymentManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.channel_manager" class="Perfico\CRMBundle\Service\Manager\ChannelManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.user_manager" class="Perfico\CRMBundle\Service\Manager\UserManager" parent="perfico_crm.generic_manager">
+            <call method="setUserManager">
+                <argument type="service" id="fos_user.user_manager"/>
+            </call>
+        </service>
+
+        <service id="perfico_crm.product_manager" class="Perfico\CRMBundle\Service\Manager\ProductManager" parent="perfico_crm.generic_manager"/>
+
+        <service id="perfico_crm.custom_field_manager" class="Perfico\CRMBundle\Service\Manager\CustomFieldManager" parent="perfico_crm.generic_manager"/>
 
     </services>
 
