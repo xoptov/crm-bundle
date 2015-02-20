@@ -4,6 +4,9 @@ namespace Perfico\CRMBundle\Entity;
 
 interface PaymentInterface
 {
+    public function onCreate();
+
+    public function onUpdate();
     /**
      * @return integer
      */

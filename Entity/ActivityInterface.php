@@ -9,6 +9,10 @@ interface ActivityInterface
     const TYPE_MESSAGE = 'message';
     const TYPE_MEETING = 'meeting';
 
+    public function onCreate();
+
+    public function onUpdate();
+
     /**
      * @return integer
      */

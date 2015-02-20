@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Entity;
 
 interface AccountInterface
 {
+    public function onCreate();
     /**
      * @return integer
      */
