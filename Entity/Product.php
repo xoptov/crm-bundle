@@ -144,6 +144,11 @@ abstract class Product implements ProductInterface
         return $this->children;
     }
 
+    public function hasChildren()
+    {
+        return !$this->children->isEmpty();
+    }
+
     /**
      * {@inheritdoc}
      */

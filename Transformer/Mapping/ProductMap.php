@@ -32,10 +32,7 @@ class ProductMap implements MapInterface
         return [
             'id' => 'getId',
             'amount' => 'getAmount',
-            'hasChild' => [
-                'converter' => 'perfico_crm.api.product_child_converter',
-                'method' => 'getId'
-            ],
+            'children' => 'hasChildren',
             'parent' => [
                 'converter' => 'perfico_crm.api.product_converter',
                 'method' => 'getParent'
