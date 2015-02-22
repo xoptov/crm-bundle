@@ -61,6 +61,11 @@ interface ProductInterface
     public function getChildren();
 
     /**
+     * @return bool
+     */
+    public function hasChildren();
+
+    /**
      * @param ProductInterface $parent
      * @return ProductInterface
      */

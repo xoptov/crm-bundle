@@ -89,15 +89,6 @@
             </call>
         </service>
 
-        <service id="perfico_crm.api.product_child_converter" class="Perfico\CRMBundle\Transformer\Converter\ProductChildConverter" parent="perfico_crm.api.entity_converter">
-            <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.product%</argument>
-            </call>
-            <call method="setProductManager">
-                <argument type="service" id="perfico_crm.product_manager"/>
-            </call>
-        </service>
-
         <service id="perfico_crm.api.user_converter" class="Perfico\CRMBundle\Transformer\Converter\UserConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.user%</argument>

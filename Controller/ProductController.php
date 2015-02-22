@@ -73,7 +73,7 @@ class ProductController extends Controller
      *   }
      * )
      * @Method("POST")
-     * @Route("/product")
+     * @Route("/products")
      * @return Response|JsonResponse
      */
     public function createAction()
