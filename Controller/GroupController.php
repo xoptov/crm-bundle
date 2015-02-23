@@ -206,7 +206,7 @@ class GroupController extends Controller
         $groupManager = $this->get('fos_user.group_manager');
 
         if(!$group) {
-            $group = new Group('');
+            $group = $groupManager->createGroup('');
         }
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
