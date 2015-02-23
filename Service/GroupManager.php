@@ -32,4 +32,12 @@ class GroupManager extends BaseManager {
     {
         return $this->repository->findBy(['account' => $this->accontManager->getCurrentAccount()]);
     }
+
+    public function createGroup($name)
+    {
+        $group = parent::createGroup($name);
+        $group->setAccount($this->accontManager->getCurrentAccount());
+
+        return $group;
+    }
 }
