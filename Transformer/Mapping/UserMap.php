@@ -7,12 +7,11 @@ class UserMap implements MapInterface
     public function getReverseMap()
     {
         return [
-            'setEmail' => 'email',
             'setPlainPassword' => 'plainPassword',
-            'setUserName' => 'userName',
             'setFirstName' => 'firstName',
             'setMiddleName' => 'middleName',
             'setLastName' => 'lastName',
+            'setEmail' => 'email',
             'setUsername' => 'email',
             'setGroup' => [
                 'converter' => 'perfico_crm.api.group_converter',
