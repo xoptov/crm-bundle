@@ -75,7 +75,7 @@ class CompanyController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("POST")
@@ -123,7 +123,7 @@ class CompanyController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("PUT")

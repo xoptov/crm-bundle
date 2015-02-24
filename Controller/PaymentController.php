@@ -73,9 +73,9 @@ class PaymentController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="amount", "dataType"="float", "required"="true"},
-     *    {"name"="deal", "dataType"="integer", "required"="true"}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1},
+     *    {"name"="deal", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("POST")
@@ -125,8 +125,8 @@ class PaymentController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="amount", "dataType"="float", "required"="true"}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
      * @Method("PUT")

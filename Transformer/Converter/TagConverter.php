@@ -13,10 +13,12 @@ class TagConverter extends AbstractEntityConverter
         if (is_array($value))
         {
             $clientTags = [];
+
             foreach($value as $tag)
             {
-                $clientTags[] = $this->em->getReference($this->entityClass, $tag['id']);
+                $clientTags[] = $this->em->getReference($this->entityClass, (int)$tag);
             }
+
             return $clientTags;
         }
     }

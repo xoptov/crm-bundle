@@ -73,8 +73,8 @@ class CustomFieldController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="false"},
-     *    {"name"="number", "dataType"="integer", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=0},
+     *    {"name"="number", "dataType"="integer", "required"=0}
      *   }
      * )
      * @Method("POST")
@@ -123,8 +123,8 @@ class CustomFieldController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="false"},
-     *    {"name"="number", "dataType"="integer", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=0},
+     *    {"name"="number", "dataType"="integer", "required"=0}
      *   }
      * )
      * @Method("PUT")

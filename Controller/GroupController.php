@@ -121,8 +121,8 @@ class GroupController extends Controller
      *  section="Group",
      *  description="Create new group",
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"},
-     *    {"name"="roles", "dataType"="string", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="roles", "dataType"="string", "required"=0}
      *   },
      *  filters={
      *      {"name"="token", "type"="text"}
@@ -171,8 +171,8 @@ class GroupController extends Controller
      *  section="Group",
      *  description="Update group details",
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"},
-     *    {"name"="roles", "dataType"="string", "required"="false"}
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="roles", "dataType"="string", "required"=0}
      *   },
      *  filters={
      *      {"name"="token", "type"="text"}

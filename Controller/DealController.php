@@ -97,12 +97,12 @@ class DealController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="product", "dataType"="integer", "required"="true"},
-     *    {"name"="amount", "dataType"="float", "required"="true"},
-     *    {"name"="state", "dataType"="integer", "required"="true"},
-     *    {"name"="client", "dataType"="integer", "required"="true"},
-     *    {"name"="user", "dataType"="integer", "required"="true"}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="product", "dataType"="integer", "required"=1},
+     *    {"name"="amount", "dataType"="float", "required"=1},
+     *    {"name"="state", "dataType"="integer", "required"=1},
+     *    {"name"="client", "dataType"="integer", "required"=1},
+     *    {"name"="user", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("POST")
@@ -151,12 +151,12 @@ class DealController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="product", "dataType"="integer", "required"="true"},
-     *    {"name"="amount", "dataType"="float", "required"="true"},
-     *    {"name"="state", "dataType"="integer", "required"="true"},
-     *    {"name"="client", "dataType"="integer", "required"="true"},
-     *    {"name"="user", "dataType"="integer", "required"="true"}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="product", "dataType"="integer", "required"=1},
+     *    {"name"="amount", "dataType"="float", "required"=1},
+     *    {"name"="state", "dataType"="integer", "required"=1},
+     *    {"name"="client", "dataType"="integer", "required"=1},
+     *    {"name"="user", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("PUT")

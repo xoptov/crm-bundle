@@ -111,8 +111,8 @@ class PhoneController extends Controller
      *  section="Phone",
      *  description="Create new phone for client",
      *  parameters={
-     *    {"name"="phone", "dataType"="string", "required"="true"},
-     *    {"name"="client", "dataType"="integer", "required"="true"}
+     *    {"name"="phone", "dataType"="string", "required"=1},
+     *    {"name"="client", "dataType"="integer", "required"=1}
      *  },
      *  filters={
      *      {"name"="token", "type"="text"}

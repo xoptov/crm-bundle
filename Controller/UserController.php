@@ -23,8 +23,8 @@ class UserController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="start", "dataType"="integer", "required"="true"},
-     *    {"name"="limit", "dataType"="integer", "required"="true"}
+     *    {"name"="start", "dataType"="integer", "required"=1},
+     *    {"name"="limit", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("GET")
@@ -53,8 +53,8 @@ class UserController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="start", "dataType"="integer", "required"="true"},
-     *    {"name"="limit", "dataType"="integer", "required"="true"}
+     *    {"name"="start", "dataType"="integer", "required"=1},
+     *    {"name"="limit", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("GET")
@@ -175,12 +175,12 @@ class UserController extends Controller
      *  section="User",
      *  description="Create new user",
      *  parameters={
-     *    {"name"="firstName", "dataType"="string", "required"="true"},
-     *    {"name"="middleName", "dataType"="string", "required"="false"},
-     *    {"name"="lastName", "dataType"="string", "required"="false"},
-     *    {"name"="email", "dataType"="string", "required"="true"},
-     *    {"name"="plainPassword", "dataType"="integer", "required"="true"},
-     *    {"name"="group", "dataType"="string", "required"="false"}
+     *    {"name"="firstName", "dataType"="string", "required"=1},
+     *    {"name"="middleName", "dataType"="string", "required"=0},
+     *    {"name"="lastName", "dataType"="string", "required"=0},
+     *    {"name"="email", "dataType"="string", "required"=1},
+     *    {"name"="plainPassword", "dataType"="integer", "required"=1},
+     *    {"name"="group", "dataType"="string", "required"=0}
      *   },
      *  filters={
      *      {"name"="token", "type"="text"}
@@ -229,12 +229,12 @@ class UserController extends Controller
      *  section="User",
      *  description="Update user details",
      *  parameters={
-     *    {"name"="firstName", "dataType"="string", "required"="true"},
-     *    {"name"="middleName", "dataType"="string", "required"="false"},
-     *    {"name"="lastName", "dataType"="string", "required"="false"},
-     *    {"name"="email", "dataType"="string", "required"="true"},
-     *    {"name"="plainPassword", "dataType"="integer", "required"="false"},
-     *    {"name"="group", "dataType"="string", "required"="false"}
+     *    {"name"="firstName", "dataType"="string", "required"=1},
+     *    {"name"="middleName", "dataType"="string", "required"=0},
+     *    {"name"="lastName", "dataType"="string", "required"=0},
+     *    {"name"="email", "dataType"="string", "required"=1},
+     *    {"name"="plainPassword", "dataType"="integer", "required"=0},
+     *    {"name"="group", "dataType"="string", "required"=0}
      *   },
      *  filters={
      *    {"name"="token", "type"="text"}
