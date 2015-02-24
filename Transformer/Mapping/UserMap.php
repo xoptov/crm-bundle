@@ -14,9 +14,10 @@ class UserMap implements MapInterface
             'setMiddleName' => 'middleName',
             'setLastName' => 'lastName',
             'setUsername' => 'email',
-            'setGroup' => [
+            'setGroups' => [
                 'converter' => 'perfico_crm.api.group_converter',
-                'path' => 'group'
+                'path' => 'groups',
+                'collection' => true
             ]
         ];
     }
@@ -30,9 +31,10 @@ class UserMap implements MapInterface
             'firstName' => 'getFirstName',
             'middleName' => 'getMiddleName',
             'lastName' => 'getLastName',
-            'group' => [
+            'groups' => [
                 'converter' => 'perfico_crm.api.group_converter',
-                'method' => 'getGroup'
+                'method' => 'getGroups',
+                'collection' => true
             ]
         ];
     }

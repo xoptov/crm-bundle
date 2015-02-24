@@ -46,11 +46,20 @@ class Transformer {
             } elseif (isset($callback['converter']) && is_string($callback['converter'])){
                 /** @var ConverterInterface $converter */
                 $converter = $this->container->get($callback['converter']);
-                $fields[$path] = $converter->reverseConvert($object->$callback['method']());
+                if (isset($callback['collection']) && $callback['collection']) {
+                    $fields[$path] = $converter->reverseConvertCollection($object->$callback['method']());
+                } else {
+                    $fields[$path] = $converter->reverseConvert($object->$callback['method']());
+                }
+
             } elseif (isset($callback['converter']) && $callback['converter'] instanceof ConverterInterface) {
                 /** @var ConverterInterface $converter */
                 $converter = $callback['converter'];
-                $fields[$path] = $converter->reverseConvert($object->$callback['method']());
+                if (isset($callback['collection']) && $callback['collection']) {
+                    $fields[$path] = $converter->reverseConvertCollection($object->$callback['method']());
+                } else {
+                    $fields[$path] = $converter->reverseConvert($object->$callback['method']());
+                }
             }
         }
 

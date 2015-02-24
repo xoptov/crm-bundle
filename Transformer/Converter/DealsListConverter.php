@@ -8,7 +8,10 @@ class DealsListConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     public function reverseConvert($objects)
@@ -23,5 +26,9 @@ class DealsListConverter implements ConverterInterface
         }
 
         return $paid;
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 } 

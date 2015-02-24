@@ -9,7 +9,10 @@ class CallManagerConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -34,5 +37,10 @@ class CallManagerConverter implements ConverterInterface
         }
 
         return null;
+    }
+
+    public function reverseConvertCollection($objects)
+    {
+
     }
 } 

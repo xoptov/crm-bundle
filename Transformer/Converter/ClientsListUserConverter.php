@@ -8,7 +8,10 @@ class ClientsListUserConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     public function reverseConvert($object)
@@ -24,5 +27,9 @@ class ClientsListUserConverter implements ConverterInterface
                     'name' => implode(' ', $fio)
                 ];
         }
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 }

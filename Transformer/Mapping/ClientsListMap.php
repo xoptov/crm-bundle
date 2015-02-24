@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\ClientsListChannelConverter;
 use Perfico\CRMBundle\Transformer\Converter\ClientsListUserConverter;
-use Perfico\CRMBundle\Transformer\Converter\PhonesConverter;
+use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
 class ClientsListMap implements MapInterface
@@ -35,7 +35,7 @@ class ClientsListMap implements MapInterface
             ],
             'note' => 'getNote',
             'phones' => [
-                'converter' => new PhonesConverter(),
+                'converter' => new PhoneConverter(),
                 'method' => 'getPhones'
             ],
             'user' => [

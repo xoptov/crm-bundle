@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-class PhonesConverter implements ConverterInterface {
+class PhoneConverter implements ConverterInterface {
 
     /**
      * @param $value
@@ -11,6 +11,10 @@ class PhonesConverter implements ConverterInterface {
     public function convert($value)
     {
         return $value;
+    }
+
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -32,5 +36,9 @@ class PhonesConverter implements ConverterInterface {
             }
         }
         return implode(' ', $result);
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 } 

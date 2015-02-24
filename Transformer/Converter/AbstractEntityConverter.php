@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * This class needed as start point for inheritance by children services
@@ -32,8 +33,7 @@ abstract class AbstractEntityConverter implements ConverterInterface
     }
 
     /**
-     * @param $value
-     * @return mixed|null
+     * {@inheritdoc}
      */
     public function convert($value)
     {
@@ -45,8 +45,24 @@ abstract class AbstractEntityConverter implements ConverterInterface
     }
 
     /**
-     * @param $object
-     * @return integer|null
+     * {@inheritdoc}
+     */
+    public function convertCollection($values)
+    {
+        $collection = [];
+
+        if (is_array($values) && !empty($values)) {
+            foreach ($values as $value) {
+                if ($item = $this->convert($value))
+                    $collection[] = $item;
+            }
+        }
+
+        return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function reverseConvert($object)
     {
@@ -55,5 +71,23 @@ abstract class AbstractEntityConverter implements ConverterInterface
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function reverseConvertCollection($objects)
+    {
+        $collection = [];
+
+        if ($objects instanceof Collection) {
+            foreach ($objects as $object) {
+                if ($item = $this->reverseConvert($object)) {
+                    $collection[] = $item;
+                }
+            }
+        }
+
+        return $collection;
     }
 } 

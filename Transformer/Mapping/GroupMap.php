@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\RolesConverter;
+use Perfico\CRMBundle\Transformer\Converter\RoleConverter;
 
 class GroupMap implements MapInterface
 {
@@ -11,7 +11,7 @@ class GroupMap implements MapInterface
         return [
             'setName' => 'name',
             'setRoles' => [
-                'converter' => new RolesConverter(),
+                'converter' => new RoleConverter(),
                 'path' => 'roles'
             ],
         ];

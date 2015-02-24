@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-class RolesConverter implements ConverterInterface
+class RoleConverter implements ConverterInterface
 {
     /**
      * @param $value
@@ -21,6 +21,10 @@ class RolesConverter implements ConverterInterface
         return $result;
     }
 
+    public function convertCollection($values)
+    {
+    }
+
     /**
      * @param array $object
      * @return array
@@ -28,5 +32,9 @@ class RolesConverter implements ConverterInterface
     public function reverseConvert($object)
     {
         return $object;
+    }
+    
+    public function reverseConvertCollection($objects)
+    {
     }
 } 

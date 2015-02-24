@@ -74,4 +74,12 @@ interface UserInterface
      * @return AccountInterface
      */
     public function getAccount();
+
+    /**
+     * @param $groups
+     * @return UserInterface
+     */
+    public function setGroups($groups);
+
+    public function getGroups();
 } 

@@ -173,7 +173,7 @@ class GroupController extends Controller
      *  parameters={
      *    {"name"="name", "dataType"="string", "required"=1},
      *    {"name"="roles", "dataType"="string", "required"=0}
-     *   },
+     *  },
      *  filters={
      *      {"name"="token", "type"="text"}
      *  }
