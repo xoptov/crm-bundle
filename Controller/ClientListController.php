@@ -49,8 +49,8 @@ class ClientListController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="start", "dataType"="integer", "required"="true"},
-     *    {"name"="limit", "dataType"="integer", "required"="true"}
+     *    {"name"="start", "dataType"="integer", "required"=1},
+     *    {"name"="limit", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("GET")

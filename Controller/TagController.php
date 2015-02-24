@@ -73,7 +73,7 @@ class TagController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"}
+     *    {"name"="name", "dataType"="string", "required"=1}
      *   }
      * )
      * @Method("POST")
@@ -121,7 +121,7 @@ class TagController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"}
+     *    {"name"="name", "dataType"="string", "required"=1}
      *   }
      * )
      * @Method("PUT")

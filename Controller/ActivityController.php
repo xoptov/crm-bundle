@@ -94,10 +94,10 @@ class ActivityController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="type", "dataType"="string", "required"="true"},
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"="false"},
-     *    {"name"="client", "dataType"="integer", "required"="true"}
+     *    {"name"="type", "dataType"="string", "required"=1},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *    {"name"="client", "dataType"="integer", "required"=1}
      *   }
      * )
      * @Method("POST")
@@ -146,9 +146,9 @@ class ActivityController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="type", "dataType"="string", "required"="true"},
-     *    {"name"="note", "dataType"="string", "required"="false"},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"="false"}
+     *    {"name"="type", "dataType"="string", "required"=1},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0}
      *   }
      * )
      * @Method("PUT")

@@ -66,10 +66,10 @@ class ProductController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"},
-     *    {"name"="sku", "dataType"="text", "required"="false"},
-     *    {"name"="parent", "dataType"="integer", "required"="false"},
-     *    {"name"="amount", "dataType"="float", "required"="true"}
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="sku", "dataType"="text", "required"=0},
+     *    {"name"="parent", "dataType"="integer", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
      * @Method("POST")
@@ -110,10 +110,10 @@ class ProductController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"="true"},
-     *    {"name"="sku", "dataType"="text", "required"="false"},
-     *    {"name"="parent", "dataType"="integer", "required"="false"},
-     *    {"name"="amount", "dataType"="float", "required"="true"}
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="sku", "dataType"="text", "required"=0},
+     *    {"name"="parent", "dataType"="integer", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
      * @Method("PUT")
