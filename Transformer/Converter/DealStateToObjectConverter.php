@@ -8,7 +8,10 @@ class DealStateToObjectConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -25,5 +28,9 @@ class DealStateToObjectConverter implements ConverterInterface
                 'icon' => $object->getIcon()
             ];
         }
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 }

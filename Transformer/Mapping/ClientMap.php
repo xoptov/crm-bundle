@@ -22,7 +22,8 @@ class ClientMap implements MapInterface
             'setNote' => 'note',
             'setTags' => [
                 'converter' => 'perfico_crm.api.tag_converter',
-                'path' => 'tags'
+                'path' => 'tags',
+                'collection' => true
             ],
             'setUser' => [
                 'converter' => 'perfico_crm.api.user_converter',
@@ -69,7 +70,8 @@ class ClientMap implements MapInterface
             'note' => 'getNote',
             'tags' => [
                 'converter' => 'perfico_crm.api.tag_converter',
-                'method' => 'getTags'
+                'method' => 'getTags',
+                'collection' => true
             ],
             'user' => [
                 'converter' => 'perfico_crm.api.user_converter',

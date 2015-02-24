@@ -8,7 +8,10 @@ class ClientToObjectConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -26,5 +29,9 @@ class ClientToObjectConverter implements ConverterInterface
                 'lastName' => $object->getLastName()
             ];
         }
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 }

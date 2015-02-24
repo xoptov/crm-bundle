@@ -8,7 +8,10 @@ class CallRecordConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -22,5 +25,9 @@ class CallRecordConverter implements ConverterInterface
         }
 
         return null;
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 } 

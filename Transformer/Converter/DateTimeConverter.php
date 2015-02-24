@@ -16,6 +16,10 @@ class DateTimeConverter implements ConverterInterface
         return $date_utc;
     }
 
+    public function convertCollection($values)
+    {
+    }
+
     /**
      * @param \DateTime $object
      * @return string|null
@@ -27,5 +31,9 @@ class DateTimeConverter implements ConverterInterface
         }
 
         return null;
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 } 

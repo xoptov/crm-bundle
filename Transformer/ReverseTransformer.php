@@ -39,12 +39,21 @@ class ReverseTransformer
                 if (is_string($value['converter'])) {
                     /** @var ConverterInterface $converter */
                     $converter = $this->container->get($value['converter']);
-                    $child = $converter->convert($request->get($value['path']));
-                    $child && $object->$method($child);
-
+                    if (isset($value['collection']) && $value['collection']) {
+                        $children = $converter->convertCollection($request->get($value['path']));
+                        empty($children) || $object->$method($children);
+                    } else {
+                        $child = $converter->convert($request->get($value['path']));
+                        $child && $object->$method($child);
+                    }
                 } elseif ($value['converter'] instanceof ConverterInterface) {
-                    $child = $value['converter']->convert($request->get($value['path']));
-                    $child && $object->$method($child);
+                    if (isset($value['collection']) && $value['collection']) {
+                        $children = $value['converter']->convertCollection($request->get($value['path']));
+                        empty($children) || $object->$method($children);
+                    } else {
+                        $child = $value['converter']->convert($request->get($value['path']));
+                        $child && $object->$method($child);
+                    }
                 }
             }
         }

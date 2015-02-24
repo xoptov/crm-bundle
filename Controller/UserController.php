@@ -180,8 +180,11 @@ class UserController extends Controller
      *    {"name"="lastName", "dataType"="string", "required"=0},
      *    {"name"="email", "dataType"="string", "required"=1},
      *    {"name"="plainPassword", "dataType"="integer", "required"=1},
-     *    {"name"="group", "dataType"="string", "required"=0}
-     *   },
+     *    {"name"="groups", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only id of group"}
+     *      }
+     *    }
+     *  },
      *  filters={
      *      {"name"="token", "type"="text"}
      *  }
@@ -234,8 +237,11 @@ class UserController extends Controller
      *    {"name"="lastName", "dataType"="string", "required"=0},
      *    {"name"="email", "dataType"="string", "required"=1},
      *    {"name"="plainPassword", "dataType"="integer", "required"=0},
-     *    {"name"="group", "dataType"="string", "required"=0}
-     *   },
+     *    {"name"="groups", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only id of group"}
+     *      }
+     *    }
+     *  },
      *  filters={
      *    {"name"="token", "type"="text"}
      *  }
@@ -265,15 +271,12 @@ class UserController extends Controller
 
         if(!$user) {
             $user = $userManager->create();
-            $group = 'registration';
-        } else {
-            $group = null;
         }
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($user, new UserMap());
 
-        if(false != $errors = $transformer->validate($user, $group)) {
+        if(false != $errors = $transformer->validate($user)) {
 
             return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
         } else {

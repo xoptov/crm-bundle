@@ -8,7 +8,10 @@ class UserToObjectConverter implements ConverterInterface
 {
     public function convert($value)
     {
+    }
 
+    public function convertCollection($values)
+    {
     }
 
     /**
@@ -17,8 +20,7 @@ class UserToObjectConverter implements ConverterInterface
      */
     public function reverseConvert($object)
     {
-        if ($object instanceof User)
-        {
+        if ($object instanceof User) {
             return [
                 'id' => $object->getId(),
                 'name' => $object->getName()
@@ -26,5 +28,9 @@ class UserToObjectConverter implements ConverterInterface
         }
 
         return null;
+    }
+
+    public function reverseConvertCollection($objects)
+    {
     }
 }
