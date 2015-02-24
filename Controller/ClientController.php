@@ -211,7 +211,7 @@ class ClientController extends Controller
      *    {"name"="customField14", "dataType"="string", "required"=0},
      *    {"name"="customField15", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
-     *        {"name"="id", "dataType"="integer", "required"=0}
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
      *      }
      *    }
      *  }
@@ -260,7 +260,7 @@ class ClientController extends Controller
      *    {"name"="customField14", "dataType"="string", "required"=0},
      *    {"name"="customField15", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
-     *        {"name"="id", "dataType"="integer", "required"=0}
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
      *      }
      *    }
      *   }
@@ -350,7 +350,11 @@ class ClientController extends Controller
      *    {"name"="customField12", "dataType"="string", "required"=0},
      *    {"name"="customField13", "dataType"="string", "required"=0},
      *    {"name"="customField14", "dataType"="string", "required"=0},
-     *    {"name"="customField15", "dataType"="string", "required"=0}
+     *    {"name"="customField15", "dataType"="string", "required"=0},
+     *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }
+     *    }
      *   }
      * )
      * @Method("PUT")
