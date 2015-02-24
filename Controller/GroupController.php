@@ -29,7 +29,7 @@ class GroupController extends Controller
      */
     public function indexAction()
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUPS_VIEW_ALL'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_VIEW_ALL'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -61,7 +61,7 @@ class GroupController extends Controller
      */
     public function getAction(Group $group)
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUPS_VIEW_ALL'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_VIEW_ALL'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -85,7 +85,7 @@ class GroupController extends Controller
      */
     public function rolesAction()
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_ROLES_VIEW_ALL'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_VIEW_ALL'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -133,7 +133,7 @@ class GroupController extends Controller
      */
     public function createAction()
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUPS_ADD'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_ADD'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -157,7 +157,7 @@ class GroupController extends Controller
      */
     public function removeAction(Group $group)
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUPS_REMOVE'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_REMOVE'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -186,7 +186,7 @@ class GroupController extends Controller
      */
     public function updateAction(Group $group)
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUPS_EDIT'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
@@ -199,10 +199,6 @@ class GroupController extends Controller
      */
     protected function handleRequest($group = null)
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_SUPER_ADMIN'])){
-            return new JsonResponse([], Response::HTTP_FORBIDDEN);
-        }
-
         $groupManager = $this->get('fos_user.group_manager');
 
         if(!$group) {
