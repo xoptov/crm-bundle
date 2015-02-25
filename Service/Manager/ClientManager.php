@@ -99,12 +99,12 @@ class ClientManager extends GenericManager
 
         if (is_array($filter->tags))
         {
-            $clientTags = [];
+            $tags = [];
             foreach($filter->tags as $tag)
             {
-                $clientTags[] = $this->em->getReference('CoreBundle:ClientTag', $tag->id);
+                $tags[] = $this->em->getReference('CoreBundle:Tag', $tag->id);
             }
-            $filter->tags = $clientTags;
+            $filter->tags = $tags;
         }
 
         return $filter;
