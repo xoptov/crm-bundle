@@ -10,7 +10,7 @@ abstract class DealState implements DealStateInterface
     protected $id;
 
     /** @var DealStateInterface */
-    protected $heir;
+    protected $acceptor;
 
     /** @var string */
     protected $name;
@@ -43,9 +43,9 @@ abstract class DealState implements DealStateInterface
     /**
      * {@inheritdoc}
      */
-    public function setHeir(DealStateInterface $heir)
+    public function setAcceptor(DealStateInterface $acceptor)
     {
-        $this->heir = $heir;
+        $this->acceptor = $acceptor;
 
         return $this;
     }
@@ -53,9 +53,9 @@ abstract class DealState implements DealStateInterface
     /**
      * {@inheritdoc}
      */
-    public function getHeir()
+    public function getAcceptor()
     {
-        return $this->heir;
+        return $this->acceptor;
     }
 
     /**

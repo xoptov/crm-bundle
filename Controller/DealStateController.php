@@ -87,7 +87,7 @@ class DealStateController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *      {"name"="heir", "dataType"="integer", "required"=1}
+     *      {"name"="acceptor", "dataType"="integer", "required"=1, "description"="setting id for switch deal to next state"}
      *  }
      * )
      * @Method("DELETE")
@@ -98,14 +98,14 @@ class DealStateController extends Controller
      */
     public function removeAction(DealState $dealState)
     {
-        $heirId = $this->getRequest()->get('heir');
-        $heir = $this->getDoctrine()->getRepository('CoreBundle:DealState')->find($heirId);
+        $id = $this->getRequest()->get('acceptor');
+        $acceptor = $this->getDoctrine()->getRepository('CoreBundle:DealState')->find($id);
 
-        if (!$heir instanceof DealStateInterface) {
-            return new JsonResponse(array('heir' => $this->get('translator')->trans('errors.deal_state.not_found', array('%id%' => $heirId))), Response::HTTP_UNPROCESSABLE_ENTITY);
+        if (!$acceptor instanceof DealStateInterface) {
+            return new JsonResponse(array('acceptor' => $this->get('translator')->trans('errors.deal_state.not_found', array('%id%' => $id))), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $dealState->setHeir($heir);
+        $dealState->setAcceptor($acceptor);
 
         $this->get('perfico_crm.deal_state_manager')->remove($dealState);
 

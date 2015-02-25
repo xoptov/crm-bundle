@@ -24,10 +24,10 @@ class DealStateSubscriber implements EventSubscriber
             return;
         }
 
-        if ($entity->getDeals()->count() && $entity->getHeir() instanceof DealStateInterface) {
+        if ($entity->getDeals()->count() && $entity->getAcceptor() instanceof DealStateInterface) {
             $qb = $eventArgs->getEntityManager()->createQueryBuilder();
             $query = $qb->update('CoreBundle:Deal', 'd')
-                ->set('d.state', $entity->getHeir()->getId())
+                ->set('d.state', $entity->getAcceptor()->getId())
                 ->where('d.state = :state')->setParameter('state', $entity)
                 ->getQuery();
 

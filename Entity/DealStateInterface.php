@@ -2,7 +2,6 @@
 
 namespace Perfico\CRMBundle\Entity;
 
-
 interface DealStateInterface
 {
     /**
@@ -11,15 +10,15 @@ interface DealStateInterface
     public function getId();
 
     /**
-     * @param DealStateInterface $heir
+     * @param DealStateInterface $acceptor
      * @return DealStateInterface
      */
-    public function setHeir(DealStateInterface $heir);
+    public function setAcceptor(DealStateInterface $acceptor);
 
     /**
      * @return DealStateInterface
      */
-    public function getHeir();
+    public function getAcceptor();
 
     /**
      * @param string $name
