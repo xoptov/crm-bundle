@@ -15,6 +15,12 @@
             </join-columns>
         </many-to-one>
 
+        <attribute-overrides>
+            <attribute-override name="name">
+                <field column="name" type="string" length="255" unique="false"/>
+            </attribute-override>
+        </attribute-overrides>
+
     </mapped-superclass>
 
 </doctrine-mapping>
