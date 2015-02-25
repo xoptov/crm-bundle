@@ -11,6 +11,17 @@ interface DealStateInterface
     public function getId();
 
     /**
+     * @param DealStateInterface $heir
+     * @return DealStateInterface
+     */
+    public function setHeir(DealStateInterface $heir);
+
+    /**
+     * @return DealStateInterface
+     */
+    public function getHeir();
+
+    /**
      * @param string $name
      * @return DealStateInterface
      */

@@ -74,6 +74,10 @@
             <tag name="doctrine.event_subscriber"/>
         </service>
 
+        <service id="perfico_crm.deal_state_subscriber" class="Perfico\CRMBundle\EventListener\DealStateSubscriber">
+            <tag name="doctrine.event_subscriber"/>
+        </service>
+
         <service id="perfico_crm.group_manager" class="Perfico\CRMBundle\Service\GroupManager">
             <argument type="service" id="fos_user.entity_manager" />
             <argument>%fos_user.model.group.class%</argument>

@@ -5,9 +5,9 @@ namespace Perfico\CRMBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use Perfico\CRMBundle\Entity\CustomFieldInterface;
+use Perfico\CRMBundle\Entity\DealStateInterface;
 
-class CustomFieldSubscriber implements EventSubscriber
+class DealStateSubscriber implements EventSubscriber
 {
     public function getSubscribedEvents()
     {
@@ -20,18 +20,15 @@ class CustomFieldSubscriber implements EventSubscriber
     {
         $entity = $eventArgs->getEntity();
 
-        if (!$entity instanceof CustomFieldInterface) {
+        if (!$entity instanceof DealStateInterface) {
             return;
         }
 
-        $methods = get_class_methods('Perfico\CoreBundle\Entity\Client');
-
-        if (in_array('setCustomField' . $entity->getNumber(), $methods)) {
+        if ($entity->getDeals()->count() && $entity->getHeir() instanceof DealStateInterface) {
             $qb = $eventArgs->getEntityManager()->createQueryBuilder();
-            $query = $qb->update('CoreBundle:Client', 'c')
-                ->set('c.customField' . $entity->getNumber(), 'NULL')
-                ->where('c.account = :account')
-                ->setParameter('account', $entity->getAccount())
+            $query = $qb->update('CoreBundle:Deal', 'd')
+                ->set('d.state', $entity->getHeir()->getId())
+                ->where('d.state = :state')->setParameter('state', $entity)
                 ->getQuery();
 
             $query->execute();
