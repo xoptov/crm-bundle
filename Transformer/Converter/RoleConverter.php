@@ -10,15 +10,22 @@ class RoleConverter implements ConverterInterface
      */
     public function convert($value)
     {
-        if (is_array($value)) {
-            return $value;
+        if (empty($value)) {
+            return null;
         }
-        $result = json_decode($value, true, 3);
-        if (!$result) {
-            $result = preg_replace('/^\s+|\s+$|\s+(?=,)|(?<=,)\s+/su', '', $value);
-            $result = explode(',', $result);
+
+        $raw = explode(',', $value);
+
+        if (is_array($raw)) {
+            $roles = [];
+            foreach ($raw as $item) {
+                $roles[] = trim($item);
+            }
+
+            return $roles;
         }
-        return $result;
+
+        return null;
     }
 
     public function convertCollection($values)
