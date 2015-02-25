@@ -9,6 +9,9 @@ abstract class DealState implements DealStateInterface
     /** @var integer */
     protected $id;
 
+    /** @var DealStateInterface */
+    protected $acceptor;
+
     /** @var string */
     protected $name;
 
@@ -35,6 +38,24 @@ abstract class DealState implements DealStateInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAcceptor(DealStateInterface $acceptor)
+    {
+        $this->acceptor = $acceptor;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAcceptor()
+    {
+        return $this->acceptor;
     }
 
     /**

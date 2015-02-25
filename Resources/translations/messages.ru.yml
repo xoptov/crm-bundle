@@ -18,3 +18,6 @@ activity:
         record: "Прослушать запись: %record%\n"
         user: "Менеджер: %firstName% %phone%\n"
 
+errors:
+    deal_state:
+        not_found: "Статус с ID %id% не найден"

@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Entity\DealStateInterface;
 use Perfico\CRMBundle\Transformer\Mapping\DealStateMap;
 use Perfico\CoreBundle\Entity\DealState;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -84,6 +85,9 @@ class DealStateController extends Controller
      *  description="Remove deal state",
      *  filters={
      *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="acceptor", "dataType"="integer", "required"=1, "description"="setting id for switch deal to next state"}
      *  }
      * )
      * @Method("DELETE")
@@ -94,6 +98,15 @@ class DealStateController extends Controller
      */
     public function removeAction(DealState $dealState)
     {
+        $id = $this->getRequest()->get('acceptor');
+        $acceptor = $this->getDoctrine()->getRepository('CoreBundle:DealState')->find($id);
+
+        if (!$acceptor instanceof DealStateInterface) {
+            return new JsonResponse(array('acceptor' => $this->get('translator')->trans('errors.deal_state.not_found', array('%id%' => $id))), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $dealState->setAcceptor($acceptor);
+
         $this->get('perfico_crm.deal_state_manager')->remove($dealState);
 
         return new Response();
