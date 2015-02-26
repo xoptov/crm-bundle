@@ -33,6 +33,7 @@ class ClientMap implements MapInterface
                 'converter' => 'perfico_crm.api.company_converter',
                 'path' => 'company'
             ],
+            'setPosition' => 'position',
             'setCustomField1' => 'customField1',
             'setCustomField2' => 'customField2',
             'setCustomField3' => 'customField3',
@@ -81,6 +82,7 @@ class ClientMap implements MapInterface
                 'converter' => 'perfico_crm.api.company_converter',
                 'method' => 'getCompany'
             ],
+            'position' => 'getPosition',
             'customField1' => 'getCustomField1',
             'customField2' => 'getCustomField2',
             'customField3' => 'getCustomField3',

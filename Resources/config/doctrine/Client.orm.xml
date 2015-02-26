@@ -19,6 +19,7 @@
         <field name="note" type="text" column="note" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
         <field name="email" type="string" column="email" length="255" nullable="true"/>
+        <field name="position" type="string" column="position" length="255" nullable="true"/>
         <field name="customField1" type="text" column="custom_field_1" nullable="true"/>
         <field name="customField2" type="text" column="custom_field_2" nullable="true"/>
         <field name="customField3" type="text" column="custom_field_3" nullable="true"/>
