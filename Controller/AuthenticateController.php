@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AuthenticateController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthenticateController extends Controller
      * Format of DateTime string.
      *
      * @ApiDoc(
-     *  section="Authenticate",
+     *  section="Authentication",
      *  description="Login action. Expiration time default: 1 hour",
      *  filters={
      *     {"name"="username", "type"="text"},
@@ -27,7 +28,7 @@ class AuthenticateController extends Controller
      *  }
      * )
      *
-     * @Route("/login", options={"expose" = true})
+     * @Route("/login")
      * @Method("POST")
      */
     public function loginAction(Request $request)
@@ -61,5 +62,38 @@ class AuthenticateController extends Controller
         ];
 
         return new JsonResponse($result);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Authentication",
+     *  description="Logout action.",
+     *  filters={
+     *      {"name"="token", "type"="string", "required"=1},
+     *  }
+     * )
+     * @Route("/logout")
+     * @Method("GET")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function logoutAction(Request $request)
+    {
+        if (!$request->get('token')) {
+            return new JsonResponse(['error' => 'Token must be set'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $token = $this->getDoctrine()->getRepository('PerficoCRMBundle:AuthToken')
+            ->findOneBy(array('token' => $request->get('token')));
+
+        if (!$token) {
+            return new JsonResponse(['error' => 'Token not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $om = $this->getDoctrine()->getManager();
+        $om->remove($token);
+        $om->flush();
+
+        return new Response();
     }
 } 
