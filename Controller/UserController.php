@@ -179,7 +179,8 @@ class UserController extends Controller
      *    {"name"="middleName", "dataType"="string", "required"=0},
      *    {"name"="lastName", "dataType"="string", "required"=0},
      *    {"name"="email", "dataType"="string", "required"=1},
-     *    {"name"="plainPassword", "dataType"="integer", "required"=1},
+     *    {"name"="plainPassword", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"="0"},
      *    {"name"="groups", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only id of group"}
      *      }
@@ -237,6 +238,7 @@ class UserController extends Controller
      *    {"name"="lastName", "dataType"="string", "required"=0},
      *    {"name"="email", "dataType"="string", "required"=1},
      *    {"name"="plainPassword", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"=0},
      *    {"name"="groups", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only id of group"}
      *      }

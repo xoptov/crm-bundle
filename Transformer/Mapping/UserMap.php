@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
+use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
+
 class UserMap implements MapInterface
 {
     public function getReverseMap()
@@ -13,6 +15,10 @@ class UserMap implements MapInterface
             'setLastName' => 'lastName',
             'setEmail' => 'email',
             'setUsername' => 'email',
+            'setPhone' => [
+                'converter' => new PhoneConverter(),
+                'path' => 'phone'
+            ],
             'setGroups' => [
                 'converter' => 'perfico_crm.api.group_converter',
                 'path' => 'groups',
@@ -30,6 +36,10 @@ class UserMap implements MapInterface
             'firstName' => 'getFirstName',
             'middleName' => 'getMiddleName',
             'lastName' => 'getLastName',
+            'phone' => [
+                'converter' => new PhoneConverter(),
+                'method' => 'getPhone'
+            ],
             'groups' => [
                 'converter' => 'perfico_crm.api.group_converter',
                 'method' => 'getGroups',
