@@ -32,8 +32,6 @@
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
         </service>
 
-        <service id="perfico_crm.api.logout_handler" class="Perfico\CRMBundle\Security\Firewall\ApiLogoutHandler"/>
-
         <service id="perfico_crm.security.client_handler" class="Perfico\CRMBundle\Permissions\Handlers\ClientHandler">
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_CLIENT_" object_class="Perfico\CoreBundle\Entity\Client"/>
         </service>
