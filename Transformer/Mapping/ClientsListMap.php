@@ -36,7 +36,8 @@ class ClientsListMap implements MapInterface
             'note' => 'getNote',
             'phones' => [
                 'converter' => new PhoneConverter(),
-                'method' => 'getPhones'
+                'method' => 'getPhones',
+                'collection' => true
             ],
             'user' => [
                 'converter' => new ClientsListUserConverter(),
