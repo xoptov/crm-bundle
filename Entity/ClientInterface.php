@@ -94,6 +94,17 @@ interface ClientInterface
     public function getCompany();
 
     /**
+     * @param string $position
+     * @return ClientInterface
+     */
+    public function setPosition($position);
+
+    /**
+     * @return string
+     */
+    public function getPosition();
+
+    /**
      * @param DealInterface[] $deals
      * @return ClientInterface
      */

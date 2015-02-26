@@ -33,6 +33,9 @@ abstract class Client implements ClientInterface
     /** @var CompanyInterface */
     protected $company;
 
+    /** @var string */
+    protected $position;
+
     /**
      * @link http://doctrine-orm.readthedocs.org/en/latest/reference/inheritance-mapping.html#association-override
      * @var DealInterface[]
@@ -254,6 +257,24 @@ abstract class Client implements ClientInterface
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 
     /**
