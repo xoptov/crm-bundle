@@ -36,16 +36,4 @@ interface AccountInterface
      * @return \DateTime
      */
     public function getCreatedAt();
-
-    /**
-     * @param boolean $value
-     * @return AccountInterface
-     */
-    public function setFake($value);
-
-    /**
-     * @return boolean
-     */
-    public function isFake();
-
 } 
