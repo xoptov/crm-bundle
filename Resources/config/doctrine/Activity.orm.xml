@@ -22,21 +22,15 @@
         <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
 
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
-            <join-columns>
-                <join-column name="account_id" referenced-column-name="id" nullable="true"/>
-            </join-columns>
+            <join-column name="account_id" referenced-column-name="id" nullable="true"/>
         </many-to-one>
 
         <many-to-one field="client" target-entity="Perfico\CRMBundle\Entity\ClientInterface" inversed-by="activities">
-            <join-columns>
-                <join-column name="client_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
-            </join-columns>
+            <join-column name="client_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
         </many-to-one>
 
         <many-to-one field="user" target-entity="Perfico\CRMBundle\Entity\UserInterface">
-            <join-columns>
-                <join-column name="user_id" referenced-column-name="id" nullable="true"/>
-            </join-columns>
+            <join-column name="user_id" referenced-column-name="id" nullable="true"/>
         </many-to-one>
 
     </mapped-superclass>

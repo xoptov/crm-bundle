@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Entity\PBX\Sipuni;
 
 use Perfico\CRMBundle\Entity\PBX\Call;
+use Perfico\CRMBundle\Entity\AccountInterface;
 
 class CallEvent implements CallEventInterface
 {
@@ -29,6 +30,9 @@ class CallEvent implements CallEventInterface
 
     /** @var \DateTime */
     protected $eventDate;
+
+    /** @var AccountInterface */
+    protected $account;
 
     /**
      * {@inheritdoc}
@@ -162,5 +166,23 @@ class CallEvent implements CallEventInterface
     public function getEventDate()
     {
         return $this->eventDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccount(AccountInterface $account)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 } 

@@ -17,19 +17,19 @@
         <field name="createdAt" column="created_at" type="datetime"/>
 
         <many-to-one target-entity="Perfico\CRMBundle\Entity\ActivityInterface" field="activity">
-            <join-column name="activity_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            <join-column name="activity_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
         </many-to-one>
 
         <many-to-one target-entity="Perfico\CRMBundle\Entity\PBX\Sipuni\AnswerEvent" field="answerEvent">
-            <join-column name="answer_event_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            <join-column name="answer_event_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
         </many-to-one>
 
         <many-to-one target-entity="Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEventInterface" field="hangupEvent">
-            <join-column name="hangup_event_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            <join-column name="hangup_event_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
         </many-to-one>
 
         <many-to-one target-entity="Perfico\CRMBundle\Entity\AccountInterface" field="account">
-            <join-column name="account_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            <join-column name="account_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
         </many-to-one>
 
     </mapped-superclass>
