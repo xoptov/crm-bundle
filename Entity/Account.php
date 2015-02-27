@@ -16,17 +16,9 @@ abstract class Account implements AccountInterface
     /** @var \DateTime */
     protected $createdAt;
 
-    /** @var boolean */
-    protected $fake;
-
     public function onCreate()
     {
         $this->createdAt = new \DateTime();
-    }
-
-    public function __construct()
-    {
-        $this->fake = false;
     }
 
     /**
@@ -79,21 +71,5 @@ abstract class Account implements AccountInterface
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setFake($value)
-    {
-        $this->fake = $value;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isFake()
-    {
-        return $this->fake;
     }
 } 
