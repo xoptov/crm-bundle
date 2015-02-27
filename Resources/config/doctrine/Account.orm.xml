@@ -13,9 +13,10 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="domain" type="string" column="domain" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="companyName" type="string" column="company_name" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="createdAt" type="datetime" column="created_at" precision="0" scale="0" nullable="false"/>
+        <field name="domain" type="string" column="domain" length="255" nullable="true"/>
+        <field name="companyName" type="string" column="company_name" length="255" nullable="true"/>
+        <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+        <field name="fake" type="boolean" column="fake" nullable="false"/>
 
     </mapped-superclass>
 
