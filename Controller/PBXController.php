@@ -33,6 +33,8 @@ class PBXController extends Controller
 
         $factory = $pvm->getFactory($request);
         $callEvent = $factory->create();
+        $callEvent->setAccount($account);
+
         $factory->hydration($callEvent, $request, $call);
 
         $pvm->processing($callEvent);

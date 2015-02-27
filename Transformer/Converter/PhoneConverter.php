@@ -52,6 +52,6 @@ class PhoneConverter implements ConverterInterface
      */
     protected function clear($raw)
     {
-        return preg_replace('/^(?:\+7|8)|[\-\s\(\)]+/', '', trim($raw));
+        return preg_replace('/^(?:\+7|8|\+)|[\-\s\(\)]+/', '', trim($raw));
     }
 } 
