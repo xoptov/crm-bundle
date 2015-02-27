@@ -79,12 +79,18 @@ class AuthenticateController extends Controller
      */
     public function logoutAction(Request $request)
     {
-        if (!$request->get('token')) {
+        if ($request->headers->has('X-Auth-Token')) {
+            $tokenId = $request->headers->get('X-Auth-Token');
+        } else {
+            $tokenId = $request->get('token');
+        }
+
+        if (!$tokenId) {
             return new JsonResponse(['error' => 'Token must be set'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $token = $this->getDoctrine()->getRepository('PerficoCRMBundle:AuthToken')
-            ->findOneBy(array('token' => $request->get('token')));
+            ->findOneBy(array('token' => $tokenId));
 
         if (!$token) {
             return new JsonResponse(['error' => 'Token not found'], Response::HTTP_NOT_FOUND);
