@@ -13,7 +13,7 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="number" type="string" column="number" length="20" precision="0" scale="0" nullable="true"/>
+        <field name="number" type="string" column="number" length="20" nullable="true"/>
         
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>

@@ -269,6 +269,7 @@ class ClientController extends Controller
      * )
      * @Method("POST")
      * @Route("/clients/create-or-update")
+     * @deprecated will be removed in feature
      */
     public function createOrUpdateAction()
     {
@@ -393,6 +394,7 @@ class ClientController extends Controller
      * @param Client $client
      * @return Response
      * @todo непонятно зачем пладить одинаковый код? нужно переделать в будущем
+     * @deprecated will be removed in the feature
      */
     public function updateCustomFieldAction(Client $client)
     {

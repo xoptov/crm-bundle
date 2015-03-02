@@ -47,6 +47,7 @@ class PhoneController extends Controller
      * @Method("GET")
      * @Route("/phones/client/{id}", requirements={"id" = "\d+"})
      * @ParamConverter("client", converter="account.doctrine.orm")
+     * @deprecated will be removed in the feature
      */
     public function getClientPhonesAction(Client $client)
     {
@@ -88,9 +89,12 @@ class PhoneController extends Controller
      * @ApiDoc(
      *  section="Phone",
      *  description="Create new phone for client",
-     *  input="Perfico\CoreBundle\Entity\Phone",
      *  filters={
      *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="number", "dataType"="string", "required"=0},
+     *      {"name"="client", "dataType"="integer", "required"=0}
      *  }
      * )
      * @Method("POST")
@@ -120,6 +124,7 @@ class PhoneController extends Controller
      * )
      * @Method("POST")
      * @Route("/phones/external")
+     * @deprecated will be removed in the feature
      */
     public function createExternalAction()
     {
