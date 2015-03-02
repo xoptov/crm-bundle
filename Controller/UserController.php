@@ -30,6 +30,7 @@ class UserController extends Controller
      * @Method("GET")
      * @Route("/users-list")
      * @return JsonResponse
+     * @deprecated will be removed in the feature
      */
     public function getNotPaginatedAction()
     {
@@ -37,6 +38,33 @@ class UserController extends Controller
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
+        $users = $this->get('perfico_crm.user_manager')->getAccountUsers(1, 100);
+
+        $items = $this->get('perfico_crm.api.transformer')
+            ->transformCollection($users, new UserMap(), 'users');
+
+        return new JsonResponse($items);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="List users for current account",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Route("/users")
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function listAction()
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_USER_VIEW_ALL'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        // TODO need refactoring this code
         $users = $this->get('perfico_crm.user_manager')->getAccountUsers(1, 100);
 
         $items = $this->get('perfico_crm.api.transformer')
