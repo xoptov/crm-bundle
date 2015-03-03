@@ -69,6 +69,9 @@ class ApiListener implements ListenerInterface
             return ;
         }
 
+        if ($request->getRequestUri() == '/app_dev.php/api/login' || $request->getRequestUri() == '/api/login')
+            return;
+
         //Try to reach token from HTTP headers
         if ($request->headers->has('X-Auth-Token')) {
             $tokenId = $request->headers->get('X-Auth-Token');
