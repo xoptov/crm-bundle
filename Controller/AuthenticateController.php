@@ -3,6 +3,8 @@
 namespace Perfico\CRMBundle\Controller;
 
 use Perfico\CRMBundle\Entity\AuthToken;
+use Perfico\CRMBundle\Event\AuthTokenEvent;
+use Perfico\CRMBundle\PerficoCRMEvents;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,10 +38,16 @@ class AuthenticateController extends Controller
         $username = $request->request->get('username');
         $presentedPassword = $request->request->get('password');
         $expirationTime = $request->request->get('expirationTime', AuthToken::EXPIRATION_TIME);
+        $dispatcher = $this->get('event_dispatcher');
 
         if (!$username || !$presentedPassword) {
             return new JsonResponse(['error' => 'Username and password must not be blank'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
+        $event = new AuthTokenEvent();
+        $event->setUsername($username);
+        $event->setPassword($presentedPassword);
+        $dispatcher->dispatch(PerficoCRMEvents::LOGIN_INITIALIZE, $event);
 
         $user = $this->get('fos_user.user_manager')->findUserByUsername($username);
 
@@ -56,6 +64,9 @@ class AuthenticateController extends Controller
         $authToken = $this->get('perfico_crm.auth_token_manager')->generate($user, $expirationTime);
         $em->persist($authToken);
         $em->flush();
+
+        $event->setToken($authToken);
+        $this->get('event_dispatcher')->dispatch(PerficoCRMEvents::LOGIN_SUCCESS, $event);
 
         $result = [
             'token' =>  $authToken->getToken()
@@ -89,8 +100,14 @@ class AuthenticateController extends Controller
             return new JsonResponse(['error' => 'Token must be set'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        $dispatcher = $this->get('event_dispatcher');
+
         $token = $this->getDoctrine()->getRepository('PerficoCRMBundle:AuthToken')
             ->findOneBy(array('token' => $tokenId));
+
+        $event = new AuthTokenEvent();
+        $event->setToken($token);
+        $dispatcher->dispatch(PerficoCRMEvents::LOGOUT_INITIALIZE, $event);
 
         if (!$token) {
             return new JsonResponse(['error' => 'Token not found'], Response::HTTP_NOT_FOUND);
@@ -99,6 +116,8 @@ class AuthenticateController extends Controller
         $om = $this->getDoctrine()->getManager();
         $om->remove($token);
         $om->flush();
+
+        $dispatcher->dispatch(PerficoCRMEvents::LOGOUT_SUCCESS, $event);
 
         return new Response();
     }
