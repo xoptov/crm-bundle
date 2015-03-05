@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Perfico\CoreBundle\Entity\Account;
 use Perfico\CoreBundle\Entity\Channel;
 use Perfico\CoreBundle\Entity\DealState;
+use Perfico\CRMBundle\Entity\UserInterface;
 
 class AccountManager
 {
@@ -18,6 +19,16 @@ class AccountManager
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+    }
+
+    public function create(UserInterface $user)
+    {
+        $domain = 'crm-' . substr(md5($user->getId(), false), 0, 7);
+        $account = new Account();
+        $account->setDomain($domain);
+        $this->em->persist($account);
+
+        return $account;
     }
 
     /**
