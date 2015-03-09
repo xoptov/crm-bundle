@@ -15,10 +15,7 @@ class UserMap implements MapInterface
             'setLastName' => 'lastName',
             'setEmail' => 'email',
             'setUsername' => 'email',
-            'setPhone' => [
-                'converter' => new PhoneConverter(),
-                'path' => 'phone'
-            ],
+            'setPhone' => 'phone',
             'setGroups' => [
                 'converter' => 'perfico_crm.api.group_converter',
                 'path' => 'groups',
