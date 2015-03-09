@@ -12,7 +12,6 @@ class PhoneConverter implements ConverterInterface
      */
     public function convert($value)
     {
-        return $this->clear($value);
     }
 
     public function convertCollection($values)
