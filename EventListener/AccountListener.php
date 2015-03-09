@@ -42,41 +42,7 @@ class AccountListener
         $host = $this->accountManager->getHostFromDomain($request->getHost());
 
         if ($account = $this->em->getRepository('CoreBundle:Account')->findOneByDomain($host)) {
-            /** @var User $user */
-            $user = $this->securityContext->getToken()->getUser();
-
-            if(
-                ($user instanceof User) &&
-                (
-                    ($user->getAccount() != $account) &&
-                    (!$this->securityContext->isGranted('ROLE_SUPER_ADMIN'))
-                )
-            )
-            {
-                $this->securityContext->setToken(null);
-
-                // todo need refactoring this is sheet
-                $template = $this->templating->render(
-                    'PerficoWebBundle:Error/Account:not_permitted.html.twig'
-                );
-
-                $response = new Response($template);
-                $event->setResponse($response);
-            }
-            else
-            {
-                $this->accountManager->setCurrentAccount($account);
-            }
-
-            return;
+            $this->accountManager->setCurrentAccount($account);
         }
-
-        // todo need refactoring this is sheet
-        $template = $this->templating->render(
-            'PerficoWebBundle:Error/Account:account_not_found.html.twig'
-        );
-
-        $response = new Response($template);
-        $event->setResponse($response);
     }
 } 
