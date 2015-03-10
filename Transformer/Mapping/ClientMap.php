@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateConverter;
 
 class ClientMap implements MapInterface
 {
@@ -62,7 +62,7 @@ class ClientMap implements MapInterface
             'middleName' => 'getMiddleName',
             'skype' => 'getSkype',
             'createdAt' => [
-                'converter' => new DateTimeConverter(),
+                'converter' => new DateConverter(),
                 'method' => 'getCreatedAt'],
             'channel' => [
                 'converter' => 'perfico_crm.api.channel_converter',
