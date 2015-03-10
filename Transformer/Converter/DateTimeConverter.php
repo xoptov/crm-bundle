@@ -10,10 +10,9 @@ class DateTimeConverter implements ConverterInterface
      */
     public function convert($value)
     {
-        $date_utc =  new \DateTime($value);
-        $date_utc->setTimeZone(new \DateTimeZone('Europe/Moscow'));
+        $date =  new \DateTime($value);
 
-        return $date_utc;
+        return $date;
     }
 
     public function convertCollection($values)
