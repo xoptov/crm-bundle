@@ -50,6 +50,18 @@ class ActivityManager extends GenericManager
             ->getResult();
     }
 
+    public function getByCompany(Company $company)
+    {
+        return $this->em
+            ->createQueryBuilder()->select('a')
+            ->from('CoreBundle:Activity', 'a')
+            ->innerJoin('a.client', 'c')
+            ->where('c.company = :company')
+            ->setParameter('company', $company)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Activity[]
      * @todo need refactoring this method

@@ -142,6 +142,32 @@ class CompanyController extends Controller
     }
 
     /**
+     * @ApiDoc(
+     *  section="Company",
+     *  description="Get all activities for company",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/companies/{id}/activities")
+     * @ParamConverter("company", converter="account.doctrine.orm")
+     * @param Company $company
+     * @return JsonResponse
+     */
+    public function activitiesAction(Company $company)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_ACTIVITY_VIEW_ALL', 'ROLE_ACTIVITY_VIEW_OWN'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+        $activities = $this->get('perfico_crm.activity_manager')->getByCompany($company);
+        return new JsonResponse(
+            $this->get('perfico_crm.api.transformer')
+                ->transformCollection($activities, new ActivityMap(), 'activities')
+        );
+    }
+
+    /**
      * @param Company|null $company
      * @return JsonResponse|Response
      */
