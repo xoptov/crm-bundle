@@ -6,14 +6,6 @@ use Perfico\CRMBundle\Entity\Group;
 
 class GroupDetailConverter extends AbstractEntityConverter
 {
-    public function convert($value)
-    {
-    }
-
-    public function convertCollection($values)
-    {
-    }
-
     /**
      * @param Group $object
      * @return array|null
@@ -30,9 +22,6 @@ class GroupDetailConverter extends AbstractEntityConverter
         return null;
     }
 
-    public function reverseConvertCollection($objects)
-    {
-    }
 }
 
 
