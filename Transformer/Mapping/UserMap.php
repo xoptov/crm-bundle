@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
+use Perfico\CRMBundle\Transformer\Converter\GroupDetailConverter;
 use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 
 class UserMap implements MapInterface
@@ -38,7 +39,7 @@ class UserMap implements MapInterface
                 'method' => 'getPhone'
             ],
             'groups' => [
-                'converter' => 'perfico_crm.api.group_converter',
+                'converter' => 'perfico_crm.api.group_detail_converter',
                 'method' => 'getGroups',
                 'collection' => true
             ]
