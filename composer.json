@@ -11,7 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.x-dev"
+        "symfony/symfony": "2.6.x-dev",
+        "phpoffice/phpexcel": "1.8.0"
     },
     "autoload": {
         "psr-4": { "Perfico\\CRMBundle\\": "" }
