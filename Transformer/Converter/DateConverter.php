@@ -2,19 +2,17 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-class DateTimeConverter implements ConverterInterface
+class DateConverter implements ConverterInterface
 {
     /**
      * @param $value
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function convert($value)
     {
-        if ($value) {
-            return new \DateTime($value);
-        }
+        $date =  new \DateTime($value);
 
-        return null;
+        return $date;
     }
 
     public function convertCollection($values)
@@ -28,7 +26,7 @@ class DateTimeConverter implements ConverterInterface
     public function reverseConvert($object)
     {
         if ($object instanceof \DateTime){
-            return $object->format('d.m.Y H:i:s');
+            return $object->format('d.m.Y');
         }
 
         return null;
