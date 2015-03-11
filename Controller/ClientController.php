@@ -2,8 +2,10 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Model\ClientSearch;
 use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientCustomFieldMap;
+use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\PhoneMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
@@ -46,6 +48,58 @@ class ClientController extends Controller
             $this->get('perfico_crm.api.transformer')
             ->transformCollection($clients, new ClientMap(), 'clients')
         );
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Client",
+     *  description="Search clients by some parameters",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=0},
+     *      {"name"="user", "dataType"="integer", "required"=0},
+     *      {"name"="email", "dataType"="string", "required"=0},
+     *      {"name"="phone", "dataType"="string", "required"=0},
+     *      {"name"="channel", "dataType"="integer", "required"=0},
+     *      {"name"="createdFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="createdTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealsFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealsTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealStates", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only deal state id"}
+     *      }},
+     *      {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }},
+     *      {"name"="delayedPayment", "dataType"="boolean", "required"=0},
+     *      {"name"="offset", "dataType"="integer", "required"=0},
+     *      {"name"="limit", "dataType"="integer", "required"=0}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/clients/search")
+     * @return JsonResponse
+     */
+    public function searchAction()
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CLIENT_VIEW_ALL', 'ROLE_CLIENT_VIEW_OWN'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        $conditions = new ClientSearch();
+        $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
+        $conditions->setAccount($account);
+
+        $this->get('perfico_crm.api.reverse_transformer')->bind($conditions, new ClientSearchMap());
+        $clients = $this->get('perfico_crm.client_manager')->search($conditions);
+
+        return new JsonResponse(
+            $this->get('perfico_crm.api.transformer')
+                ->transformCollection($clients, new ClientMap(), 'clients'));
     }
 
     /**
@@ -262,9 +316,8 @@ class ClientController extends Controller
      *    {"name"="customField14", "dataType"="string", "required"=0},
      *    {"name"="customField15", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
-     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
-     *      }
-     *    }
+     *      {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *    }}
      *   }
      * )
      * @Method("POST")

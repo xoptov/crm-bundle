@@ -6,14 +6,15 @@ class DateTimeConverter implements ConverterInterface
 {
     /**
      * @param $value
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function convert($value)
     {
-        $date_utc =  new \DateTime($value);
-        $date_utc->setTimeZone(new \DateTimeZone('Europe/Moscow'));
+        if ($value) {
+            return new \DateTime($value);
+        }
 
-        return $date_utc;
+        return null;
     }
 
     public function convertCollection($values)
