@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateConverter;
 
 class ProductMap implements MapInterface
 {
@@ -17,11 +17,11 @@ class ProductMap implements MapInterface
                 'path' => 'parent'
             ],
             'setCreatedAt' => [
-                'converter' => new DateTimeConverter(),
+                'converter' => new DateConverter(),
                 'path' => 'createdAt'
             ],
             'setUpdatedAt' => [
-                'converter' => new DateTimeConverter(),
+                'converter' => new DateConverter(),
                 'path' => 'updatedAt'
             ]
         ];
@@ -38,11 +38,11 @@ class ProductMap implements MapInterface
                 'method' => 'getParent'
             ],
             'createdAt' => [
-                'converter' => new DateTimeConverter(),
+                'converter' => new DateConverter(),
                 'method' => 'getCreatedAt'
             ],
             'updatedAt' => [
-                'converter' => new DateTimeConverter(),
+                'converter' => new DateConverter(),
                 'method' => 'getUpdatedAt'
             ],
             'name' => 'getName',
