@@ -15,7 +15,7 @@ class GroupDetailConverter extends AbstractEntityConverter
         if ($object instanceof Group) {
             return [
                 'id' => $object->getId(),
-                'name' => $object->getName()
+                'group_name' => $object->getName()
             ];
         }
 
