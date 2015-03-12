@@ -21,6 +21,39 @@ interface CompanyInterface
     public function getName();
 
     /**
+     * @param integer $inn
+     * @return CompanyInterface
+     */
+    public function setInn($inn);
+
+    /**
+     * @return integer
+     */
+    public function getInn();
+
+    /**
+     * @param string $phone
+     * @return CompanyInterface
+     */
+    public function setPhone($phone);
+
+    /**
+     * @return string
+     */
+    public function getPhone();
+
+    /**
+     * @param string $details
+     * @return CompanyInterface
+     */
+    public function setDetails($details);
+
+    /**
+     * @return string
+     */
+    public function getDetails();
+
+    /**
      * @param UserInterface $user
      * @return CompanyInterface
      */
