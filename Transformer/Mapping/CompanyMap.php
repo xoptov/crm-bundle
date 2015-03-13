@@ -7,7 +7,10 @@ class CompanyMap implements MapInterface
     public function getReverseMap()
     {
         return [
-            'setName' => 'name'
+            'setName' => 'name',
+            'setInn' => 'inn',
+            'setPhone' => 'phone',
+            'setDetails' => 'details'
         ];
     }
 
@@ -15,7 +18,10 @@ class CompanyMap implements MapInterface
     {
         return [
             'id' => 'getId',
-            'name' => 'getName'
+            'name' => 'getName',
+            'inn' => 'getInn',
+            'phone' => 'getPhone',
+            'details' => 'getDetails'
         ];
     }
 } 

@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Activity;
 use Perfico\CoreBundle\Entity\Client;
+use Perfico\CoreBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
@@ -50,6 +51,11 @@ class ActivityManager extends GenericManager
             ->getResult();
     }
 
+    /**
+     * @param Company $company
+     * @return Activity[]
+     * @todo need refactoring this method
+     */
     public function getByCompany(Company $company)
     {
         return $this->em

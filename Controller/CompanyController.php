@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Controller;
 
 use Perfico\CRMBundle\Transformer\Mapping\CompanyMap;
+use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
 use Perfico\CoreBundle\Entity\Company;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -75,7 +76,10 @@ class CompanyController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=0}
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="inn", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"=0},
+     *    {"name"="details", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("POST")
@@ -123,7 +127,10 @@ class CompanyController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=0}
+     *    {"name"="name", "dataType"="string", "required"=0},
+     *    {"name"="inn", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"=0},
+     *    {"name"="details", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("PUT")
@@ -175,14 +182,14 @@ class CompanyController extends Controller
     {
         $companyManager = $this->get('perfico_crm.company_manager');
 
-        if(!$company) {
+        if (!$company) {
             $company = $companyManager->create();
         }
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($company, new CompanyMap());
 
-        if(false != $errors = $transformer->validate($company)) {
+        if (false != $errors = $transformer->validate($company)) {
 
             return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
         } else {
