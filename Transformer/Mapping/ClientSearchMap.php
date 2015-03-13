@@ -22,13 +22,13 @@ class ClientSearchMap implements MapInterface
                 'converter' => new DateTimeConverter(),
                 'path' => 'createdTo'
             ],
-            'setDealsFrom' => [
+            'setDealFrom' => [
                 'converter' => new DateTimeConverter(),
-                'path' => 'dealsFrom'
+                'path' => 'dealFrom'
             ],
-            'setDealsTo' => [
+            'setDealTo' => [
                 'converter' => new DateTimeConverter(),
-                'path' => 'dealsTo'
+                'path' => 'dealTo'
             ],
             'setActivityFrom' => [
                 'converter' => new DateTimeConverter(),

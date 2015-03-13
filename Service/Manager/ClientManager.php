@@ -295,7 +295,7 @@ class ClientManager extends GenericManager
         $this->preparePhoneCondition($qb, $conditions);
         $this->prepareChannelCondition($qb, $conditions);
         $this->prepareCreatedRangeCondition($qb, $conditions);
-        $this->prepareDealsRangeCondition($qb, $conditions);
+        $this->prepareDealRangeCondition($qb, $conditions);
         $this->prepareActivityRangeCondition($qb, $conditions);
         $this->prepareDealStatesCondition($qb, $conditions);
         // TODO need implementation prepare tags condition method
@@ -435,24 +435,24 @@ class ClientManager extends GenericManager
      * @param QueryBuilder $qb
      * @param ClientSearch $conditions
      */
-    protected function prepareDealsRangeCondition(QueryBuilder $qb, ClientSearch $conditions)
+    protected function prepareDealRangeCondition(QueryBuilder $qb, ClientSearch $conditions)
     {
-        if ($conditions->getDealsFrom() || $conditions->getDealsTo()) {
+        if ($conditions->getDealFrom() || $conditions->getDealTo()) {
             $qb->innerJoin('c.deals', 'd');
         }
 
-        if ($conditions->getDealsFrom() && $conditions->getDealsTo()) {
+        if ($conditions->getDealFrom() && $conditions->getDealTo()) {
             $condition = $qb->expr()->between('d.createdAt', ':createdFrom', ':createdTo');
 
             $qb->andWhere($condition)
-                ->setParameter('createdFrom', $conditions->getDealsFrom())
-                ->setParameter('createdTo', $conditions->getDealsTo());
-        } else if ($conditions->getDealsFrom()) {
+                ->setParameter('createdFrom', $conditions->getDealFrom())
+                ->setParameter('createdTo', $conditions->getDealTo());
+        } else if ($conditions->getDealFrom()) {
             $qb->andWhere($qb->expr()->lte('d.createdAt', ':createdFrom'))
-                ->setParameter('createdFrom', $conditions->getDealsFrom());
-        } else if ($conditions->getDealsTo()) {
+                ->setParameter('createdFrom', $conditions->getDealFrom());
+        } else if ($conditions->getDealTo()) {
             $qb->andWhere($qb->expr()->lte('d.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $conditions->getDealsTo());
+                ->setParameter('createdTo', $conditions->getDealTo());
         }
     }
 

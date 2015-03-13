@@ -28,10 +28,10 @@ class ClientSearch
     protected $createdTo;
 
     /** @var \DateTime */
-    protected $dealsFrom;
+    protected $dealFrom;
 
     /** @var \DateTime */
-    protected $dealsTo;
+    protected $dealTo;
 
     /** @var \DateTime */
     protected $activityFrom;
@@ -194,9 +194,9 @@ class ClientSearch
      * @param \DateTime $datetime
      * @return ClientSearch
      */
-    public function setDealsFrom($datetime)
+    public function setDealFrom(\DateTime $datetime)
     {
-        $this->dealsFrom = $datetime;
+        $this->dealFrom = $datetime;
 
         return $this;
     }
@@ -204,18 +204,18 @@ class ClientSearch
     /**
      * @return \DateTime
      */
-    public function getDealsFrom()
+    public function getDealFrom()
     {
-        return $this->dealsFrom;
+        return $this->dealFrom;
     }
 
     /**
      * @param \DateTime $datetime
      * @return ClientSearch
      */
-    public function setDealsTo($datetime)
+    public function setDealTo(\DateTime $datetime)
     {
-        $this->dealsTo = $datetime;
+        $this->dealTo = $datetime;
 
         return $this;
     }
@@ -223,16 +223,16 @@ class ClientSearch
     /**
      * @return \DateTime
      */
-    public function getDealsTo()
+    public function getDealTo()
     {
-        return $this->dealsTo;
+        return $this->dealTo;
     }
 
     /**
      * @param \DateTime $datetime
      * @return ClientSearch
      */
-    public function setActivityFrom($datetime)
+    public function setActivityFrom(\DateTime $datetime)
     {
         $this->activityFrom = $datetime;
 
@@ -251,7 +251,7 @@ class ClientSearch
      * @param \DateTime $datetime
      * @return ClientSearch
      */
-    public function setActivityTo($datetime)
+    public function setActivityTo(\DateTime $datetime)
     {
         $this->activityTo = $datetime;
 
