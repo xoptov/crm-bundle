@@ -51,7 +51,7 @@ class CompanyController extends Controller
      *  }
      * )
      * @Method("GET")
-     * @Route("/companies/{id}")
+     * @Route("/companies/{id}", requirements={"id":"\d+"})
      * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return JsonResponse
@@ -65,6 +65,48 @@ class CompanyController extends Controller
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
                 ->transform($company, new CompanyMap(), 'companies')
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Company",
+     *  description="Search company by specified conditions",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=0},
+     *      {"name"="dealFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="tags", "dataType"="array", "readonly"=0, "required"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only one tag id"}
+     *      }},
+     *      {"name"="dealStates", "dataType"="array", "readonly"=0, "required"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only one deal state id"}
+     *      }},
+     *      {"name"="delayedPayment", "dataType"="boolean", "required"=0},
+     *      {"name"="offset", "dataType"="integer", "required"=0},
+     *      {"name"="limit", "dataType"="integer", "required"=0}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/companies/search")
+     * @return JsonResponse
+     */
+    public function searchAction()
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_COMPANY_VIEW_ALL', 'ROLE_COMPANY_VIEW_OWN'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        $companies = $this->getDoctrine()->getRepository('CoreBundle:Company')->findAll();
+
+        return new JsonResponse(
+            $this->get('perfico_crm.api.transformer')
+                ->transformCollection($companies, new CompanyMap(), 'companies')
         );
     }
 

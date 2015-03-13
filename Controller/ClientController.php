@@ -65,8 +65,8 @@ class ClientController extends Controller
      *      {"name"="channel", "dataType"="integer", "required"=0},
      *      {"name"="createdFrom", "dataType"="DateTime", "required"=0},
      *      {"name"="createdTo", "dataType"="DateTime", "required"=0},
-     *      {"name"="dealsFrom", "dataType"="DateTime", "required"=0},
-     *      {"name"="dealsTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealTo", "dataType"="DateTime", "required"=0},
      *      {"name"="activityFrom", "dataType"="DateTime", "required"=0},
      *      {"name"="activityTo", "dataType"="DateTime", "required"=0},
      *      {"name"="dealStates", "dataType"="array", "required"=0, "readonly"=0, "children"={
@@ -111,7 +111,7 @@ class ClientController extends Controller
      *  }
      * )
      * @Method("GET")
-     * @Route("/clients/{id}")
+     * @Route("/clients/{id}", requirements={"id":"\d+"})
      * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return JsonResponse
