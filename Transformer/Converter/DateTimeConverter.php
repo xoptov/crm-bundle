@@ -6,13 +6,15 @@ class DateTimeConverter implements ConverterInterface
 {
     /**
      * @param $value
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function convert($value)
     {
-        $date =  new \DateTime($value);
+        if ($value) {
+            return new \DateTime($value);
+        }
 
-        return $date;
+        return null;
     }
 
     public function convertCollection($values)

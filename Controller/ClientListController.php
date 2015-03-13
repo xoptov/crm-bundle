@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Perfico\CRMBundle\Model\ClientSearch;
+use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
 
 class ClientListController extends Controller
 {
@@ -24,6 +26,7 @@ class ClientListController extends Controller
      * )
      * @Method("GET")
      * @Route("/clients-list")
+     * @deprecated
      */
     public function indexAction()
     {
@@ -58,6 +61,7 @@ class ClientListController extends Controller
      * @param integer $page
      * @param integer $limit
      * @return JsonResponse
+     * @deprecated
      */
     public function listAction($page, $limit)
     {
@@ -94,5 +98,57 @@ class ClientListController extends Controller
                 'page' => $page
             ]
         );
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="List actions",
+     *  description="List of clients for current account with params",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=0},
+     *      {"name"="user", "dataType"="integer", "required"=0},
+     *      {"name"="email", "dataType"="string", "required"=0},
+     *      {"name"="phone", "dataType"="string", "required"=0},
+     *      {"name"="channel", "dataType"="integer", "required"=0},
+     *      {"name"="createdFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="createdTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealsFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealsTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityFrom", "dataType"="DateTime", "required"=0},
+     *      {"name"="activityTo", "dataType"="DateTime", "required"=0},
+     *      {"name"="dealStates", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only deal state id"}
+     *      }},
+     *      {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }},
+     *      {"name"="delayedPayment", "dataType"="boolean", "required"=0},
+     *      {"name"="offset", "dataType"="integer", "required"=0},
+     *      {"name"="limit", "dataType"="integer", "required"=0}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/clients-list/search")
+     * @return JsonResponse
+     */
+    public function searchAction()
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CLIENT_VIEW_ALL', 'ROLE_CLIENT_VIEW_OWN'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        $conditions = new ClientSearch();
+        $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
+        $conditions->setAccount($account);
+
+        $this->get('perfico_crm.api.reverse_transformer')->bind($conditions, new ClientSearchMap());
+        $clients = $this->get('perfico_crm.client_manager')->search($conditions);
+
+        return new JsonResponse(
+            $this->get('perfico_crm.api.transformer')
+                ->transformCollection($clients, new ClientsListMap(), 'clients'));
     }
 }
