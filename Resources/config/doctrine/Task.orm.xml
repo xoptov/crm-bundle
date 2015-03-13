@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Perfico\CRMBundle\Entity\Task" table="task">
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onCreate"/>
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" type="string" column="name" length="255" nullable="true"/>
+        <field name="note" type="text" column="note" length="255" nullable="true"/>
+        <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+        <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+        <field name="deadLine" type="datetime" column="dead_line" nullable="true"/>
+        <field name="rememberAt" type="datetime" column="remember_at" nullable="true"/>
+
+        <many-to-one field="assignie" target-entity="Perfico\CRMBundle\Entity\UserInterface">
+            <join-columns>
+                <join-column name="assignie" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
+        <many-to-one field="state" target-entity="Perfico\CRMBundle\Entity\TaskStateInterface">
+            <join-columns>
+                <join-column name="state" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
+        <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
+            <join-columns>
+                <join-column name="account_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
+        <many-to-one field="subTask" target-entity="Perfico\CRMBundle\Entity\SubTaskInterface">
+            <join-columns>
+                <join-column name="sub_task" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
+        <many-to-many field="activities" inversed-by="task" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
+            <join-table name="activity">
+                <join-columns>
+                    <join-column name="activities" referenced-column-name="id" nullable="true"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="id" referenced-column-name="id" nullable="true"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </mapped-superclass>
+
+</doctrine-mapping>
