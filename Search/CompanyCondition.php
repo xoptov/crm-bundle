@@ -1,8 +1,10 @@
 <?php
 
-namespace Perfico\CRMBundle\Model;
+namespace Perfico\CRMBundle\Search;
 
-class CompanySearch
+use Perfico\CRMBundle\Entity\AccountInterface;
+
+class CompanyCondition implements CompanyConditionInterface
 {
     /** @var string */
     protected $name;
@@ -28,9 +30,18 @@ class CompanySearch
     /** @var bool */
     protected $delayedPayment;
 
+    /** @var integer */
+    protected $offset;
+
+    /** @var integer */
+    protected $limit;
+
+    /** @var AccountInterface */
+    protected $account;
+
     /**
      * @param $name
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setName($name)
     {
@@ -40,7 +51,7 @@ class CompanySearch
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -49,7 +60,7 @@ class CompanySearch
 
     /**
      * @param array $tags
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setTags($tags)
     {
@@ -59,7 +70,7 @@ class CompanySearch
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getTags()
     {
@@ -68,7 +79,7 @@ class CompanySearch
 
     /**
      * @param array $dealStates
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setDealStates($dealStates)
     {
@@ -78,7 +89,7 @@ class CompanySearch
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getDealStates()
     {
@@ -87,7 +98,7 @@ class CompanySearch
 
     /**
      * @param \DateTime $datetime
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setDealFrom(\DateTime $datetime)
     {
@@ -97,7 +108,7 @@ class CompanySearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getDealFrom()
     {
@@ -106,7 +117,7 @@ class CompanySearch
 
     /**
      * @param \DateTime $datetime
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setDealTo(\DateTime $datetime)
     {
@@ -116,7 +127,7 @@ class CompanySearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getDealTo()
     {
@@ -125,7 +136,7 @@ class CompanySearch
 
     /**
      * @param \DateTime $datetime
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setActivityFrom(\DateTime $datetime)
     {
@@ -135,7 +146,7 @@ class CompanySearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getActivityFrom()
     {
@@ -144,7 +155,7 @@ class CompanySearch
 
     /**
      * @param \DateTime $datetime
-     * @return CompanySearch
+     * @return CompanyCondition
      */
     public function setActivityTo(\DateTime $datetime)
     {
@@ -154,10 +165,83 @@ class CompanySearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getActivityTo()
     {
         return $this->activityTo;
+    }
+
+    /**
+     * @param $delayedPayment
+     * @return $this
+     */
+    public function setDelayedPayment($delayedPayment)
+    {
+        $this->delayedPayment = $delayedPayment;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDelayedPayment()
+    {
+        return $this->delayedPayment;
+    }
+
+    /**
+     * @param integer $offset
+     * @return CompanyCondition
+     */
+    public function setOffset($offset)
+    {
+        $this->offset = $offset;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    /**
+     * @param integer $limit
+     * @return CompanyCondition
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @param AccountInterface $account
+     */
+    public function setAccount(AccountInterface $account)
+    {
+        $this->account = $account;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 } 

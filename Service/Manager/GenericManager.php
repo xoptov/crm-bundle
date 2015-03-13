@@ -3,6 +3,8 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
+use Perfico\CRMBundle\Model\PagenatedInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 abstract class GenericManager implements GenericManagerInterface
@@ -45,4 +47,6 @@ abstract class GenericManager implements GenericManagerInterface
         $this->em->remove($entity);
         $this->em->flush();
     }
+
+
 } 

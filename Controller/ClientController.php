@@ -2,10 +2,10 @@
 
 namespace Perfico\CRMBundle\Controller;
 
-use Perfico\CRMBundle\Model\ClientSearch;
+use Perfico\CRMBundle\Search\ClientCondition;
 use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientCustomFieldMap;
-use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
+use Perfico\CRMBundle\Transformer\Mapping\ClientConditionMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\PhoneMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
@@ -90,11 +90,11 @@ class ClientController extends Controller
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
-        $conditions = new ClientSearch();
+        $conditions = new ClientCondition();
         $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
         $conditions->setAccount($account);
 
-        $this->get('perfico_crm.api.reverse_transformer')->bind($conditions, new ClientSearchMap());
+        $this->get('perfico_crm.api.reverse_transformer')->bind($conditions, new ClientConditionMap());
         $clients = $this->get('perfico_crm.client_manager')->search($conditions);
 
         return new JsonResponse(
