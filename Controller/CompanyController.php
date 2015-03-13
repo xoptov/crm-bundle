@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Controller;
 
 use Perfico\CRMBundle\Transformer\Mapping\CompanyMap;
+use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CoreBundle\Entity\Company;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -164,6 +165,32 @@ class CompanyController extends Controller
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
                 ->transformCollection($activities, new ActivityMap(), 'activities')
+        );
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Company",
+     *  description="Get all deals for company",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/companies/{id}/deals")
+     * @ParamConverter("company", converter="account.doctrine.orm")
+     * @param Company $company
+     * @return JsonResponse
+     */
+    public function dealsAction(Company $company)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_DEAL_VIEW_ALL', 'ROLE_DEAL_VIEW_OWN'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+        $deals = $this->get('perfico_crm.deal_manager')->getByCompany($company);
+        return new JsonResponse(
+            $this->get('perfico_crm.api.transformer')
+                ->transformCollection($deals, new DealMap(), 'deals')
         );
     }
 
