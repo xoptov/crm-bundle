@@ -33,10 +33,8 @@ class CompanyController extends Controller
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_COMPANY_VIEW_ALL', 'ROLE_COMPANY_VIEW_OWN'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
-        $securityContext = $this->get('security.context');
-        $onlyForUser = $securityContext->isGranted('ROLE_COMPANY_VIEW_ALL') ? null : $this->getUser();
 
-        $companies = $this->get('perfico_crm.company_manager')->getAccountCompanies($onlyForUser);
+        $companies = $this->get('perfico_crm.company_manager')->getAllCompanies();
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
