@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Search\CompanyCondition;
 use Perfico\CRMBundle\Transformer\Mapping\CompanyMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Perfico\CRMBundle\Transformer\Mapping\CompanyConditionMap;
 
 class CompanyController extends Controller
 {
@@ -32,10 +34,8 @@ class CompanyController extends Controller
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_COMPANY_VIEW_ALL', 'ROLE_COMPANY_VIEW_OWN'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
-        $securityContext = $this->get('security.context');
-        $onlyForUser = $securityContext->isGranted('ROLE_COMPANY_VIEW_ALL') ? null : $this->getUser();
 
-        $companies = $this->get('perfico_crm.company_manager')->getAccountCompanies($onlyForUser);
+        $companies = $this->get('perfico_crm.company_manager')->getAllCompanies();
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
@@ -103,7 +103,11 @@ class CompanyController extends Controller
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
-        $companies = $this->getDoctrine()->getRepository('CoreBundle:Company')->findAll();
+        $condition = new CompanyCondition();
+        $condition->setAccount($this->get('perfico_crm.account_manager')->getCurrentAccount());
+
+        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new CompanyConditionMap());
+        $companies = $this->get('perfico_crm.company_manager')->search($condition);
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')

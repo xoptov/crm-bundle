@@ -2,21 +2,31 @@
 
 namespace Perfico\CRMBundle\Service\Manager;
 
-use Doctrine\ORM\Query\Expr\Comparison;
-use Doctrine\ORM\Query\Expr\Composite;
-use Doctrine\ORM\Query\Expr\Join;
-use Doctrine\ORM\Query\Expr\Orx;
-use Doctrine\ORM\Query\QueryException;
-use Perfico\CRMBundle\Model\ClientSearch;
+use Perfico\CRMBundle\Service\Search\PrepareAccountTrait;
+use Perfico\CRMBundle\Service\Search\PrepareChannelTrait;
+use Perfico\CRMBundle\Service\Search\PrepareCreatedRangeTrait;
+use Perfico\CRMBundle\Service\Search\PrepareEmailTrait;
+use Perfico\CRMBundle\Service\Search\PreparePaginationTrait;
+use Perfico\CRMBundle\Service\Search\PreparePhoneTrait;
+use Perfico\CRMBundle\Service\Search\PrepareUserTrait;
 use Perfico\CRMBundle\Transformer\Converter\ChannelConverter;
 use Perfico\CRMBundle\Transformer\Converter\UserConverter;
 use Perfico\CoreBundle\Entity\Client;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Perfico\CRMBundle\Search\ClientCondition;
 
 class ClientManager extends GenericManager
 {
+    use PrepareAccountTrait;
+    use PrepareUserTrait;
+    use PrepareEmailTrait;
+    use PreparePhoneTrait;
+    use PrepareChannelTrait;
+    use PrepareCreatedRangeTrait;
+    use PreparePaginationTrait;
+
     /**
      * @return \Doctrine\ORM\QueryBuilder
      * @deprecated
@@ -279,69 +289,35 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientSearch $conditions
+     * @param ClientCondition $condition
      * @return Client[]
      */
-    public function search(ClientSearch $conditions)
+    public function search(ClientCondition $condition)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('c')->from('CoreBundle:Client', 'c');
 
         // Prepare conditions
-        $this->prepareAccountCondition($qb, $conditions);
-        $this->prepareNameCondition($qb, $conditions);
-        $this->prepareUserCondition($qb, $conditions);
-        $this->prepareEmailCondition($qb, $conditions);
-        $this->preparePhoneCondition($qb, $conditions);
-        $this->prepareChannelCondition($qb, $conditions);
-        $this->prepareCreatedRangeCondition($qb, $conditions);
-        $this->prepareDealRangeCondition($qb, $conditions);
-        $this->prepareActivityRangeCondition($qb, $conditions);
-        $this->prepareDealStatesCondition($qb, $conditions);
-        // TODO need implementation prepare tags condition method
-        $this->preparePagination($qb, $conditions);
+        $this->prepareAccountCondition($qb, $condition, 'c');
+        $this->prepareNameCondition($qb, $condition);
+        $this->prepareUserCondition($qb, $condition, 'c');
+        $this->prepareEmailCondition($qb, $condition, 'c');
+        $this->preparePhoneCondition($qb, $condition, 'c');
+        $this->prepareChannelCondition($qb, $condition, 'c');
+        $this->prepareCreatedRangeCondition($qb, $condition, 'c');
+        $this->prepareDealRangeCondition($qb, $condition);
+        $this->prepareActivityRangeCondition($qb, $condition);
+        $this->prepareDealStatesCondition($qb, $condition);
+//        $this->prepareTagsCondition($qb, $condition);
+//        $this->prepareDelayedPayment($qb, $condition);
+        $this->preparePagination($qb, $condition);
 
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @param QueryBuilder $qb
-     * @param $condition
-     * @throws QueryException
-     * @deprecated
-     */
-    protected function prepareWhere(QueryBuilder $qb, $condition)
+    protected function prepareNameCondition(QueryBuilder $qb, ClientCondition $condition)
     {
-        if (!$condition instanceof Comparison && !$condition instanceof Composite) {
-            throw new QueryException();
-        }
-
-        if ($qb->getDQLPart('where')) {
-            $qb->andWhere($condition);
-        } else {
-            $qb->where($condition);
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareAccountCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getAccount()) {
-            $qb->andWhere($qb->expr()->eq('c.account', ':account'))
-                ->setParameter('account', $conditions->getAccount());
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareNameCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getName()) {
+        if ($condition->getName()) {
 
             $or = $qb->expr()->orX();
             $or->addMultiple([
@@ -350,167 +326,83 @@ class ClientManager extends GenericManager
                 $qb->expr()->like('c.lastName', ':name_expr')
             ]);
 
-//            $this->prepareWhere($qb, $condition);
-            $qb->andWhere($or)->setParameter('name_expr', '%' . $conditions->getName() . '%');
+            $qb->andWhere($or)->setParameter('name_expr', '%' . $condition->getName() . '%');
         }
     }
 
     /**
      * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
+     * @param ClientCondition $condition
      */
-    protected function prepareUserCondition(QueryBuilder $qb, ClientSearch $conditions)
+    protected function prepareDealRangeCondition(QueryBuilder $qb, ClientCondition $condition)
     {
-        if ($conditions->getUser()) {
-            $qb->andWhere($qb->expr()->eq('c.user', ':user_id'))
-                ->setParameter('user_id', $conditions->getUser());
+        if ($condition->getDealFrom() || $condition->getDealTo()) {
+            $qb->innerJoin('c.deals', 'd1');
+        }
+
+        if ($condition->getDealFrom() && $condition->getDealTo()) {
+            $qb->andWhere($qb->expr()->between('d1.createdAt', ':createdFrom', ':createdTo'))
+                ->setParameter('createdFrom', $condition->getDealFrom())
+                ->setParameter('createdTo', $condition->getDealTo());;
+
+        } else if ($condition->getDealFrom()) {
+            $qb->andWhere($qb->expr()->lte('d1.createdAt', ':createdFrom'))
+                ->setParameter('createdFrom', $condition->getDealFrom());
+        } else if ($condition->getDealTo()) {
+            $qb->andWhere($qb->expr()->lte('d1.createdAt', ':createdTo'))
+                ->setParameter('createdTo', $condition->getDealTo());
         }
     }
 
     /**
      * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
+     * @param ClientCondition $condition
      */
-    protected function prepareEmailCondition(QueryBuilder $qb, ClientSearch $conditions)
+    protected function prepareActivityRangeCondition(QueryBuilder $qb, ClientCondition $condition)
     {
-        if ($conditions->getEmail()) {
-            $qb->andWhere($qb->expr()->eq('c.email', ':email'))
-                ->setParameter('email', $conditions->getEmail());
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function preparePhoneCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getPhone()) {
-            $qb->innerJoin('c.phones', 'p');
-            $number = preg_replace('/^(?:\+7|\+?8)|[\(\)\-\s\W]+/', '', $conditions->getPhone());
-            $qb->andWhere($qb->expr()->like('p.number', ':number'))
-                ->setParameter('number', '%' . $number . '%');
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareChannelCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getChannel()) {
-            $qb->andWhere($qb->expr()->eq('c.channel', ':channel'))
-                ->setParameter('channel', $conditions->getChannel());
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareCreatedRangeCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getCreatedFrom() && $conditions->getCreatedTo()) {
-
-            $condition = $qb->expr()->between('c.createdAt', ':createdFrom', ':createdTo');
-            $qb->andWhere($condition)
-                ->setParameter('createdFrom', $conditions->getCreatedFrom())
-                ->setParameter('createdTo', $conditions->getCreatedTo());
-
-        } else if ($conditions->getCreatedFrom()) {
-
-            $qb->andWhere($qb->expr()->lte('c.createdAt', ':createdFrom'))
-                ->setParameter('createdFrom', $conditions->getCreatedFrom());
-
-        } else if ($conditions->getCreatedTo()) {
-
-            $qb->andWhere($qb->expr()->gte('c.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $conditions->getCreatedTo());
-
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareDealRangeCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getDealFrom() || $conditions->getDealTo()) {
-            $qb->innerJoin('c.deals', 'd');
-        }
-
-        if ($conditions->getDealFrom() && $conditions->getDealTo()) {
-            $condition = $qb->expr()->between('d.createdAt', ':createdFrom', ':createdTo');
-
-            $qb->andWhere($condition)
-                ->setParameter('createdFrom', $conditions->getDealFrom())
-                ->setParameter('createdTo', $conditions->getDealTo());
-        } else if ($conditions->getDealFrom()) {
-            $qb->andWhere($qb->expr()->lte('d.createdAt', ':createdFrom'))
-                ->setParameter('createdFrom', $conditions->getDealFrom());
-        } else if ($conditions->getDealTo()) {
-            $qb->andWhere($qb->expr()->lte('d.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $conditions->getDealTo());
-        }
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function prepareActivityRangeCondition(QueryBuilder $qb, ClientSearch $conditions)
-    {
-        if ($conditions->getActivityFrom() || $conditions->getActivityTo()) {
+        if ($condition->getActivityFrom() || $condition->getActivityTo()) {
             $qb->innerJoin('c.activities', 'a');
         }
 
-        if ($conditions->getActivityFrom() && $conditions->getActivityTo()) {
+        if ($condition->getActivityFrom() && $condition->getActivityTo()) {
+            $qb->andWhere($qb->expr()->between('a.createdAt', ':createdFrom', ':createdTo'))
+                ->setParameter('createdFrom', $condition->getActivityFrom())
+                ->setParameter('createdTo', $condition->getActivityTo());
 
-            $condition = $qb->expr()->between('a.createdAt', ':createdFrom', ':createdTo');
-            $qb->andWhere($condition)
-                ->setParameter('createdFrom', $conditions->getActivityFrom())
-                ->setParameter('createdTo', $conditions->getActivityTo());
-
-        } else if ($conditions->getActivityFrom()) {
+        } else if ($condition->getActivityFrom()) {
 
             $qb->andWhere($qb->expr()->lte('a.createdAt', ':createdFrom'))
-                ->setParameter('createdFrom', $conditions->getActivityFrom());
+                ->setParameter('createdFrom', $condition->getActivityFrom());
 
-        } else if ($conditions->getActivityTo()) {
+        } else if ($condition->getActivityTo()) {
 
             $qb->andWhere($qb->expr()->gte('a.createdAt', 'createdTo'))
-                ->setParameter('createdTo', $conditions->getActivityTo());
+                ->setParameter('createdTo', $condition->getActivityTo());
 
         }
     }
 
     /**
      * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
+     * @param ClientCondition $condition
      */
-    protected function prepareDealStatesCondition(QueryBuilder $qb, ClientSearch $conditions)
+    protected function prepareDealStatesCondition(QueryBuilder $qb, ClientCondition $condition)
     {
-        if ($conditions->getDealStates() && count($conditions->getDealStates())) {
-            $qb->innerJoin('c.deals', 'd')
-                ->innerJoin('d.state', 's')
-                ->andWhere($qb->expr()->in('s.id', $conditions->getDealStates()));
+        if ($condition->getDealStates() && count($condition->getDealStates())) {
+            $qb->innerJoin('c.deals', 'd2');
+
+            $qb->andWhere($qb->expr()->in('d2.state', ':dealStates'))
+                ->setParameter('dealStates', $condition->getDealStates());
         }
     }
 
-    /**
-     * @param QueryBuilder $qb
-     * @param ClientSearch $conditions
-     */
-    protected function preparePagination(QueryBuilder $qb, ClientSearch $conditions)
+    protected function prepareTagsCondition(QueryBuilder $qb, ClientCondition $condition)
     {
-        if ($conditions->getOffset()) {
-            $qb->setFirstResult($conditions->getOffset());
-        }
+        //TODO need implementation for this method
+    }
 
-        if ($conditions->getLimit()) {
-            $qb->setMaxResults($conditions->getLimit());
-        }
+    protected function prepareDelayedPayment(QueryBuilder $qb, ClientCondition $condition)
+    {
+        //TODO need implementation for this method
     }
 }
