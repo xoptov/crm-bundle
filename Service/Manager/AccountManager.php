@@ -16,9 +16,13 @@ class AccountManager
     /** @var EntityManagerInterface */
     protected $em;
 
-    public function __construct(EntityManagerInterface $em)
+    /** @var string */
+    protected $baseDomain;
+
+    public function __construct(EntityManagerInterface $em, $baseDomain)
     {
         $this->em = $em;
+        $this->baseDomain = $baseDomain;
     }
 
     public function create(UserInterface $user)
@@ -29,6 +33,15 @@ class AccountManager
         $this->em->persist($account);
 
         return $account;
+    }
+
+    /**
+     * Method for retrieving Fully Qualified Domain Name
+     * @return string
+     */
+    public function getFQDN()
+    {
+        return $this->currentAccount->getDomain() . $this->baseDomain;
     }
 
     /**
