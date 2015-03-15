@@ -36,7 +36,7 @@
         <field name="customField14" type="text" column="custom_field_14" nullable="true"/>
         <field name="customField15" type="text" column="custom_field_15" nullable="true"/>
         
-        <many-to-one field="company" target-entity="Perfico\CRMBundle\Entity\CompanyInterface">
+        <many-to-one field="company" target-entity="Perfico\CRMBundle\Entity\CompanyInterface" inversed-by="clients">
             <join-columns>
                 <join-column name="company_id" referenced-column-name="id" nullable="true"/>
             </join-columns>

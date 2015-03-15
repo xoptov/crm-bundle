@@ -90,12 +90,12 @@ class ClientController extends Controller
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
         }
 
-        $conditions = new ClientCondition();
+        $condition = new ClientCondition();
         $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
-        $conditions->setAccount($account);
+        $condition->setAccount($account);
 
-        $this->get('perfico_crm.api.reverse_transformer')->bind($conditions, new ClientConditionMap());
-        $clients = $this->get('perfico_crm.client_manager')->search($conditions);
+        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientConditionMap());
+        $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')

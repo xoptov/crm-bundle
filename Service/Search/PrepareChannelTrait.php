@@ -7,11 +7,11 @@ use Perfico\CRMBundle\Search\Properties\PropertyChannelInterface;
 
 trait PrepareChannelTrait
 {
-    protected function prepareChannelCondition(QueryBuilder $qb, PropertyChannelInterface $conditions, $alias)
+    protected function prepareChannelCondition(QueryBuilder $qb, PropertyChannelInterface $condition, $alias)
     {
-        if ($conditions->getChannel()) {
+        if ($condition->getChannel()) {
             $qb->andWhere($qb->expr()->eq($alias . '.channel', ':channel'))
-                ->setParameter('channel', $conditions->getChannel());
+                ->setParameter('channel', $condition->getChannel());
         }
     }
 }

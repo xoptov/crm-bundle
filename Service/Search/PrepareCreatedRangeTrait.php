@@ -7,24 +7,23 @@ use Perfico\CRMBundle\Search\Properties\PropertyCreatedRangeInterface;
 
 trait PrepareCreatedRangeTrait
 {
-    protected function prepareCreatedRangeCondition(QueryBuilder $qb, PropertyCreatedRangeInterface $conditions, $alias)
+    protected function prepareCreatedRangeCondition(QueryBuilder $qb, PropertyCreatedRangeInterface $condition, $alias)
     {
-        if ($conditions->getCreatedFrom() && $conditions->getCreatedTo()) {
+        if ($condition->getCreatedFrom() && $condition->getCreatedTo()) {
 
-            $condition = $qb->expr()->between($alias . '.createdAt', ':createdFrom', ':createdTo');
-            $qb->andWhere($condition)
-                ->setParameter('createdFrom', $conditions->getCreatedFrom())
-                ->setParameter('createdTo', $conditions->getCreatedTo());
+            $qb->andWhere($qb->expr()->between($alias . '.createdAt', ':createdFrom', ':createdTo'))
+                ->setParameter('createdFrom', $condition->getCreatedFrom())
+                ->setParameter('createdTo', $condition->getCreatedTo());
 
-        } else if ($conditions->getCreatedFrom()) {
+        } else if ($condition->getCreatedFrom()) {
 
             $qb->andWhere($qb->expr()->lte($alias . '.createdAt', ':createdFrom'))
-                ->setParameter('createdFrom', $conditions->getCreatedFrom());
+                ->setParameter('createdFrom', $condition->getCreatedFrom());
 
-        } else if ($conditions->getCreatedTo()) {
+        } else if ($condition->getCreatedTo()) {
 
             $qb->andWhere($qb->expr()->gte($alias . '.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $conditions->getCreatedTo());
+                ->setParameter('createdTo', $condition->getCreatedTo());
 
         }
     }

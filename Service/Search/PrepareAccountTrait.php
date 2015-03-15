@@ -7,11 +7,11 @@ use Perfico\CRMBundle\Search\Properties\PropertyAccountInterface;
 
 trait PrepareAccountTrait
 {
-    protected function prepareAccountCondition(QueryBuilder $qb, PropertyAccountInterface $conditions, $alias)
+    protected function prepareAccountCondition(QueryBuilder $qb, PropertyAccountInterface $condition, $alias)
     {
-        if ($conditions->getAccount()) {
+        if ($condition->getAccount()) {
             $qb->andWhere($qb->expr()->eq( $alias . '.account', ':account'))
-                ->setParameter('account', $conditions->getAccount());
+                ->setParameter('account', $condition->getAccount());
         }
     }
 } 

@@ -7,14 +7,14 @@ use Perfico\CRMBundle\Search\Properties\PaginationInterface;
 
 trait PreparePaginationTrait
 {
-    protected function preparePagination(QueryBuilder $qb, PaginationInterface $conditions)
+    protected function preparePagination(QueryBuilder $qb, PaginationInterface $condition)
     {
-        if ($conditions->getOffset()) {
-            $qb->setFirstResult($conditions->getOffset());
+        if ($condition->getOffset()) {
+            $qb->setFirstResult($condition->getOffset());
         }
 
-        if ($conditions->getLimit()) {
-            $qb->setMaxResults($conditions->getLimit());
+        if ($condition->getLimit()) {
+            $qb->setMaxResults($condition->getLimit());
         }
     }
 } 

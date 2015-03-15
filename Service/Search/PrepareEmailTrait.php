@@ -7,11 +7,11 @@ use Perfico\CRMBundle\Search\Properties\PropertyEmailInterface;
 
 trait PrepareEmailTrait
 {
-    protected function prepareEmailCondition(QueryBuilder $qb, PropertyEmailInterface $conditions, $alias)
+    protected function prepareEmailCondition(QueryBuilder $qb, PropertyEmailInterface $condition, $alias)
     {
-        if ($conditions->getEmail()) {
+        if ($condition->getEmail()) {
             $qb->andWhere($qb->expr()->eq($alias . '.email', ':email'))
-                ->setParameter('email', $conditions->getEmail());
+                ->setParameter('email', $condition->getEmail());
         }
     }
 } 
