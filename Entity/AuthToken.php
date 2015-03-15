@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class AuthToken
 {
-    const EXPIRATION_TIME = '1 hour';
+    const EXPIRATION_TIME = '1 year';
 
     /** @var integer */
     private $id;
