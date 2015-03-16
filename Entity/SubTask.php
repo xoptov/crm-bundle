@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-abstract class SubTask implements TaskStateInterface
+abstract class SubTask implements SubTaskInterface
 {
     /** @var integer */
     protected $id;

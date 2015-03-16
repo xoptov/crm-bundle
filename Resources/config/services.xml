@@ -44,6 +44,18 @@
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_COMPANY_" object_class="Perfico\CoreBundle\Entity\Company"/>
         </service>
 
+        <!--<service id="perfico_crm.security.task_handler" class="Perfico\CRMBundle\Permissions\Handlers\TaskHandler">-->
+            <!--<tag name="perfico_crm.permission_handler" role_prefix="ROLE_TASK_" object_class="Perfico\CoreBundle\Entity\Task"/>-->
+        <!--</service>-->
+
+        <!--<service id="perfico_crm.security.task_state_handler" class="Perfico\CRMBundle\Permissions\Handlers\TaskStateHandler">-->
+            <!--<tag name="perfico_crm.permission_handler" role_prefix="ROLE_TASK_STATE_" object_class="Perfico\CoreBundle\Entity\TaskState"/>-->
+        <!--</service>-->
+
+        <!--<service id="perfico_crm.security.sub_task_handler" class="Perfico\CRMBundle\Permissions\Handlers\SubTaskHandler">-->
+            <!--<tag name="perfico_crm.permission_handler" role_prefix="ROLE_SUB_TASK_" object_class="Perfico\CoreBundle\Entity\SubTask"/>-->
+        <!--</service>-->
+
         <service id="perfico_crm.security.tag_handler" class="Perfico\CRMBundle\Permissions\Handlers\TagHandler">
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_TAG_" object_class="Perfico\CoreBundle\Entity\Tag"/>
         </service>

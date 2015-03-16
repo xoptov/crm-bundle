@@ -2,8 +2,6 @@
 
 namespace Perfico\CRMBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 abstract class TaskState implements TaskStateInterface
 {
     /** @var integer */
