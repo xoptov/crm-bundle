@@ -27,167 +27,97 @@ interface TaskInterface
      * @param string $note
      * @return TaskInterface
      */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
+    public function setNote($note);
 
     /**
      * @return string
      */
-    public function getNote()
-    {
-        return $this->note;
-    }
+    public function getNote();
 
     /**
      * @return \DateTime
      */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
+    public function getCreatedAt();
 
     /**
      * @return \DateTime
      */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
+    public function getUpdatedAt();
 
     /**
      * @param dateTime $deadLine
      * @return TaskInterface
      */
-    public function setDeadLine($deadLine)
-    {
-        $this->deadLine = $deadLine;
-
-        return $this;
-    }
+    public function setDeadLine($deadLine);
 
     /**
      * @return \DateTime
      */
-    public function getDeadLine()
-    {
-        return $this->deadLine;
-    }
+    public function getDeadLine();
 
     /**
      * @param dateTime $rememberAt
      * @return TaskInterface
      */
-    public function setRememberAt($rememberAt)
-    {
-        $this->rememberAt = $rememberAt;
-
-        return $this;
-    }
+    public function setRememberAt($rememberAt);
 
     /**
      * @return \DateTime
      */
-    public function getRememberAt()
-    {
-        return $this->rememberAt;
-    }
+    public function getRememberAt();
 
     /**
      * @param UserInterface $assignie
      * @return TaskInterface
      */
-    public function setAssignie(UserInterface $assignie)
-    {
-        $this->assignie = $assignie;
-
-        return $this;
-    }
+    public function setAssignie(UserInterface $assignie);
 
     /**
      * @return UserInterface
      */
-    public function getAssignie()
-    {
-        return $this->assignie;
-    }
+    public function getAssignie();
 
     /**
-     * @param TaskStateInterface $taskState
+     * @param TaskStateInterface $state
      * @return TaskInterface
      */
-    public function setState(TaskStateInterface $state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
+    public function setState(TaskStateInterface $state);
 
     /**
      * @return TaskStateInterface
      */
-    public function getState()
-    {
-        return $this->state;
-    }
+    public function getState();
 
     /**
      * @param AccountInterface $account
      * @return ClientInterface
      */
-    public function setAccount(AccountInterface $account)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
+    public function setAccount(AccountInterface $account);
 
     /**
      * @return AccountInterface
      */
-    public function getAccount()
-    {
-        return $this->account;
-    }
+    public function getAccount();
 
     /**
      * @param ActivityInterface $activities
      * @return TaskInterface
      */
-    public function setActivities(ActivityInterface $activities)
-    {
-        $this->activities = $activities;
-
-        return $this;
-    }
+    public function setActivities(ActivityInterface $activities);
 
     /**
      * @return ActivityInterface
      */
-    public function getActivities()
-    {
-        return $this->activities;
-    }
+    public function getActivities();
 
     /**
      * @param SubTaskInterface $subTask
      * @return TaskInterface
      */
-    public function setSubTask(SubTaskInterface $subTask)
-    {
-        $this->subTask= $subTask;
-
-        return $this;
-    }
+    public function setSubTask(SubTaskInterface $subTask);
 
     /**
      * @return SubTaskInterface
      */
-    public function getSubTask()
-    {
-        return $this->subTask;
-    }
+    public function getSubTask();
 }
