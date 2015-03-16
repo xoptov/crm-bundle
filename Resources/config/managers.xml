@@ -3,6 +3,10 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="perfico_frontend.base_domain">~</parameter>
+    </parameters>
+
     <services>
 
         <service id="perfico_crm.permission_manager" class="Perfico\CRMBundle\Permissions\PermissionManager">
@@ -11,6 +15,7 @@
 
         <service id="perfico_crm.account_manager" class="Perfico\CRMBundle\Service\Manager\AccountManager">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="string">%perfico_frontend.base_domain%</argument>
         </service>
 
         <service id="perfico_crm.generic_manager" class="Perfico\CRMBundle\Service\Manager\GenericManager" abstract="true">

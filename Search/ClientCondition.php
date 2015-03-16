@@ -1,10 +1,10 @@
 <?php
 
-namespace Perfico\CRMBundle\Model;
+namespace Perfico\CRMBundle\Search;
 
 use Perfico\CRMBundle\Entity\AccountInterface;
 
-class ClientSearch
+class ClientCondition implements ClientConditionInterface
 {
     /** @var string */
     protected $name;
@@ -59,7 +59,7 @@ class ClientSearch
 
     /**
      * @param $name
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setName($name)
     {
@@ -69,7 +69,7 @@ class ClientSearch
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -78,7 +78,7 @@ class ClientSearch
 
     /**
      * @param integer $user
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setUser($user)
     {
@@ -88,7 +88,7 @@ class ClientSearch
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function getUser()
     {
@@ -97,7 +97,7 @@ class ClientSearch
 
     /**
      * @param string $email
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setEmail($email)
     {
@@ -107,7 +107,7 @@ class ClientSearch
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -116,7 +116,7 @@ class ClientSearch
 
     /**
      * @param string $phone
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setPhone($phone)
     {
@@ -126,7 +126,7 @@ class ClientSearch
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPhone()
     {
@@ -135,7 +135,7 @@ class ClientSearch
 
     /**
      * @param integer $channel
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setChannel($channel)
     {
@@ -145,7 +145,7 @@ class ClientSearch
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function getChannel()
     {
@@ -154,7 +154,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setCreatedFrom($datetime)
     {
@@ -164,7 +164,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreatedFrom()
     {
@@ -173,7 +173,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setCreatedTo($datetime)
     {
@@ -183,7 +183,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreatedTo()
     {
@@ -192,7 +192,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setDealFrom(\DateTime $datetime)
     {
@@ -202,7 +202,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getDealFrom()
     {
@@ -211,7 +211,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setDealTo(\DateTime $datetime)
     {
@@ -221,7 +221,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getDealTo()
     {
@@ -230,7 +230,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setActivityFrom(\DateTime $datetime)
     {
@@ -240,7 +240,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getActivityFrom()
     {
@@ -249,7 +249,7 @@ class ClientSearch
 
     /**
      * @param \DateTime $datetime
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setActivityTo(\DateTime $datetime)
     {
@@ -259,7 +259,7 @@ class ClientSearch
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getActivityTo()
     {
@@ -268,7 +268,7 @@ class ClientSearch
 
     /**
      * @param array $dealStates
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setDealStates($dealStates)
     {
@@ -278,7 +278,7 @@ class ClientSearch
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getDealStates()
     {
@@ -287,7 +287,7 @@ class ClientSearch
 
     /**
      * @param array $tags
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setTags($tags)
     {
@@ -297,7 +297,7 @@ class ClientSearch
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getTags()
     {
@@ -306,7 +306,7 @@ class ClientSearch
 
     /**
      * @param bool $delayedPayment
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setDelayedPayment($delayedPayment)
     {
@@ -316,7 +316,7 @@ class ClientSearch
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getDelayedPayment()
     {
@@ -325,7 +325,7 @@ class ClientSearch
 
     /**
      * @param integer $offset
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setOffset($offset)
     {
@@ -335,7 +335,7 @@ class ClientSearch
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function getOffset()
     {
@@ -344,7 +344,7 @@ class ClientSearch
 
     /**
      * @param integer $limit
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setLimit($limit)
     {
@@ -354,7 +354,7 @@ class ClientSearch
     }
 
     /**
-     * @return integer
+     * {@inheritdoc}
      */
     public function getLimit()
     {
@@ -363,7 +363,7 @@ class ClientSearch
 
     /**
      * @param AccountInterface $account
-     * @return ClientSearch
+     * @return ClientCondition
      */
     public function setAccount(AccountInterface $account)
     {
@@ -373,7 +373,7 @@ class ClientSearch
     }
 
     /**
-     * @return AccountInterface
+     * {@inheritdoc}
      */
     public function getAccount()
     {

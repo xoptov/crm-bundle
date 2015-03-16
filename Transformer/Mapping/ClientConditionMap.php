@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
-class ClientSearchMap implements MapInterface
+class ClientConditionMap implements MapInterface
 {
     public function getReverseMap()
     {
