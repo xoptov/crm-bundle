@@ -46,9 +46,9 @@
         </many-to-one>
 
         <many-to-many field="activities" inversed-by="task" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
-            <join-table name="activities">
+            <join-table name="tasks_has_activities">
                 <join-columns>
-                    <join-column name="tasks_has_activities" referenced-column-name="id" nullable="true"/>
+                    <join-column name="activities" referenced-column-name="id" nullable="true"/>
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="id" referenced-column-name="id" nullable="true"/>
