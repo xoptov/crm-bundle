@@ -45,7 +45,7 @@
             </join-columns>
         </many-to-one>
 
-        <many-to-many field="activities" inversed-by="task" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
+        <many-to-many field="activities" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
             <join-table name="tasks_has_activities">
                 <join-columns>
                     <join-column name="activities" referenced-column-name="id" nullable="true"/>
