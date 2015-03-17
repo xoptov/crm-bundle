@@ -12,7 +12,9 @@ class ClientConditionMap implements MapInterface
             'setName' => 'name',
             'setUser' => 'user',
             'setEmail' => 'email',
+            'setEmailNotSpecified' => 'emailNotSpecified',
             'setPhone' => 'phone',
+            'setPhoneNotSpecified' => 'phoneNotSpecified',
             'setChannel' => 'channel',
             'setCreatedFrom' => [
                 'converter' => new DateTimeConverter(),
