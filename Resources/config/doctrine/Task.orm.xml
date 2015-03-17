@@ -13,7 +13,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="name" type="string" column="name" length="255" nullable="true"/>
+        <field name="name" type="string" column="name" length="255" nullable="false"/>
         <field name="note" type="text" column="note" length="255" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
         <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
@@ -22,13 +22,13 @@
 
         <many-to-one field="assignie" target-entity="Perfico\CRMBundle\Entity\UserInterface">
             <join-columns>
-                <join-column name="assignie" referenced-column-name="id" nullable="true"/>
+                <join-column name="assignie_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
 
         <many-to-one field="state" target-entity="Perfico\CRMBundle\Entity\TaskStateInterface">
             <join-columns>
-                <join-column name="state" referenced-column-name="id" nullable="true"/>
+                <join-column name="state_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
 
@@ -40,7 +40,7 @@
 
         <many-to-one field="subTask" target-entity="Perfico\CRMBundle\Entity\SubTaskInterface">
             <join-columns>
-                <join-column name="sub_task" referenced-column-name="id" nullable="true"/>
+                <join-column name="sub_task_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
 

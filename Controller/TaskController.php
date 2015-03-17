@@ -74,13 +74,13 @@ class TaskController extends Controller
      *  },
      *  parameters={
      *    {"name"="name", "dataType"="string", "required"=1},
-     *    {"name"="note", "dataType"="string", "required"=1},
-     *    {"name"="deadLine", "dataType"="datetime", "required"=1},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"=1},
-     *    {"name"="assignie", "dataType"="integer", "required"=1},
-     *    {"name"="state", "dataType"="integer", "required"=1},
-     *    {"name"="activities", "dataType"="integer", "required"=1},
-     *    {"name"="subTask", "dataType"="integer", "required"=1}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="deadLine", "dataType"="datetime", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="state", "dataType"="integer", "required"=0},
+     *    {"name"="activities", "dataType"="integer", "required"=0},
+     *    {"name"="subTask", "dataType"="integer", "required"=0}
      *   }
      * )
      * @Method("POST")
@@ -130,13 +130,13 @@ class TaskController extends Controller
      *  },
      *  parameters={
      *    {"name"="name", "dataType"="string", "required"=1},
-     *    {"name"="note", "dataType"="string", "required"=1},
-     *    {"name"="deadLine", "dataType"="datetime", "required"=1},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"=1},
-     *    {"name"="assignie", "dataType"="integer", "required"=1},
-     *    {"name"="state", "dataType"="integer", "required"=1},
-     *    {"name"="activities", "dataType"="integer", "required"=1},
-     *    {"name"="subTask", "dataType"="integer", "required"=1}
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="deadLine", "dataType"="datetime", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="state", "dataType"="integer", "required"=0},
+     *    {"name"="activities", "dataType"="integer", "required"=0},
+     *    {"name"="subTask", "dataType"="integer", "required"=0}
      *   }
      * )
      * @Method("PUT")
