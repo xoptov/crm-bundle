@@ -31,10 +31,7 @@ class ReverseTransformer
              * Check for determine converter between method, class or service
              */
             if(is_string($value)) { // if $value is string then working without converter
-                if ($request->get($value)) {
-                    $object->$method($request->get($value));
-                }
-
+                $object->$method($request->get($value));
             } elseif (isset($value['converter'])) {
                 if (is_string($value['converter'])) {
                     /** @var ConverterInterface $converter */
