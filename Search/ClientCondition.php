@@ -15,8 +15,14 @@ class ClientCondition implements ClientConditionInterface
     /** @var string */
     protected $email;
 
+    /** @var bool */
+    protected $emailNotSpecified;
+
     /** @var string */
     protected $phone;
+
+    /** @var bool */
+    protected $phoneNotSpecified;
 
     /** @var integer */
     protected $channel;
@@ -56,6 +62,12 @@ class ClientCondition implements ClientConditionInterface
 
     /** @var AccountInterface */
     protected $account;
+
+    public function __construct()
+    {
+        $this->emailNotSpecified = false;
+        $this->phoneNotSpecified = false;
+    }
 
     /**
      * @param $name
@@ -115,6 +127,24 @@ class ClientCondition implements ClientConditionInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setEmailNotSpecified($value)
+    {
+        $this->emailNotSpecified = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailNotSpecified()
+    {
+        return $this->emailNotSpecified;
+    }
+
+    /**
      * @param string $phone
      * @return ClientCondition
      */
@@ -131,6 +161,24 @@ class ClientCondition implements ClientConditionInterface
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhoneNotSpecified($value)
+    {
+        $this->phoneNotSpecified = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoneNotSpecified()
+    {
+        return $this->phoneNotSpecified;
     }
 
     /**

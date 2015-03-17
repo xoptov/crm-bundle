@@ -8,4 +8,9 @@ interface PropertyEmailInterface
      * @return string
      */
     public function getEmail();
+
+    /**
+     * @return bool
+     */
+    public function getEmailNotSpecified();
 } 

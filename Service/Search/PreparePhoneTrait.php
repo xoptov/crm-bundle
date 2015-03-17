@@ -14,6 +14,9 @@ trait PreparePhoneTrait
             $number = preg_replace('/^(?:\+7|\+?8)|[\(\)\-\s\W]+/', '', $condition->getPhone());
             $qb->andWhere($qb->expr()->like('p.number', ':number'))
                 ->setParameter('number', '%' . $number . '%');
+        } else if ($condition->getPhoneNotSpecified()) {
+            $qb->leftJoin($alias . '.phones', 'p');
+            $qb->andWhere($qb->expr()->isNull('p.id'));
         }
     }
 
