@@ -45,10 +45,10 @@ interface TaskInterface
     public function getUpdatedAt();
 
     /**
-     * @param dateTime $deadLine
+     * @param \DateTime $deadLine
      * @return TaskInterface
      */
-    public function setDeadLine($deadLine);
+    public function setDeadLine(\DateTime $deadLine);
 
     /**
      * @return \DateTime
@@ -56,10 +56,10 @@ interface TaskInterface
     public function getDeadLine();
 
     /**
-     * @param dateTime $rememberAt
+     * @param \DateTime $rememberAt
      * @return TaskInterface
      */
-    public function setRememberAt($rememberAt);
+    public function setRememberAt(\DateTime $rememberAt);
 
     /**
      * @return \DateTime

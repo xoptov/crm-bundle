@@ -7,6 +7,7 @@
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onCreate"/>
+            <lifecycle-callback type="prePersist" method="onUpdate"/>
         </lifecycle-callbacks>
 
         <id name="id" type="integer" column="id">
@@ -45,7 +46,7 @@
         </many-to-one>
 
         <many-to-many field="activities" inversed-by="task" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
-            <join-table name="activity">
+            <join-table name="activities">
                 <join-columns>
                     <join-column name="activities" referenced-column-name="id" nullable="true"/>
                 </join-columns>

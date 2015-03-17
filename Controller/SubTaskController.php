@@ -23,7 +23,7 @@ class SubTaskController extends Controller
      *  }
      * )
      * @Method("GET")
-     * @Route("/sub-task")
+     * @Route("/sub-tasks")
      */
     public function indexAction()
     {
@@ -44,7 +44,7 @@ class SubTaskController extends Controller
      *  }
      * )
      * @Method("GET")
-     * @Route("/sub-task/{id}")
+     * @Route("/sub-tasks/{id}")
      * @ParamConverter("subTask", converter="account.doctrine.orm")
      * @param SubTask $subTask
      * @return JsonResponse|Response
@@ -70,7 +70,7 @@ class SubTaskController extends Controller
      *   }
      * )
      * @Method("POST")
-     * @Route("/sub-task")
+     * @Route("/sub-tasks")
      * @return Response|JsonResponse
      */
     public function createAction()
@@ -87,7 +87,7 @@ class SubTaskController extends Controller
      *  }
      * )
      * @Method("DELETE")
-     * @Route("/sub-task/{id}")
+     * @Route("/sub-tasks/{id}")
      * @ParamConverter("subTask", converter="account.doctrine.orm")
      * @param SubTask $subTask
      * @return Response
@@ -116,7 +116,7 @@ class SubTaskController extends Controller
      *   }
      * )
      * @Method("PUT")
-     * @Route("/sub-task/{id}")
+     * @Route("/sub-tasks/{id}")
      * @ParamConverter("subTask", converter="account.doctrine.orm")
      * @param SubTask $subTask
      * @return Response

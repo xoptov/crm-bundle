@@ -9,8 +9,8 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="note" type="text" column="note" precision="0" scale="0" nullable="true"/>
-        <field name="completed" type="boolean" column="completed" precision="0" scale="0" nullable="true"/>
+        <field name="note" type="text" column="note" nullable="true"/>
+        <field name="completed" type="boolean" column="completed" nullable="false"/>
 
     </mapped-superclass>
 
