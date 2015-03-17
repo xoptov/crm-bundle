@@ -113,7 +113,7 @@ abstract class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function setDeadLine($deadLine)
+    public function setDeadLine(\DateTime $deadLine)
     {
         $this->deadLine = $deadLine;
 
@@ -131,7 +131,7 @@ abstract class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function setRememberAt($rememberAt)
+    public function setRememberAt(\DateTime $rememberAt)
     {
         $this->rememberAt = $rememberAt;
 
