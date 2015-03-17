@@ -95,6 +95,30 @@
             </call>
         </service>
 
+        <service id="perfico_crm.api.task_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.task_state_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskStateConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.sub_task_converter" class="Perfico\CRMBundle\Transformer\Converter\SubTaskConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.activity_converter" class="Perfico\CRMBundle\Transformer\Converter\ActivityConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.group_converter" class="Perfico\CRMBundle\Transformer\Converter\GroupConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.group%</argument>
