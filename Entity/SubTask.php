@@ -15,6 +15,11 @@ abstract class SubTask implements SubTaskInterface
     /** @var integer */
     protected $completed;
 
+    public function __construct()
+    {
+        $this->completed = false;
+    }
+
     /**
      * {@inheritdoc}
      */
