@@ -16,6 +16,7 @@ class ClientConditionMap implements MapInterface
             'setPhone' => 'phone',
             'setPhoneNotSpecified' => 'phoneNotSpecified',
             'setChannel' => 'channel',
+            'setCompany' => 'company',
             'setCreatedFrom' => [
                 'converter' => new DateTimeConverter(),
                 'path' => 'createdFrom'
