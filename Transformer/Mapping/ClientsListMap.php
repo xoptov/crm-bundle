@@ -24,7 +24,10 @@ class ClientsListMap implements MapInterface
                 'converter' => new DateConverter(),
                 'method' => 'getCreatedAt'
             ],
-            'company' => 'getCompany',
+            'company' => [
+                'converter' => 'perfico_crm.api.company_converter',
+                'method' => 'getCompany'
+            ],
             'channel' => [
                 'converter' => new ClientsListChannelConverter(),
                 'method' => 'getChannel'

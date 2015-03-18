@@ -27,6 +27,9 @@ class ClientCondition implements ClientConditionInterface
     /** @var integer */
     protected $channel;
 
+    /** @var integer */
+    protected $company;
+
     /** @var \DateTime */
     protected $createdFrom;
 
@@ -198,6 +201,25 @@ class ClientCondition implements ClientConditionInterface
     public function getChannel()
     {
         return $this->channel;
+    }
+
+    /**
+     * @param integer $company
+     * @return ClientCondition
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**
