@@ -377,7 +377,7 @@ class ClientManager extends GenericManager
 
         } else if ($condition->getActivityTo()) {
 
-            $qb->andWhere($qb->expr()->gte('a.createdAt', 'createdTo'))
+            $qb->andWhere($qb->expr()->gte('a.createdAt', ':createdTo'))
                 ->setParameter('createdTo', $condition->getActivityTo());
 
         }
