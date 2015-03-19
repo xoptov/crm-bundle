@@ -100,9 +100,12 @@ class ClientController extends Controller
         $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientConditionMap());
         $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
-        return new JsonResponse(
-            $this->get('perfico_crm.api.transformer')
-                ->transformCollection($clients, new ClientMap(), 'clients'));
+        $result = [
+            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($clients, new ClientMap(), 'clients'),
+            'total' => $this->get('perfico_crm.client_manager')->resultCount($condition)
+        ];
+
+        return new JsonResponse($result);
     }
 
     /**
