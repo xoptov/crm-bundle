@@ -9,6 +9,9 @@ abstract class SubTask implements SubTaskInterface
     /** @var integer */
     protected $id;
 
+    /** @var integer */
+    protected $taskId;
+
     /** @var string */
     protected $note;
 
@@ -26,6 +29,24 @@ abstract class SubTask implements SubTaskInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTaskId($taskId)
+    {
+        $this->taskId = $taskId;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaskId()
+    {
+        return $this->taskId;
     }
 
     /**

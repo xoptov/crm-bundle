@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Perfico\CoreBundle\Entity\Task;
 use Perfico\CRMBundle\Transformer\Mapping\TaskMap;
+use Perfico\CRMBundle\Transformer\Mapping\SubTaskMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TaskController extends Controller
@@ -152,6 +153,29 @@ class TaskController extends Controller
         }
 
         return $this->handleRequest($task);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Task",
+     *  description="Get specified sub task task",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/tasks/{id}/sub-tasks")
+     * @ParamConverter("task", converter="account.doctrine.orm")
+     * @param Task $task
+     * @return JsonResponse|Response
+     */
+    public function getActionSubTask(Task $task)
+    {
+        $subTask = $this->get('perfico_crm.sub_task_manager')->getSubTaskForTask($task);
+            return new JsonResponse(
+                $this->get('perfico_crm.api.transformer')
+                    ->transformCollection($subTask, new SubTaskMap(), 'subTask')
+            );
     }
 
     /**

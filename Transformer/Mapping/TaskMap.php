@@ -1,6 +1,7 @@
 <?php
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
+use Perfico\CRMBundle\Transformer\Converter\DateConverter;
 
 class TaskMap implements MapInterface
 {
@@ -13,14 +14,14 @@ class TaskMap implements MapInterface
             'setRememberAt' => 'rememberAt',
             'setAssignie' => [
                 'converter' => 'perfico_crm.api.user_converter',
-                'path' => 'user'
+                'path' => 'assignie'
             ],
             'setState' => [
                 'converter' => 'perfico_crm.api.task_state_converter',
                 'path' => 'state'
             ],
             'setActivities' => [
-                'converter' => 'perfico_crm.api.activities_converter',
+                'converter' => 'perfico_crm.api.activity_converter',
                 'path' => 'activities'
             ],
             'setSubTask' => [

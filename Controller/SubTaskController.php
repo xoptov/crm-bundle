@@ -65,6 +65,7 @@ class SubTaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
+     *    {"name"="taskId", "dataType"="integer", "required"=1},
      *    {"name"="note", "dataType"="string", "required"=1},
      *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }
@@ -111,8 +112,9 @@ class SubTaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
+     *    {"name"="taskId", "dataType"="integer", "required"=1},
      *    {"name"="note", "dataType"="string", "required"=1},
-     *    {"name"="completed", "dataType"="boolean", "required"=1}
+     *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }
      * )
      * @Method("PUT")

@@ -29,6 +29,12 @@
 
         <parameter key="perfico_crm.entity_alias.group" type="string">PerficoCRMBundle:Group</parameter>
 
+        <parameter key="perfico_crm.entity_alias.task" type="string">PerficoCRMBundle:Task</parameter>
+
+        <parameter key="perfico_crm.entity_alias.task_state" type="string">PerficoCRMBundle:TaskState</parameter>
+
+        <parameter key="perfico_crm.entity_alias.sub_task" type="string">PerficoCRMBundle:SubTask</parameter>
+
     </parameters>
 
     <services>
@@ -97,25 +103,25 @@
 
         <service id="perfico_crm.api.task_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+                <argument type="string">%perfico_crm.entity_alias.task%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.task_state_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskStateConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+                <argument type="string">%perfico_crm.entity_alias.task_state%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.sub_task_converter" class="Perfico\CRMBundle\Transformer\Converter\SubTaskConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+                <argument type="string">%perfico_crm.entity_alias.sub_task%</argument>
             </call>
         </service>
 
         <service id="perfico_crm.api.activity_converter" class="Perfico\CRMBundle\Transformer\Converter\ActivityConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+                <argument type="string">%perfico_crm.entity_alias.activity%</argument>
             </call>
         </service>
 
