@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Controller;
 
 use Perfico\CRMBundle\Search\CompanyCondition;
 use Perfico\CRMBundle\Transformer\Mapping\CompanyMap;
+use Perfico\CRMBundle\Transformer\Mapping\CompanySearchMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
 use Perfico\CoreBundle\Entity\Company;
@@ -14,7 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Perfico\CRMBundle\Transformer\Mapping\CompanyConditionMap;
 
 class CompanyController extends Controller
 {
@@ -105,14 +105,12 @@ class CompanyController extends Controller
 
         $condition = new CompanyCondition();
         $condition->setAccount($this->get('perfico_crm.account_manager')->getCurrentAccount());
-
-        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new CompanyConditionMap());
+        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new CompanySearchMap());
         $companies = $this->get('perfico_crm.company_manager')->search($condition);
 
-        return new JsonResponse(
-            $this->get('perfico_crm.api.transformer')
-                ->transformCollection($companies, new CompanyMap(), 'companies')
-        );
+        $result = $this->get('perfico_crm.api.transformer')->transformCollection($companies, new CompanySearchMap(), 'companies');
+
+        return new JsonResponse($result);
     }
 
     /**

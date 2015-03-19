@@ -71,6 +71,18 @@
             </call>
         </service>
 
+        <service id="perfico_crm.api.company_deal_states_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyDealStatesConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.deal_state%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.company_last_activity_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyLastActivityConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.activity%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.company_converter" class="Perfico\CRMBundle\Transformer\Converter\CompanyConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.company%</argument>
@@ -115,7 +127,7 @@
 
         <service id="perfico_crm.api.activity_converter" class="Perfico\CRMBundle\Transformer\Converter\ActivityConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
-                <argument type="string">%perfico_crm.entity_alias.user%</argument>
+                <argument type="string">%perfico_crm.entity_alias.activity%</argument>
             </call>
         </service>
 
