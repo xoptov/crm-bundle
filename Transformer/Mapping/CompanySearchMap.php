@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
-class CompanyConditionMap implements MapInterface
+class CompanySearchMap implements MapInterface
 {
     public function getReverseMap()
     {
@@ -36,6 +36,21 @@ class CompanyConditionMap implements MapInterface
 
     public function getMap()
     {
-
+        return [
+            'id' => 'getId',
+            'name' => 'getName',
+            'inn' => 'getInn',
+            'phone' => 'getPhone',
+            'details' => 'getDetails',
+            'dealStates' => [
+                'converter' => 'perfico_crm.api.company_deal_states_converter',
+                'method' => 'getClients',
+                'collection' => true
+            ],
+            'lastActivity' => [
+                'converter' => 'perfico_crm.api.company_last_activity_converter',
+                'method' => 'getId'
+            ]
+        ];
     }
-}
+} 
