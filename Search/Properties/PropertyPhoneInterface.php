@@ -8,4 +8,9 @@ interface PropertyPhoneInterface
      * @return string
      */
     public function getPhone();
+
+    /**
+     * @return bool
+     */
+    public function getPhoneNotSpecified();
 } 

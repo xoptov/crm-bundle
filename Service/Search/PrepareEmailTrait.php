@@ -12,6 +12,8 @@ trait PrepareEmailTrait
         if ($condition->getEmail()) {
             $qb->andWhere($qb->expr()->eq($alias . '.email', ':email'))
                 ->setParameter('email', $condition->getEmail());
+        } else if ($condition->getEmailNotSpecified()) {
+            $qb->andWhere($qb->expr()->isNull($alias . '.email'));
         }
     }
 } 

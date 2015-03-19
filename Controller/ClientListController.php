@@ -113,6 +113,7 @@ class ClientListController extends Controller
      *      {"name"="email", "dataType"="string", "required"=0},
      *      {"name"="phone", "dataType"="string", "required"=0},
      *      {"name"="channel", "dataType"="integer", "required"=0},
+     *      {"name"="company", "dataType"="integer", "required"=0},
      *      {"name"="createdFrom", "dataType"="DateTime", "required"=0},
      *      {"name"="createdTo", "dataType"="DateTime", "required"=0},
      *      {"name"="dealFrom", "dataType"="DateTime", "required"=0},

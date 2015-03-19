@@ -15,11 +15,20 @@ class ClientCondition implements ClientConditionInterface
     /** @var string */
     protected $email;
 
+    /** @var bool */
+    protected $emailNotSpecified;
+
     /** @var string */
     protected $phone;
 
+    /** @var bool */
+    protected $phoneNotSpecified;
+
     /** @var integer */
     protected $channel;
+
+    /** @var integer */
+    protected $company;
 
     /** @var \DateTime */
     protected $createdFrom;
@@ -56,6 +65,12 @@ class ClientCondition implements ClientConditionInterface
 
     /** @var AccountInterface */
     protected $account;
+
+    public function __construct()
+    {
+        $this->emailNotSpecified = false;
+        $this->phoneNotSpecified = false;
+    }
 
     /**
      * @param $name
@@ -115,6 +130,24 @@ class ClientCondition implements ClientConditionInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setEmailNotSpecified($value)
+    {
+        $this->emailNotSpecified = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailNotSpecified()
+    {
+        return $this->emailNotSpecified;
+    }
+
+    /**
      * @param string $phone
      * @return ClientCondition
      */
@@ -134,6 +167,24 @@ class ClientCondition implements ClientConditionInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setPhoneNotSpecified($value)
+    {
+        $this->phoneNotSpecified = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoneNotSpecified()
+    {
+        return $this->phoneNotSpecified;
+    }
+
+    /**
      * @param integer $channel
      * @return ClientCondition
      */
@@ -150,6 +201,25 @@ class ClientCondition implements ClientConditionInterface
     public function getChannel()
     {
         return $this->channel;
+    }
+
+    /**
+     * @param integer $company
+     * @return ClientCondition
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**

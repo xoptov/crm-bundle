@@ -7,7 +7,7 @@ use Perfico\CRMBundle\Transformer\Converter\ClientsListUserConverter;
 use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 use Perfico\CRMBundle\Transformer\Converter\DateConverter;
 
-class ClientsListMap implements MapInterface
+class CompanyContactsMap implements MapInterface
 {
     public function getReverseMap() {}
 
@@ -19,14 +19,9 @@ class ClientsListMap implements MapInterface
             'firstName' => 'getFirstName',
             'lastName' => 'getLastName',
             'middleName' => 'getMiddleName',
-            'skype' => 'getSkype',
             'createdAt' => [
                 'converter' => new DateConverter(),
                 'method' => 'getCreatedAt'
-            ],
-            'company' => [
-                'converter' => 'perfico_crm.api.company_converter',
-                'method' => 'getCompany'
             ],
             'channel' => [
                 'converter' => new ClientsListChannelConverter(),
@@ -36,7 +31,6 @@ class ClientsListMap implements MapInterface
                 'converter' => 'perfico_crm.api.clients_list_statuses_converter',
                 'method' => 'getDeals'
             ],
-            'note' => 'getNote',
             'phones' => [
                 'converter' => new PhoneConverter(),
                 'method' => 'getPhones',

@@ -304,6 +304,7 @@ class ClientManager extends GenericManager
         $this->prepareEmailCondition($qb, $condition, 'c');
         $this->preparePhoneCondition($qb, $condition, 'c');
         $this->prepareChannelCondition($qb, $condition, 'c');
+        $this->prepareCompanyCondition($qb, $condition);
         $this->prepareCreatedRangeCondition($qb, $condition, 'c');
         $this->prepareDealRangeCondition($qb, $condition);
         $this->prepareActivityRangeCondition($qb, $condition);
@@ -376,7 +377,7 @@ class ClientManager extends GenericManager
 
         } else if ($condition->getActivityTo()) {
 
-            $qb->andWhere($qb->expr()->gte('a.createdAt', 'createdTo'))
+            $qb->andWhere($qb->expr()->gte('a.createdAt', ':createdTo'))
                 ->setParameter('createdTo', $condition->getActivityTo());
 
         }
@@ -404,5 +405,17 @@ class ClientManager extends GenericManager
     protected function prepareDelayedPayment(QueryBuilder $qb, ClientCondition $condition)
     {
         //TODO need implementation for this method
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param ClientCondition $condition
+     */
+    protected function prepareCompanyCondition(QueryBuilder $qb, ClientCondition $condition)
+    {
+        if ($condition->getCompany()) {
+            $qb->andWhere($qb->expr()->eq('c.company', ':company'))
+                ->setParameter('company', $condition->getCompany());
+        }
     }
 }
