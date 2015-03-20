@@ -81,5 +81,19 @@ interface UserInterface
      */
     public function setGroups($groups);
 
+    /**
+     * @return mixed
+     */
     public function getGroups();
+
+    /**
+     * @param string $photo
+     * @return UserInterface
+     */
+    public function setPhoto($photo);
+
+    /**
+     * @return string
+     */
+    public function getPhoto();
 } 

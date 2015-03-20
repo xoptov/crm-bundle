@@ -31,6 +31,9 @@ abstract class User extends BaseUser implements UserInterface
     /** @var AccountInterface */
     protected $account;
 
+    /** @var string */
+    protected $photo;
+
     public function __construct()
     {
         parent::__construct();
@@ -151,5 +154,23 @@ abstract class User extends BaseUser implements UserInterface
     public function getAccount()
     {
         return $this->account;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 } 

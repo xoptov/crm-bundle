@@ -13,6 +13,7 @@
         <field name="lastName" type="string" column="last_name" length="255" nullable="true"/>
         <field name="middleName" type="string" column="middle_name" length="255" nullable="true"/>
         <field name="phone" type="string" column="phone" length="255" nullable="true"/>
+        <field name="photo" type="string" column="photo" length="255" nullable="true"/>
         
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
