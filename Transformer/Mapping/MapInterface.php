@@ -2,7 +2,6 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-
 interface MapInterface
 {
     /**
