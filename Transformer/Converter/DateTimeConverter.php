@@ -28,7 +28,7 @@ class DateTimeConverter implements ConverterInterface
     public function reverseConvert($object)
     {
         if ($object instanceof \DateTime){
-            return $object->format('d.m.Y H:i:s');
+            return $object->format(\DateTime::ISO8601);
         }
 
         return null;

@@ -2,6 +2,9 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
+/**
+ * @deprecated from 20150320
+ */
 class DateConverter implements ConverterInterface
 {
     /**
