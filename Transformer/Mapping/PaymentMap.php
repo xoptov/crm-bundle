@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\DateConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
 class PaymentMap implements MapInterface
 {
@@ -28,7 +28,7 @@ class PaymentMap implements MapInterface
                 'converter' => 'perfico_crm.api.deal_converter',
                 'method' => 'getDeal'],
             'createdAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getCreatedAt']
         ];
     }

@@ -3,7 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\ClientToObjectConverter;
-use Perfico\CRMBundle\Transformer\Converter\DateConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 use Perfico\CRMBundle\Transformer\Converter\UserToObjectConverter;
 
 class ActivitiesListMap implements MapInterface
@@ -17,15 +17,15 @@ class ActivitiesListMap implements MapInterface
             'type' => 'getType',
             'note' => 'getNote',
             'rememberAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getRememberAt'
             ],
             'updatedAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getLastDate'
             ],
             'createdAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getLastDate'
             ],
             'user' => [

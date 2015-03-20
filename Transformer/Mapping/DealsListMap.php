@@ -3,7 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\ClientToObjectConverter;
-use Perfico\CRMBundle\Transformer\Converter\DateConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 use Perfico\CRMBundle\Transformer\Converter\DealsListConverter;
 use Perfico\CRMBundle\Transformer\Converter\DealStateToObjectConverter;
 use Perfico\CRMBundle\Transformer\Converter\UserToObjectConverter;
@@ -22,7 +22,7 @@ class DealsListMap implements MapInterface
                 'method' => 'getPayments'
             ],
             'createdAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getCreatedAt'
             ],
             'note' => 'getNote',

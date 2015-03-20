@@ -296,8 +296,10 @@ class ClientManager extends GenericManager
      */
     public function search(ClientCondition $condition)
     {
-        $this->initQueryBuilder($condition);
+        $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('c')->from('CoreBundle:Client', 'c');
+
+        $this->initQueryBuilder($condition);
         $this->preparePagination($this->qb, $condition);
 
         return $this->qb->getQuery()->getResult();
@@ -309,8 +311,9 @@ class ClientManager extends GenericManager
      */
     public function resultCount(ClientCondition $condition)
     {
-        $this->initQueryBuilder($condition);
+        $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('COUNT(c)')->from('CoreBundle:Client', 'c');
+        $this->initQueryBuilder($condition);
 
         return (int)$this->qb->getQuery()->getSingleScalarResult();
     }
@@ -320,8 +323,6 @@ class ClientManager extends GenericManager
      */
     protected function initQueryBuilder(ClientCondition $condition)
     {
-        $this->qb = $this->em->createQueryBuilder();
-
         // Prepare conditions
         $this->prepareAccountCondition($this->qb, $condition, 'c');
         $this->prepareNameCondition($condition);

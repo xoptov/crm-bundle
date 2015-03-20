@@ -16,9 +16,10 @@ class CompanyLastActivityConverter extends AbstractEntityConverter
         $activity = $qb->getQuery()->getOneOrNullResult();
 
         if ($activity) {
+            $dateConverter = new DateTimeConverter();
             return [
                 'id' => $activity->getId(),
-                'createdAt' => $activity->getCreatedAt()
+                'createdAt' => $dateConverter->reverseConvert($activity->getCreatedAt())
             ];
         }
 
