@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Controller;
 
 use Perfico\CRMBundle\Search\CompanyCondition;
+use Perfico\CRMBundle\Transformer\Mapping\CompanyActivitiesMap;
 use Perfico\CRMBundle\Transformer\Mapping\CompanyMap;
 use Perfico\CRMBundle\Transformer\Mapping\CompanySearchMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
@@ -215,7 +216,7 @@ class CompanyController extends Controller
         $activities = $this->get('perfico_crm.activity_manager')->getByCompany($company);
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
-                ->transformCollection($activities, new ActivityMap(), 'activities')
+                ->transformCollection($activities, new CompanyActivitiesMap(), 'activities')
         );
     }
 
