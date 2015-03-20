@@ -149,6 +149,12 @@
             <tag name="request.param_converter" converter="account.doctrine.orm"/>
         </service>
 
+        <service id="perfico_crm.api.photo_converter" class="Perfico\CRMBundle\Transformer\Converter\PhotoConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setCacheManager">
+                <argument type="service" id="liip_imagine.cache.manager"/>
+            </call>
+        </service>
+
     </services>
 
 </container>

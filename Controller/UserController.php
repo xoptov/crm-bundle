@@ -6,12 +6,14 @@ use Perfico\CRMBundle\Transformer\Mapping\UserMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Perfico\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Validator\Constraints\File as FileConstraint;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UserController extends Controller
 {
@@ -316,5 +318,89 @@ class UserController extends Controller
 
             return new JsonResponse($user);
         }
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="Upload photo for manager",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="photo", "dataType"="file", "required"=1}
+     *  }
+     * )
+     * @Route("/users/{id}/photo")
+     * @Method("POST")
+     * @param Request $request
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function photoUploadAction(Request $request, User $user)
+    {
+        $webDir = $this->container->getParameter('web_dir');
+        $absoluteDir = $this->container->getParameter('absolute_dir');
+        $objectEstateDir = $this->container->getParameter('user_dir');
+        $em = $this->getDoctrine()->getManager();
+
+        $validator = $this->get('validator');
+        $fileConstraint = new FileConstraint();
+        $fileConstraint->maxSize = $this->container->getParameter('upload_max_size');
+        $fileConstraint->mimeTypes = $this->container->getParameter('allow_image_types');
+
+        /** @var UploadedFile $photo */
+        $photo = $request->files->get('photo');
+
+        $errors = $validator->validateValue($photo, $fileConstraint);
+
+        if (count($errors)) {
+            return new JsonResponse(array('status' => 'error', 'errors' => json_encode($errors)));
+        }
+
+        $filename = sha1(mt_rand(), false) . '.' . $photo->guessExtension();
+        $absolutePath = $absoluteDir . '/' . $objectEstateDir;
+        $webPath = $webDir . '/' . $objectEstateDir . '/' . $filename;
+
+        $photo->move($absolutePath , $filename);
+
+        $user->setPhoto($webPath);
+        $em->flush();
+
+        return new JsonResponse(array(
+            'status' => 'success',
+            'id' => $user->getId(),
+            'path' => $webPath
+        ));
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="Upload photo for manager",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Route("/users/{id}/photo")
+     * @Method("DELETE")
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function photoDeleteAction(User $user)
+    {
+        $absoluteDir = $this->container->getParameter('absolute_dir');
+        $absolutePath = $absoluteDir . '/../' . $user->getPhoto();
+
+        if (!is_file($absolutePath)) {
+            return new JsonResponse(array('status' => 'error', 'errors' => 'File not found'));
+        }
+
+        $this->get('filesystem')->remove($absolutePath);
+
+        $user->setPhoto(null);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse(array('status' => 'success'));
     }
 }
