@@ -317,4 +317,26 @@ class UserController extends Controller
             return new JsonResponse($user);
         }
     }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="Upload photo for manager",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Route("/users/{id}/upload-photo")
+     * @Method("POST")
+     * @param User $user
+     * @return Response
+     */
+    public function uploadPhotoAction(User $user)
+    {
+        $request = $this->getRequest();
+
+
+
+        return new Response();
+    }
 }
