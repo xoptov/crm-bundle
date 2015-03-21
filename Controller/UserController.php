@@ -337,11 +337,10 @@ class UserController extends Controller
      * @param User $user
      * @return JsonResponse
      */
-    public function photoUploadAction(Request $request, User $user)
+    public function uploadPhotoAction(Request $request, User $user)
     {
-        $webDir = $this->container->getParameter('web_dir');
-        $absoluteDir = $this->container->getParameter('absolute_dir');
-        $objectEstateDir = $this->container->getParameter('user_dir');
+        $uploadDir = $this->container->getParameter('upload_dir');
+
         $em = $this->getDoctrine()->getManager();
 
         $validator = $this->get('validator');
@@ -359,18 +358,17 @@ class UserController extends Controller
         }
 
         $filename = sha1(mt_rand(), false) . '.' . $photo->guessExtension();
-        $absolutePath = $absoluteDir . '/' . $objectEstateDir;
-        $webPath = $webDir . '/' . $objectEstateDir . '/' . $filename;
+        $absoluteUploadDir = $this->container->getParameter('kernel.root_dir') . '/../web/' . $uploadDir . '/users';
 
-        $photo->move($absolutePath , $filename);
+        $photo->move($absoluteUploadDir , $filename);
 
-        $user->setPhoto($webPath);
+        $user->setPhoto('users/' . $filename);
         $em->flush();
 
         return new JsonResponse(array(
             'status' => 'success',
             'id' => $user->getId(),
-            'path' => $webPath
+            'path' => $user->getPhoto()
         ));
     }
 
@@ -387,16 +385,17 @@ class UserController extends Controller
      * @param User $user
      * @return JsonResponse
      */
-    public function photoDeleteAction(User $user)
+    public function deletePhotoAction(User $user)
     {
-        $absoluteDir = $this->container->getParameter('absolute_dir');
-        $absolutePath = $absoluteDir . '/../' . $user->getPhoto();
+        $uploadDir = $this->container->getParameter('upload_dir');
+        $absolutePath = $this->container->getParameter('kernel.root_dir') . '/../web/' . $uploadDir . '/' . $user->getPhoto();
+        $filesystem = $this->get('filesystem');
 
-        if (!is_file($absolutePath)) {
+        if (!$filesystem->exists($absolutePath)) {
             return new JsonResponse(array('status' => 'error', 'errors' => 'File not found'));
         }
 
-        $this->get('filesystem')->remove($absolutePath);
+        $filesystem->remove($absolutePath);
 
         $user->setPhoto(null);
         $this->getDoctrine()->getManager()->flush();
