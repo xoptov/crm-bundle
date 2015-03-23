@@ -21,9 +21,9 @@
         <field name="deadLine" type="datetime" column="dead_line" nullable="true"/>
         <field name="rememberAt" type="datetime" column="remember_at" nullable="true"/>
 
-        <many-to-one field="assignie" target-entity="Perfico\CRMBundle\Entity\UserInterface">
+        <many-to-one field="user" target-entity="Perfico\CRMBundle\Entity\UserInterface">
             <join-columns>
-                <join-column name="assignie_id" referenced-column-name="id" nullable="true"/>
+                <join-column name="user_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
 
@@ -39,19 +39,13 @@
             </join-columns>
         </many-to-one>
 
-        <many-to-one field="subTask" target-entity="Perfico\CRMBundle\Entity\SubTaskInterface">
-            <join-columns>
-                <join-column name="sub_task_id" referenced-column-name="id" nullable="true"/>
-            </join-columns>
-        </many-to-one>
-
         <many-to-many field="activities" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
             <join-table name="tasks_has_activities">
                 <join-columns>
-                    <join-column name="activities" referenced-column-name="id" nullable="true"/>
+                    <join-column name="activity_id" referenced-column-name="id" nullable="true"/>
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="id" referenced-column-name="id" nullable="true"/>
+                    <join-column name="task_id" referenced-column-name="id" nullable="true"/>
                 </inverse-join-columns>
             </join-table>
         </many-to-many>

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Perfico\CoreBundle\Entity\Task;
 use Perfico\CRMBundle\Transformer\Mapping\TaskMap;
+use Perfico\CRMBundle\Transformer\Mapping\SubTaskMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TaskController extends Controller
@@ -77,10 +78,12 @@ class TaskController extends Controller
      *    {"name"="note", "dataType"="string", "required"=0},
      *    {"name"="deadLine", "dataType"="datetime", "required"=0},
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="user", "dataType"="integer", "required"=0},
      *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="integer", "required"=0},
-     *    {"name"="subTask", "dataType"="integer", "required"=0}
+     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      }
+     *    }
      *   }
      * )
      * @Method("POST")
@@ -133,10 +136,12 @@ class TaskController extends Controller
      *    {"name"="note", "dataType"="string", "required"=0},
      *    {"name"="deadLine", "dataType"="datetime", "required"=0},
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="user", "dataType"="integer", "required"=0},
      *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="integer", "required"=0},
-     *    {"name"="subTask", "dataType"="integer", "required"=0}
+     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      }
+     *    }
      *   }
      * )
      * @Method("PUT")
@@ -152,6 +157,29 @@ class TaskController extends Controller
         }
 
         return $this->handleRequest($task);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Task",
+     *  description="Get specified sub task task",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("GET")
+     * @Route("/tasks/{id}/sub-tasks")
+     * @ParamConverter("task", converter="account.doctrine.orm")
+     * @param Task $task
+     * @return JsonResponse|Response
+     */
+    public function getActionSubTask(Task $task)
+    {
+        $subTask = $this->get('perfico_crm.sub_task_manager')->getSubTaskForTask($task);
+            return new JsonResponse(
+                $this->get('perfico_crm.api.transformer')
+                    ->transformCollection($subTask, new SubTaskMap(), 'subTask')
+            );
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
+use Perfico\CRMBundle\Transformer\Converter\DateConverter;
 
 class TaskMap implements MapInterface
 {
@@ -9,9 +10,15 @@ class TaskMap implements MapInterface
         return [
             'setName' => 'name',
             'setNote' => 'note',
-            'setDeadLine' => 'deadLine',
-            'setRememberAt' => 'rememberAt',
-            'setAssignie' => [
+            'setDeadLine' => [
+                'converter' => new DateConverter(),
+                'path' => 'deadLine'
+            ],
+            'setRememberAt' => [
+                'converter' => new DateConverter(),
+                'path' => 'rememberAt'
+            ],
+            'setUser' => [
                 'converter' => 'perfico_crm.api.user_converter',
                 'path' => 'user'
             ],
@@ -20,12 +27,9 @@ class TaskMap implements MapInterface
                 'path' => 'state'
             ],
             'setActivities' => [
-                'converter' => 'perfico_crm.api.activities_converter',
-                'path' => 'activities'
-            ],
-            'setSubTask' => [
-                'converter' => 'perfico_crm.api.sub_task_converter',
-                'path' => 'subTask'
+                'converter' => 'perfico_crm.api.activity_converter',
+                'path' => 'activities',
+                'collection' => true
             ],
         ];
     }
@@ -52,9 +56,9 @@ class TaskMap implements MapInterface
                 'converter' => new DateConverter(),
                 'method' => 'getRememberAt'
             ],
-            'assignie' => [
+            'user' => [
                 'converter' => 'perfico_crm.api.user_converter',
-                'method' => 'getAssignie'
+                'method' => 'getUser'
             ],
             'state' => [
                 'converter' => 'perfico_crm.api.task_state_converter',
@@ -62,12 +66,9 @@ class TaskMap implements MapInterface
             ],
             'activities' => [
                 'converter' => 'perfico_crm.api.activity_converter',
-                'method' => 'getActivities'
+                'method' => 'getActivities',
+                'collection' => true
             ],
-            'subTask' => [
-                'converter' => 'perfico_crm.api.sub_task_converter',
-                'method' => 'getSubTask'
-            ]
         ];
     }
 }

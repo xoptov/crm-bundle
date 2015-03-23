@@ -9,11 +9,17 @@ abstract class SubTask implements SubTaskInterface
     /** @var integer */
     protected $id;
 
+    /** @var integer */
+    protected $task;
+
     /** @var string */
     protected $note;
 
     /** @var integer */
     protected $completed;
+
+    /** @var AccountInterface */
+    protected $account;
 
     public function __construct()
     {
@@ -26,6 +32,24 @@ abstract class SubTask implements SubTaskInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTask()
+    {
+        return $this->task;
     }
 
     /**
@@ -62,5 +86,23 @@ abstract class SubTask implements SubTaskInterface
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAccount(AccountInterface $account)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 }
