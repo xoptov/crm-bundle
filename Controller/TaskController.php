@@ -49,7 +49,7 @@ class TaskController extends Controller
      *  }
      * )
      * @Method("GET")
-     * @Route("/tasks/{id}")
+     * @Route("/tasks/{id}", requirements={"id"="\d+"})
      * @ParamConverter("task", converter="account.doctrine.orm")
      * @param Task $task
      * @return JsonResponse|Response

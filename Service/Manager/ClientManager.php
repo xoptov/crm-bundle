@@ -315,7 +315,7 @@ class ClientManager extends GenericManager
         $this->qb->select('COUNT(c)')->from('CoreBundle:Client', 'c');
         $this->initQueryBuilder($condition);
 
-        return (int)$this->qb->getQuery()->getSingleScalarResult();
+        return (int)$this->qb->getQuery()->getOneOrNullResult();
     }
 
     /**
