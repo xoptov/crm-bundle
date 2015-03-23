@@ -78,10 +78,12 @@ class TaskController extends Controller
      *    {"name"="note", "dataType"="string", "required"=0},
      *    {"name"="deadLine", "dataType"="datetime", "required"=0},
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="user", "dataType"="integer", "required"=0},
      *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="integer", "required"=0},
-     *    {"name"="subTask", "dataType"="integer", "required"=0}
+     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      }
+     *    }
      *   }
      * )
      * @Method("POST")
@@ -134,10 +136,12 @@ class TaskController extends Controller
      *    {"name"="note", "dataType"="string", "required"=0},
      *    {"name"="deadLine", "dataType"="datetime", "required"=0},
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="assignie", "dataType"="integer", "required"=0},
+     *    {"name"="user", "dataType"="integer", "required"=0},
      *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="integer", "required"=0},
-     *    {"name"="subTask", "dataType"="integer", "required"=0}
+     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      }
+     *    }
      *   }
      * )
      * @Method("PUT")

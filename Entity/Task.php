@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 abstract class Task implements TaskInterface
 {
     /** @var integer */
@@ -26,7 +28,7 @@ abstract class Task implements TaskInterface
     protected $rememberAt;
 
     /** @var UserInterface */
-    protected $assignie;
+    protected $user;
 
     /** @var TaskStateInterface */
     protected $state;
@@ -37,8 +39,10 @@ abstract class Task implements TaskInterface
     /** @var ActivityInterface */
     protected $activities;
 
-    /** @var SubTaskInterface */
-    protected $subTask;
+    public function __construct()
+    {
+        $this->activities = new ArrayCollection();
+    }
 
     public function onCreate()
     {
@@ -149,9 +153,9 @@ abstract class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function setAssignie(UserInterface $assignie)
+    public function setUser(UserInterface $user)
     {
-        $this->assignie = $assignie;
+        $this->user = $user;
 
         return $this;
     }
@@ -159,9 +163,9 @@ abstract class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function getAssignie()
+    public function getUser()
     {
-        return $this->assignie;
+        return $this->user;
     }
 
     /**
@@ -216,23 +220,5 @@ abstract class Task implements TaskInterface
     public function getActivities()
     {
         return $this->activities;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSubTask(SubTaskInterface $subTask)
-    {
-        $this->subTask= $subTask;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSubTask()
-    {
-        return $this->subTask;
     }
 }

@@ -7,9 +7,9 @@ class SubTaskMap implements MapInterface
     public function getReverseMap()
     {
         return [
-            'setTaskId' => [
+            'setTask' => [
                 'converter' => 'perfico_crm.api.task_converter',
-                'path' => 'taskId'
+                'path' => 'task'
             ],
             'setNote' => 'note',
             'setCompleted' => 'completed'
@@ -20,9 +20,9 @@ class SubTaskMap implements MapInterface
     {
         return [
             'id' => 'getId',
-            'taskId' => [
+            'task' => [
                 'converter' => 'perfico_crm.api.task_converter',
-                'method' => 'getTaskId'
+                'method' => 'getTask'
             ],
             'name' => 'getNote',
             'completed' => 'getCompleted'

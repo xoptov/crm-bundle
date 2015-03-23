@@ -27,7 +27,7 @@ class SubTaskController extends Controller
      */
     public function indexAction()
     {
-        $subTask = $this->get('perfico_crm.sub_task_manager')->getSubTask();
+        $subTask = $this->get('perfico_crm.sub_task_manager')->getAccountSubTask();
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
@@ -65,7 +65,7 @@ class SubTaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="taskId", "dataType"="integer", "required"=1},
+     *    {"name"="task", "dataType"="integer", "required"=1},
      *    {"name"="note", "dataType"="string", "required"=1},
      *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }
@@ -112,7 +112,7 @@ class SubTaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="taskId", "dataType"="integer", "required"=1},
+     *    {"name"="task", "dataType"="integer", "required"=1},
      *    {"name"="note", "dataType"="string", "required"=1},
      *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }

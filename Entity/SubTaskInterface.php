@@ -21,15 +21,15 @@ interface SubTaskInterface
     public function getNote();
 
     /**
-     * @param TaskInterface $taskId
+     * @param TaskInterface $task
      * @return SubTaskInterface
      */
-    public function setTaskId($taskId);
+    public function setTask($task);
 
     /**
      * @return integer
      */
-    public function getTaskId();
+    public function getTask();
 
     /**
      * @param $completed
@@ -41,4 +41,15 @@ interface SubTaskInterface
      * @return integer
      */
     public function getCompleted();
+
+    /**
+     * @param $account
+     * @return TaskStateInterface
+     */
+    public function setAccount(AccountInterface $account);
+
+    /**
+     * @return AccountInterface
+     */
+    public function getAccount();
 }

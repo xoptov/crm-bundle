@@ -67,15 +67,15 @@ interface TaskInterface
     public function getRememberAt();
 
     /**
-     * @param UserInterface $assignie
+     * @param UserInterface $user
      * @return TaskInterface
      */
-    public function setAssignie(UserInterface $assignie);
+    public function setUser(UserInterface $user);
 
     /**
      * @return UserInterface
      */
-    public function getAssignie();
+    public function getUser();
 
     /**
      * @param TaskStateInterface $state
@@ -109,15 +109,4 @@ interface TaskInterface
      * @return ActivityInterface
      */
     public function getActivities();
-
-    /**
-     * @param SubTaskInterface $subTask
-     * @return TaskInterface
-     */
-    public function setSubTask(SubTaskInterface $subTask);
-
-    /**
-     * @return SubTaskInterface
-     */
-    public function getSubTask();
 }
