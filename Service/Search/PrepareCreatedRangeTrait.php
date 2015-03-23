@@ -17,12 +17,12 @@ trait PrepareCreatedRangeTrait
 
         } else if ($condition->getCreatedFrom()) {
 
-            $qb->andWhere($qb->expr()->lte($alias . '.createdAt', ':createdFrom'))
+            $qb->andWhere($qb->expr()->gte($alias . '.createdAt', ':createdFrom'))
                 ->setParameter('createdFrom', $condition->getCreatedFrom());
 
         } else if ($condition->getCreatedTo()) {
 
-            $qb->andWhere($qb->expr()->gte($alias . '.createdAt', ':createdTo'))
+            $qb->andWhere($qb->expr()->lte($alias . '.createdAt', ':createdTo'))
                 ->setParameter('createdTo', $condition->getCreatedTo());
 
         }
