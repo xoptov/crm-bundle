@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
+use Perfico\CRMBundle\Transformer\Converter\BooleanConverter;
+
 class SubTaskMap implements MapInterface
 {
     public function getReverseMap()
@@ -12,7 +14,10 @@ class SubTaskMap implements MapInterface
                 'path' => 'task'
             ],
             'setNote' => 'note',
-            'setCompleted' => 'completed'
+            'setCompleted' => [
+                'converter' => new BooleanConverter(false),
+                'path' => 'completed'
+            ]
         ];
     }
 

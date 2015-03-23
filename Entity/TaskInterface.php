@@ -100,13 +100,13 @@ interface TaskInterface
     public function getAccount();
 
     /**
-     * @param ActivityInterface $activities
+     * @param ActivityInterface[] $activities
      * @return TaskInterface
      */
-    public function setActivities(ActivityInterface $activities);
+    public function setActivities($activities);
 
     /**
-     * @return ActivityInterface
+     * @return ActivityInterface[]
      */
     public function getActivities();
 }

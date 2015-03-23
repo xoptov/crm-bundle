@@ -207,7 +207,7 @@ abstract class Task implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function setActivities(ActivityInterface $activities)
+    public function setActivities($activities)
     {
         $this->activities = $activities;
 
