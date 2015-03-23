@@ -372,7 +372,7 @@ class ClientManager extends GenericManager
                 ->setParameter('createdTo', $condition->getDealTo());;
 
         } else if ($condition->getDealFrom()) {
-            $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdFrom'))
+            $this->qb->andWhere($this->qb->expr()->gte('d1.createdAt', ':createdFrom'))
                 ->setParameter('createdFrom', $condition->getDealFrom());
         } else if ($condition->getDealTo()) {
             $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdTo'))
@@ -396,12 +396,12 @@ class ClientManager extends GenericManager
 
         } else if ($condition->getActivityFrom()) {
 
-            $this->qb->andWhere($this->qb->expr()->lte('a.createdAt', ':createdFrom'))
+            $this->qb->andWhere($this->qb->expr()->gte('a.createdAt', ':createdFrom'))
                 ->setParameter('createdFrom', $condition->getActivityFrom());
 
         } else if ($condition->getActivityTo()) {
 
-            $this->qb->andWhere($this->qb->expr()->gte('a.createdAt', ':createdTo'))
+            $this->qb->andWhere($this->qb->expr()->lte('a.createdAt', ':createdTo'))
                 ->setParameter('createdTo', $condition->getActivityTo());
 
         }
