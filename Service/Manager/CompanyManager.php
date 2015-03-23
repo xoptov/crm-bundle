@@ -56,8 +56,9 @@ class CompanyManager extends GenericManager
      */
     public function search(CompanyCondition $condition)
     {
-        $this->initQueryBuilder($condition);
+        $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('co')->from('CoreBundle:Company', 'co');
+        $this->initQueryBuilder($condition);
         $this->preparePagination($this->qb, $condition);
 
         return $this->qb->getQuery()->getResult();
@@ -69,7 +70,6 @@ class CompanyManager extends GenericManager
      */
     protected function initQueryBuilder(CompanyCondition $condition)
     {
-        $this->qb = $this->em->createQueryBuilder();
         $this->prepareAccountCondition($this->qb, $condition, 'co');
         $this->prepareNameCondition($condition);
         $this->prepareDealRangeCondition($condition);
