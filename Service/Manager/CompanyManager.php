@@ -129,7 +129,7 @@ class CompanyManager extends GenericManager
         } else if ($condition->getActivityTo()) {
 
             $this->qb->andWhere($this->qb->expr()->lte('a.createdAt', ':createdTo'))
-                ->setParameter('createdTO', $condition->getActivityTo());
+                ->setParameter('createdTo', $condition->getActivityTo());
         }
     }
 
