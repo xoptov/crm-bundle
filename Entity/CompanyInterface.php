@@ -21,13 +21,13 @@ interface CompanyInterface
     public function getName();
 
     /**
-     * @param integer $inn
+     * @param string $inn
      * @return CompanyInterface
      */
     public function setInn($inn);
 
     /**
-     * @return integer
+     * @return string
      */
     public function getInn();
 

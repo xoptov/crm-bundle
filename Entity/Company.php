@@ -10,7 +10,7 @@ abstract class Company implements CompanyInterface
     /** @var string */
     protected $name;
 
-    /** @var integer */
+    /** @var string */
     protected $inn;
 
     /** @var string */

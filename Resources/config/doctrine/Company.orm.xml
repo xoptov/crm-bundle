@@ -10,7 +10,7 @@
         </id>
         
         <field name="name" type="string" column="name" length="255" precision="0" scale="0" nullable="false"/>
-        <field name="inn" type="integer" column="inn" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="inn" type="string" column="inn" length="20" precision="0" scale="0" nullable="true"/>
         <field name="phone" type="string" column="phone" length="255" precision="0" scale="0" nullable="true"/>
         <field name="details" type="string" column="details" length="255" precision="0" scale="0" nullable="true"/>
 
