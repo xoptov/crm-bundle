@@ -178,10 +178,10 @@ class TaskController extends Controller
     public function getActionSubTask(Task $task)
     {
         $subTask = $this->get('perfico_crm.sub_task_manager')->getSubTaskForTask($task);
-        return new JsonResponse(
-            $this->get('perfico_crm.api.transformer')
-                ->transformCollection($subTask, new SubTaskMap(), 'subTask')
-        );
+            return new JsonResponse(
+                $this->get('perfico_crm.api.transformer')
+                    ->transformCollection($subTask, new SubTaskMap(), 'subTask')
+            );
     }
 
     /**
