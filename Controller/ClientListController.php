@@ -2,7 +2,6 @@
 
 namespace Perfico\CRMBundle\Controller;
 
-use Perfico\CRMBundle\Transformer\Mapping\ClientsListMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,8 +10,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
 use Perfico\CRMBundle\Search\ClientCondition;
-use Perfico\CRMBundle\Transformer\Mapping\ClientConditionMap;
+use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
 
 class ClientListController extends Controller
 {
@@ -40,7 +40,7 @@ class ClientListController extends Controller
 
         return new JsonResponse(
             $this->get('perfico_crm.api.transformer')
-            ->transformCollection($clients, new ClientsListMap(), 'clients')
+            ->transformCollection($clients, new ClientMap(), 'clients')
         );
     }
 
@@ -89,7 +89,7 @@ class ClientListController extends Controller
         );
 
         $items = $this->get('perfico_crm.api.transformer')
-            ->transformCollection($clients['items'], new ClientsListMap(), 'clients');
+            ->transformCollection($clients['items'], new ClientMap(), 'clients');
 
         return new JsonResponse(
             [
@@ -134,6 +134,7 @@ class ClientListController extends Controller
      * @Method("GET")
      * @Route("/clients-list/search")
      * @return JsonResponse
+     * @deprecated must be removed in the feature
      */
     public function searchAction()
     {
@@ -145,11 +146,11 @@ class ClientListController extends Controller
         $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
         $condition->setAccount($account);
 
-        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientConditionMap());
+        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientSearchMap());
         $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
         $result = [
-            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($clients, new ClientsListMap(), 'clients'),
+            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($clients, new ClientSearchMap(), 'clients'),
             'total' => $this->get('perfico_crm.client_manager')->resultCount($condition)
         ];
 

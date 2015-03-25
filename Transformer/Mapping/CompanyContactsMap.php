@@ -2,8 +2,6 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\ClientsListChannelConverter;
-use Perfico\CRMBundle\Transformer\Converter\ClientsListUserConverter;
 use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
@@ -24,7 +22,7 @@ class CompanyContactsMap implements MapInterface
                 'method' => 'getCreatedAt'
             ],
             'channel' => [
-                'converter' => new ClientsListChannelConverter(),
+                'converter' => 'perfico_crm.api.channel_converter',
                 'method' => 'getChannel'
             ],
             'dealStatuses' => [
@@ -37,7 +35,7 @@ class CompanyContactsMap implements MapInterface
                 'collection' => true
             ],
             'user' => [
-                'converter' => new ClientsListUserConverter(),
+                'converter' => 'perfico_crm.api.user_converter',
                 'method' => 'getUser'
             ]
         ];

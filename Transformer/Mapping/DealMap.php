@@ -37,7 +37,8 @@ class DealMap implements MapInterface
             'amount' => 'getAmount',
             'createdAt' => [
                 'converter' => new DateTimeConverter(),
-                'method' => 'getCreatedAt'],
+                'method' => 'getCreatedAt'
+            ],
             'note' => 'getNote',
             'client' => [
                 'converter' => 'perfico_crm.api.client_converter',
