@@ -10,8 +10,7 @@ class CallMap implements MapInterface
 {
     public function getReverseMap()
     {
-        // TODO need implementation
-        return array();
+
     }
 
     public function getMap()

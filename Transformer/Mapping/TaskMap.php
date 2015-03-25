@@ -1,7 +1,7 @@
 <?php
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
-use Perfico\CRMBundle\Transformer\Converter\DateConverter;
+use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 
 class TaskMap implements MapInterface
 {
@@ -11,11 +11,11 @@ class TaskMap implements MapInterface
             'setName' => 'name',
             'setNote' => 'note',
             'setDeadLine' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'path' => 'deadLine'
             ],
             'setRememberAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'path' => 'rememberAt'
             ],
             'setUser' => [
@@ -45,19 +45,19 @@ class TaskMap implements MapInterface
             'name' => 'getName',
             'note' => 'getNote',
             'createdAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getCreatedAt'
             ],
             'updatedAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getUpdatedAt'
             ],
             'deadLine' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getDeadLine'
             ],
             'rememberAt' => [
-                'converter' => new DateConverter(),
+                'converter' => new DateTimeConverter(),
                 'method' => 'getRememberAt'
             ],
             'user' => [

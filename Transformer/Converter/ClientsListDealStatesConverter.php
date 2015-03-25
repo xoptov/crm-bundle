@@ -8,27 +8,23 @@ use Perfico\CoreBundle\Entity\DealState;
 class ClientsListDealStatesConverter extends AbstractEntityConverter
 {
     /**
-     * @param Deal[] $objects
+     * @param Deal $object
      * @return array
      */
-    public function reverseConvert($objects)
+    public function reverseConvert($object)
     {
-        $states = [];
 
-        foreach ($objects as $object) {
-            /**
-             * @var Deal $deal
-             */
-            $deal = $this->em->getReference('CoreBundle:Deal', $object->getId());
-            $dealState = $deal->getState();
-            if ($dealState instanceof DealState) {
-                $states[] = [
-                    'id' => $dealState->getId(),
-                    'name' => $dealState->getName(),
-                    'icon' => $dealState->getIcon()
-                ];
-            }
+        $deal = $this->em->getReference('CoreBundle:Deal', $object->getId());
+        $dealState = $deal->getState();
+
+        if ($dealState instanceof DealState) {
+            return [
+                'id' => $dealState->getId(),
+                'name' => $dealState->getName(),
+                'icon' => $dealState->getIcon()
+            ];
         }
-        return $states;
+
+        return null;
     }
 }

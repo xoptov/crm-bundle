@@ -5,7 +5,7 @@ namespace Perfico\CRMBundle\Controller;
 use Perfico\CRMBundle\Search\ClientCondition;
 use Perfico\CRMBundle\Transformer\Mapping\ActivityMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientCustomFieldMap;
-use Perfico\CRMBundle\Transformer\Mapping\ClientConditionMap;
+use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
 use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\PhoneMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
@@ -97,11 +97,11 @@ class ClientController extends Controller
         $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
         $condition->setAccount($account);
 
-        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientConditionMap());
+        $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientSearchMap());
         $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
         $result = [
-            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($clients, new ClientMap(), 'clients'),
+            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($clients, new ClientSearchMap(), 'clients'),
             'total' => $this->get('perfico_crm.client_manager')->resultCount($condition)
         ];
 
