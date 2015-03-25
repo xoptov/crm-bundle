@@ -43,7 +43,7 @@ class UserMap implements MapInterface
                 'method' => 'getPhone'
             ],
             'groups' => [
-                'converter' => 'perfico_crm.api.group_detail_converter',
+                'converter' => 'perfico_crm.api.group_converter',
                 'method' => 'getGroups',
                 'collection' => true
             ]

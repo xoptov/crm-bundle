@@ -13,7 +13,10 @@ class UserConverter extends AbstractEntityConverter
                 'id' => $object->getId(),
                 'firstName' => $object->getFirstName(),
                 'middleName' => $object->getMiddleName(),
-                'lastName' => $object->getLastName()
+                'lastName' => $object->getLastName(),
+                'email' => $object->getEmail(),
+                'phone' => $object->getPhone(),
+                'photo' => $object->getPhoto()
             ];
         }
 
