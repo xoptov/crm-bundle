@@ -15,7 +15,7 @@ use Perfico\CoreBundle\Entity\Client;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use Perfico\CRMBundle\Search\ClientCondition;
+use Perfico\CRMBundle\Search\ClientConditionInterface;
 
 class ClientManager extends GenericManager
 {
@@ -291,10 +291,10 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      * @return Client[]
      */
-    public function search(ClientCondition $condition)
+    public function search(ClientConditionInterface $condition)
     {
         $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('c')->from('CoreBundle:Client', 'c');
@@ -306,10 +306,10 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      * @return array
      */
-    public function resultCount(ClientCondition $condition)
+    public function resultCount(ClientConditionInterface $condition)
     {
         $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('COUNT(c)')->from('CoreBundle:Client', 'c');
@@ -319,9 +319,9 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function initQueryBuilder(ClientCondition $condition)
+    protected function initQueryBuilder(ClientConditionInterface $condition)
     {
         // Prepare conditions
         $this->prepareAccountCondition($this->qb, $condition, 'c');
@@ -340,9 +340,9 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareNameCondition(ClientCondition $condition)
+    protected function prepareNameCondition(ClientConditionInterface $condition)
     {
         if ($condition->getName()) {
 
@@ -358,9 +358,9 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareDealRangeCondition(ClientCondition $condition)
+    protected function prepareDealRangeCondition(ClientConditionInterface $condition)
     {
         if ($condition->getDealFrom() || $condition->getDealTo()) {
             $this->qb->innerJoin('c.deals', 'd1');
@@ -381,9 +381,9 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareActivityRangeCondition(ClientCondition $condition)
+    protected function prepareActivityRangeCondition(ClientConditionInterface $condition)
     {
         if ($condition->getActivityFrom() || $condition->getActivityTo()) {
             $this->qb->innerJoin('c.activities', 'a');
@@ -408,9 +408,9 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareDealStatesCondition(ClientCondition $condition)
+    protected function prepareDealStatesCondition(ClientConditionInterface $condition)
     {
         if ($condition->getDealStates() && count($condition->getDealStates())) {
             $this->qb->innerJoin('c.deals', 'd2');
@@ -421,25 +421,25 @@ class ClientManager extends GenericManager
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareTagsCondition(ClientCondition $condition)
+    protected function prepareTagsCondition(ClientConditionInterface $condition)
     {
         //TODO need implementation for this method
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareDelayedPayment(ClientCondition $condition)
+    protected function prepareDelayedPayment(ClientConditionInterface $condition)
     {
         //TODO need implementation for this method
     }
 
     /**
-     * @param ClientCondition $condition
+     * @param ClientConditionInterface $condition
      */
-    protected function prepareCompanyCondition(ClientCondition $condition)
+    protected function prepareCompanyCondition(ClientConditionInterface $condition)
     {
         if ($condition->getCompany()) {
             $this->qb->andWhere($this->qb->expr()->eq('c.company', ':company'))
