@@ -4,40 +4,40 @@ namespace Perfico\CRMBundle\Search;
 
 use Perfico\CRMBundle\Entity\AccountInterface;
 
-class CompanyCondition implements CompanyConditionInterface
+final class CompanyCondition implements CompanyConditionInterface
 {
     /** @var string */
-    protected $name;
+    private $name;
 
     /** @var array */
-    protected $tags;
+    private $tags;
 
     /** @var array */
-    protected $dealStates;
+    private $dealStates;
 
     /** @var \DateTime */
-    protected $dealFrom;
+    private $dealFrom;
 
     /** @var \DateTime */
-    protected $dealTo;
+    private $dealTo;
 
     /** @var \DateTime */
-    protected $activityFrom;
+    private $activityFrom;
 
     /** @var \DateTime */
-    protected $activityTo;
+    private $activityTo;
 
     /** @var bool */
-    protected $delayedPayment;
+    private $delayedPayment;
 
     /** @var integer */
-    protected $offset;
+    private $offset;
 
     /** @var integer */
-    protected $limit;
+    private $limit;
 
     /** @var AccountInterface */
-    protected $account;
+    private $account;
 
     /**
      * @param $name

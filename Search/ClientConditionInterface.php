@@ -12,5 +12,21 @@ use Perfico\CRMBundle\Search\Properties\PropertyUserInterface;
 
 interface ClientConditionInterface extends PropertyAccountInterface, PropertyUserInterface, PropertyEmailInterface, PropertyPhoneInterface, PropertyChannelInterface, PropertyCreatedRangeInterface, PaginationInterface
 {
+    public function getName();
 
+    public function getCompany();
+
+    public function getDealFrom();
+
+    public function getDealTo();
+
+    public function getActivityFrom();
+
+    public function getActivityTo();
+
+    public function getDealStates();
+
+    public function getTags();
+
+    public function getDelayedPayment();
 } 

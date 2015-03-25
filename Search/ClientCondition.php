@@ -4,67 +4,67 @@ namespace Perfico\CRMBundle\Search;
 
 use Perfico\CRMBundle\Entity\AccountInterface;
 
-class ClientCondition implements ClientConditionInterface
+final class ClientCondition implements ClientConditionInterface
 {
     /** @var string */
-    protected $name;
+    private $name;
 
     /** @var integer */
-    protected $user;
+    private $user;
 
     /** @var string */
-    protected $email;
+    private $email;
 
     /** @var bool */
-    protected $emailNotSpecified;
+    private $emailNotSpecified;
 
     /** @var string */
-    protected $phone;
+    private $phone;
 
     /** @var bool */
-    protected $phoneNotSpecified;
+    private $phoneNotSpecified;
 
     /** @var integer */
-    protected $channel;
+    private $channel;
 
     /** @var integer */
-    protected $company;
+    private $company;
 
     /** @var \DateTime */
-    protected $createdFrom;
+    private $createdFrom;
 
     /** @var \DateTime */
-    protected $createdTo;
+    private $createdTo;
 
     /** @var \DateTime */
-    protected $dealFrom;
+    private $dealFrom;
 
     /** @var \DateTime */
-    protected $dealTo;
+    private $dealTo;
 
     /** @var \DateTime */
-    protected $activityFrom;
+    private $activityFrom;
 
     /** @var \DateTime */
-    protected $activityTo;
+    private $activityTo;
 
     /** @var array */
-    protected $dealStates;
+    private $dealStates;
 
     /** @var array */
-    protected $tags;
+    private $tags;
 
     /** @var bool */
-    protected $delayedPayment;
+    private $delayedPayment;
 
     /** @var integer */
-    protected $offset;
+    private $offset;
 
     /** @var integer */
-    protected $limit;
+    private $limit;
 
     /** @var AccountInterface */
-    protected $account;
+    private $account;
 
     public function __construct()
     {

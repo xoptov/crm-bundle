@@ -4,7 +4,7 @@ namespace Perfico\CRMBundle\Service\Manager;
 
 use Doctrine\ORM\QueryBuilder;
 use Perfico\CoreBundle\Entity\Company;
-use Perfico\CRMBundle\Search\CompanyCondition;
+use Perfico\CRMBundle\Search\CompanyConditionInterface;
 use Perfico\CRMBundle\Service\Search\PrepareAccountTrait;
 use Perfico\CRMBundle\Service\Search\PreparePaginationTrait;
 use Perfico\CRMBundle\Service\Search\PreparePhoneTrait;
@@ -51,10 +51,10 @@ class CompanyManager extends GenericManager
     }
 
     /**
-     * @param CompanyCondition $condition
+     * @param CompanyConditionInterface $condition
      * @return Company[]
      */
-    public function search(CompanyCondition $condition)
+    public function search(CompanyConditionInterface $condition)
     {
         $this->qb = $this->em->createQueryBuilder();
         $this->qb->select('co')->from('CoreBundle:Company', 'co');
@@ -66,9 +66,9 @@ class CompanyManager extends GenericManager
     }
 
     /**
-     * @param CompanyCondition $condition
+     * @param CompanyConditionInterface $condition
      */
-    protected function initQueryBuilder(CompanyCondition $condition)
+    protected function initQueryBuilder(CompanyConditionInterface $condition)
     {
         $this->prepareAccountCondition($this->qb, $condition, 'co');
         $this->prepareNameCondition($condition);
@@ -80,7 +80,7 @@ class CompanyManager extends GenericManager
 
     }
 
-    protected function prepareNameCondition(CompanyCondition $condition)
+    protected function prepareNameCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getName()) {
             $this->qb->andWhere($this->qb->expr()->like('co.name', ':name_expr'))
@@ -88,7 +88,7 @@ class CompanyManager extends GenericManager
         }
     }
 
-    protected function prepareDealRangeCondition(CompanyCondition $condition)
+    protected function prepareDealRangeCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getDealFrom() || $condition->getDealTo()) {
             $this->qb->innerJoin('co.clients', 'c1');
@@ -110,7 +110,7 @@ class CompanyManager extends GenericManager
         }
     }
 
-    protected function prepareActivityRangeCondition(CompanyCondition $condition)
+    protected function prepareActivityRangeCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getActivityFrom() || $condition->getActivityTo()) {
             $this->qb->innerJoin('co.clients', 'c2');
@@ -133,7 +133,7 @@ class CompanyManager extends GenericManager
         }
     }
 
-    protected function prepareDealStatesCondition(CompanyCondition $condition)
+    protected function prepareDealStatesCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getDealStates()) {
             $this->qb->innerJoin('co.clients', 'c3');
@@ -144,13 +144,13 @@ class CompanyManager extends GenericManager
         }
     }
 
-    protected function prepareTagsCondition(CompanyCondition $condition)
+    protected function prepareTagsCondition(CompanyConditionInterface $condition)
     {
         //TODO need implementation
     }
 
 
-    protected function prepareDelayedPaymentCondition(CompanyCondition $condition)
+    protected function prepareDelayedPaymentCondition(CompanyConditionInterface $condition)
     {
         //TODO need implementation
     }
