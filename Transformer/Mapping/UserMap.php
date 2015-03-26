@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\GroupDetailConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 
 class UserMap implements MapInterface
@@ -35,7 +36,7 @@ class UserMap implements MapInterface
             'middleName' => 'getMiddleName',
             'lastName' => 'getLastName',
             'photo' => [
-                'converter' => 'perfico_crm.api.photo_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getPhoto'
             ],
             'phone' => [
@@ -43,7 +44,7 @@ class UserMap implements MapInterface
                 'method' => 'getPhone'
             ],
             'groups' => [
-                'converter' => 'perfico_crm.api.group_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getGroups',
                 'collection' => true
             ]

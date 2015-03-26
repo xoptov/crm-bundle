@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 
 class ClientMap implements MapInterface
 {
@@ -65,21 +66,21 @@ class ClientMap implements MapInterface
                 'converter' => new DateTimeConverter(),
                 'method' => 'getCreatedAt'],
             'channel' => [
-                'converter' => 'perfico_crm.api.channel_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getChannel'
             ],
             'note' => 'getNote',
             'tags' => [
-                'converter' => 'perfico_crm.api.tag_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getTags',
                 'collection' => true
             ],
             'user' => [
-                'converter' => 'perfico_crm.api.user_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getUser'
             ],
             'company' => [
-                'converter' => 'perfico_crm.api.company_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getCompany'
             ],
             'position' => 'getPosition',

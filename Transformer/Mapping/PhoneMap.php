@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
+
 class PhoneMap implements MapInterface
 {
     public function getReverseMap()
@@ -20,7 +22,7 @@ class PhoneMap implements MapInterface
             'id' => 'getId',
             'number' => 'getNumber',
             'client' => [
-                'converter' => 'perfico_crm.api.client_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getClient'
             ]
         ];

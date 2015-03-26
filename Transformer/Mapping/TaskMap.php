@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 
 class TaskMap implements MapInterface
 {
@@ -61,19 +62,19 @@ class TaskMap implements MapInterface
                 'method' => 'getRememberAt'
             ],
             'user' => [
-                'converter' => 'perfico_crm.api.user_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getUser'
             ],
             'company' => [
-                'converter' => 'perfico_crm.api.company_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getCompany'
             ],
             'state' => [
-                'converter' => 'perfico_crm.api.task_state_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getState'
             ],
             'activities' => [
-                'converter' => 'perfico_crm.api.activity_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getActivities',
                 'collection' => true
             ],
