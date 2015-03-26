@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Service\Manager;
 
+use Doctrine\ORM\NoResultException;
 use Perfico\CRMBundle\Service\Search\PrepareAccountTrait;
 use Perfico\CRMBundle\Service\Search\PrepareChannelTrait;
 use Perfico\CRMBundle\Service\Search\PrepareCreatedRangeTrait;
@@ -315,7 +316,13 @@ class ClientManager extends GenericManager
         $this->qb->select('COUNT(c)')->from('CoreBundle:Client', 'c');
         $this->initQueryBuilder($condition);
 
-        return (int)$this->qb->getQuery()->getSingleScalarResult();
+        try {
+            $count = (int)$this->qb->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            $count = 0;
+        }
+
+        return $count;
     }
 
     /**
