@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\BooleanConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 
 class SubTaskMap implements MapInterface
 {
@@ -26,7 +27,7 @@ class SubTaskMap implements MapInterface
         return [
             'id' => 'getId',
             'task' => [
-                'converter' => 'perfico_crm.api.task_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getTask'
             ],
             'name' => 'getNote',

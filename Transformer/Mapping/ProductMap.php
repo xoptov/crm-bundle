@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 
 class ProductMap implements MapInterface
 {
@@ -34,7 +35,7 @@ class ProductMap implements MapInterface
             'amount' => 'getAmount',
             'children' => 'hasChildren',
             'parent' => [
-                'converter' => 'perfico_crm.api.product_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getParent'
             ],
             'createdAt' => [

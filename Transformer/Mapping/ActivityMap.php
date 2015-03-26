@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 
 class ActivityMap implements MapInterface
 {
@@ -49,11 +50,11 @@ class ActivityMap implements MapInterface
                 'method' => 'getCreatedAt'
             ],
             'user' => [
-                'converter' => 'perfico_crm.api.user_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getUser'
             ],
             'client' => [
-                'converter' => 'perfico_crm.api.client_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getClient'
             ]
         ];
