@@ -78,17 +78,6 @@ interface TaskInterface
     public function getUser();
 
     /**
-     * @param CompanyInterface $company
-     * @return TaskInterface
-     */
-    public function setCompany(CompanyInterface $company);
-
-    /**
-     * @return CompanyInterface
-     */
-    public function getCompany();
-
-    /**
      * @param TaskStateInterface $state
      * @return TaskInterface
      */

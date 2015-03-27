@@ -30,9 +30,6 @@ abstract class Task implements TaskInterface
     /** @var UserInterface */
     protected $user;
 
-    /** @var CompanyInterface */
-    protected $company;
-
     /** @var TaskStateInterface */
     protected $state;
 
@@ -169,24 +166,6 @@ abstract class Task implements TaskInterface
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCompany(CompanyInterface $company)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCompany()
-    {
-        return $this->company;
     }
 
     /**
