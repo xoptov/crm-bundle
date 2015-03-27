@@ -91,8 +91,8 @@ class CompanyManager extends GenericManager
     protected function prepareDealRangeCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getDealFrom() || $condition->getDealTo()) {
-            $this->qb->innerJoin('co.clients', 'c1');
-            $this->qb->innerJoin('c1.deals', 'd1');
+            $this->qb->leftJoin('co.clients', 'c1');
+            $this->qb->leftJoin('c1.deals', 'd1');
         }
 
         if ($condition->getDealFrom() && $condition->getDealTo()) {
@@ -113,8 +113,8 @@ class CompanyManager extends GenericManager
     protected function prepareActivityRangeCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getActivityFrom() || $condition->getActivityTo()) {
-            $this->qb->innerJoin('co.clients', 'c2');
-            $this->qb->innerJoin('c2.activities', 'a');
+            $this->qb->leftJoin('co.clients', 'c2');
+            $this->qb->leftJoin('c2.activities', 'a');
         }
 
         if ($condition->getActivityFrom() && $condition->getActivityTo()) {
@@ -136,8 +136,8 @@ class CompanyManager extends GenericManager
     protected function prepareDealStatesCondition(CompanyConditionInterface $condition)
     {
         if ($condition->getDealStates()) {
-            $this->qb->innerJoin('co.clients', 'c3');
-            $this->qb->innerJoin('c3.deals', 'd2');
+            $this->qb->leftJoin('co.clients', 'c3');
+            $this->qb->leftJoin('c3.deals', 'd2');
 
             $this->qb->andWhere($this->qb->expr()->in('d2.state', ':dealStates'))
                 ->setParameter('dealStates', $condition->getDealStates());

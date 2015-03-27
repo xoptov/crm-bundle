@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Perfico\CRMBundle\Entity\ClientInterface;
+use Perfico\CRMBundle\Entity\DealStateInterface;
 
 class CompanyDealStatesConverter extends AbstractEntityConverter
 {
@@ -16,8 +17,9 @@ class CompanyDealStatesConverter extends AbstractEntityConverter
         }
 
         $qb = $this->em->createQueryBuilder();
-        $qb->select('ds')->from('CoreBundle:DealState', 'ds')
-            ->innerJoin('ds.deals', 'd')
+        $qb->select('ds')
+            ->from('CoreBundle:DealState', 'ds')
+            ->leftJoin('ds.deals', 'd')
             ->where('d.client IN (:clients)')
             ->setParameter('clients', $condition)
             ->groupBy('ds');
@@ -25,6 +27,7 @@ class CompanyDealStatesConverter extends AbstractEntityConverter
         $result = $qb->getQuery()->getResult();
         $dealStates = [];
 
+        /** @var DealStateInterface $item */
         foreach ($result as $item) {
             $dealStates[] = [
                 'id' => $item->getId(),
