@@ -151,7 +151,7 @@ class ActivityController extends Controller
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/activities/{id}")
      * @ParamConverter("activity", converter="account.doctrine.orm")
      * @param Activity $activity

@@ -127,7 +127,7 @@ class CustomFieldController extends Controller
      *    {"name"="number", "dataType"="integer", "required"=0}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/custom-fields/{id}")
      * @ParamConverter("customField", converter="account.doctrine.orm")
      * @param CustomField $customField

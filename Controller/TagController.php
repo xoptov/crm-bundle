@@ -124,7 +124,7 @@ class TagController extends Controller
      *    {"name"="name", "dataType"="string", "required"=1}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/tags/{id}")
      * @ParamConverter("tag", converter="account.doctrine.orm")
      * @param Tag $tag

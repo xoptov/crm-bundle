@@ -129,7 +129,7 @@ class PaymentController extends Controller
      *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/payments/{id}")
      * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
