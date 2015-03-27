@@ -370,7 +370,7 @@ class ClientManager extends GenericManager
     protected function prepareDealRangeCondition(ClientConditionInterface $condition)
     {
         if ($condition->getDealFrom() || $condition->getDealTo()) {
-            $this->qb->innerJoin('c.deals', 'd1');
+            $this->qb->leftJoin('c.deals', 'd1');
         }
 
         if ($condition->getDealFrom() && $condition->getDealTo()) {
@@ -393,7 +393,7 @@ class ClientManager extends GenericManager
     protected function prepareActivityRangeCondition(ClientConditionInterface $condition)
     {
         if ($condition->getActivityFrom() || $condition->getActivityTo()) {
-            $this->qb->innerJoin('c.activities', 'a');
+            $this->qb->leftJoin('c.activities', 'a');
         }
 
         if ($condition->getActivityFrom() && $condition->getActivityTo()) {
@@ -420,7 +420,7 @@ class ClientManager extends GenericManager
     protected function prepareDealStatesCondition(ClientConditionInterface $condition)
     {
         if ($condition->getDealStates() && count($condition->getDealStates())) {
-            $this->qb->innerJoin('c.deals', 'd2');
+            $this->qb->leftJoin('c.deals', 'd2');
 
             $this->qb->andWhere($this->qb->expr()->in('d2.state', ':dealStates'))
                 ->setParameter('dealStates', $condition->getDealStates());
