@@ -420,7 +420,7 @@ class ClientController extends Controller
      *    }
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/clients/{id}")
      * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client

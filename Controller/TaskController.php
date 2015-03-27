@@ -146,7 +146,7 @@ class TaskController extends Controller
      *    }
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/tasks/{id}")
      * @ParamConverter("task", converter="account.doctrine.orm")
      * @param Task $task

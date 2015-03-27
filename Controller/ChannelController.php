@@ -125,7 +125,7 @@ class ChannelController extends Controller
      *    {"name"="name", "dataType"="string", "required"=1},
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/channels/{id}")
      * @ParamConverter("channel", converter="account.doctrine.orm")
      * @param Channel $channel

@@ -124,7 +124,7 @@ class DealStateController extends Controller
      *    {"name"="icon", "dataType"="string", "required"=1}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/deal-states/{id}")
      * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState

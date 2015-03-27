@@ -116,7 +116,7 @@ class ProductController extends Controller
      *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/products/{id}")
      * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product

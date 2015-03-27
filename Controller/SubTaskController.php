@@ -117,7 +117,7 @@ class SubTaskController extends Controller
      *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/sub-tasks/{id}")
      * @ParamConverter("subTask", converter="account.doctrine.orm")
      * @param SubTask $subTask

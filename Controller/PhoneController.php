@@ -178,7 +178,7 @@ class PhoneController extends Controller
      *      {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/phones/{id}")
      * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone

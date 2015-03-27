@@ -159,7 +159,7 @@ class DealController extends Controller
      *    {"name"="user", "dataType"="integer", "required"=1}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/deals/{id}")
      * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal

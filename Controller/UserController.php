@@ -278,7 +278,7 @@ class UserController extends Controller
      *    {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/users/{id}")
      * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user

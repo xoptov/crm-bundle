@@ -178,7 +178,7 @@ class CompanyController extends Controller
      *    {"name"="details", "dataType"="string", "required"=0}
      *   }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/companies/{id}")
      * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company

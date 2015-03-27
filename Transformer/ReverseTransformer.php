@@ -27,12 +27,21 @@ class ReverseTransformer
         $request = $this->container->get('request');
 
         foreach($map->getReverseMap() as $method => $value) {
+
             /**
              * Check for determine converter between method, class or service
              */
             if(is_string($value)) { // if $value is string then working without converter
+                // Checking value for null if request method is PATCH
+                if ($request->getMethod() == 'PATCH' && $request->get($value) == null) {
+                    continue;
+                }
                 $object->$method($request->get($value));
             } elseif (isset($value['converter'])) {
+                // Checking value for null if request method is PATCH
+                if ($request->getMethod() == 'PATCH' && $request->get($value['path']) == null) {
+                    continue;
+                }
                 if (is_string($value['converter'])) {
                     /** @var ConverterInterface $converter */
                     $converter = $this->container->get($value['converter']);

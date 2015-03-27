@@ -178,7 +178,7 @@ class GroupController extends Controller
      *      {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT")
+     * @Method("PUT|PATCH")
      * @Route("/groups/{id}")
      * @ParamConverter("group", converter="account.doctrine.orm")
      * @param Group $group
