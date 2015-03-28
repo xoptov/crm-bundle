@@ -8,7 +8,7 @@
         <field name="status" type="string" column="status" nullable="false"/>
         <field name="startDate" type="datetime" column="start_date" nullable="false"/>
         <field name="answerDate" type="datetime" column="answer_date" nullable="true"/>
-        <field name="recordLink" type="string" column="record_link" nullable="true"/>
+        <field name="recordLink" type="text" column="record_link" nullable="true"/>
 
     </entity>
 
