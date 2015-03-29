@@ -13,6 +13,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Perfico\UserBundle\Entity\User;
 
 class AuthenticateController extends Controller
 {
@@ -52,12 +53,22 @@ class AuthenticateController extends Controller
         $user = $this->get('fos_user.user_manager')->findUserByUsername($username);
 
         if (!$user) {
-            return new JsonResponse(['error' => 'User with  this username and password not found'], Response::HTTP_FORBIDDEN);
+            return new JsonResponse(['error' => 'User with this username and password not found'], Response::HTTP_FORBIDDEN);
         }
 
         $encoder = $this->get('security.encoder_factory')->getEncoder($user);
         if (!$encoder->isPasswordValid($user->getPassword(), $presentedPassword, $user->getSalt())) {
-            return new JsonResponse(['error' => 'User with  this username and password not found'], Response::HTTP_FORBIDDEN);
+            return new JsonResponse(['error' => 'User with this username and password not found'], Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$user->hasRole('ROLE_SUPER_ADMIN')) {
+
+            $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
+
+            /** @var User $user */
+            if (!$user->getAccounts()->contains($account) ) {
+                return new JsonResponse(['error' => 'User have\'t access to this account'], Response::HTTP_FORBIDDEN);
+            }
         }
 
         $em = $this->get('doctrine.orm.entity_manager');

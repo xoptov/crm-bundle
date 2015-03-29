@@ -65,15 +65,27 @@ interface UserInterface
     public function getDeals();
 
     /**
+     * @param AccountInterface[] $accounts
+     * @return UserInterface
+     */
+    public function setAccounts($accounts);
+
+    /**
+     * @return UserInterface
+     */
+    public function getAccounts();
+
+    /**
      * @param AccountInterface $account
      * @return UserInterface
      */
-    public function setAccount(AccountInterface $account);
+    public function addAccount(AccountInterface $account);
 
     /**
-     * @return AccountInterface
+     * @param AccountInterface $account
+     * @return UserInterface
      */
-    public function getAccount();
+    public function removeAccount(AccountInterface $account);
 
     /**
      * @param $groups

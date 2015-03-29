@@ -72,12 +72,10 @@
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_USER_" object_class="Perfico\UserBundle\Entity\User"/>
         </service>
 
-        <service id="perfico_crm.account_listener" class="Perfico\CRMBundle\EventListener\AccountListener">
+        <service id="perfico_crm.account_subscriber" class="Perfico\CRMBundle\EventListener\AccountSubscriber">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
             <argument type="service" id="perfico_crm.account_manager"/>
-            <argument type="service" id="templating"/>
-            <argument type="service" id="security.context"/>
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="perfico_crm.custom_filed_subscriber" class="Perfico\CRMBundle\EventListener\CustomFieldSubscriber">

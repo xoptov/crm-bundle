@@ -28,8 +28,14 @@ abstract class User extends BaseUser implements UserInterface
      */
     protected $deals;
 
-    /** @var AccountInterface */
+    /**
+     * @var AccountInterface
+     * @deprecated please using accounts instead this field
+     */
     protected $account;
+
+    /** @var AccountInterface[] */
+    protected $accounts;
 
     /** @var string */
     protected $photo;
@@ -38,6 +44,7 @@ abstract class User extends BaseUser implements UserInterface
     {
         parent::__construct();
         $this->deals = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
     }
 
     /**
@@ -141,9 +148,25 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setAccount(AccountInterface $account)
+    public function setAccounts($accounts)
     {
-        $this->account = $account;
+        $this->accounts = $accounts;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addAccount(AccountInterface $account)
+    {
+        $this->accounts->add($account);
 
         return $this;
     }
@@ -151,9 +174,11 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getAccount()
+    public function removeAccount(AccountInterface $account)
     {
-        return $this->account;
+        $this->accounts->removeElement($account);
+
+        return $this;
     }
 
     /**
