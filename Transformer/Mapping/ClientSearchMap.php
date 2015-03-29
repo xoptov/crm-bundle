@@ -86,6 +86,11 @@ class ClientSearchMap implements MapInterface
                 'method' => 'getDeals',
                 'collection' => true
             ],
+            'tags' => [
+                'converter' => 'perfico_crm.api.tag_converter',
+                'method' => 'getTags',
+                'collection' => true
+            ],
             'note' => 'getNote',
             'phones' => [
                 'converter' => new PhoneConverter(),
