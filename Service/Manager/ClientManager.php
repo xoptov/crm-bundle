@@ -342,7 +342,7 @@ class ClientManager extends GenericManager
         $this->prepareDealRangeCondition($condition);
         $this->prepareActivityRangeCondition($condition);
         $this->prepareDealStatesCondition($condition);
-//        $this->prepareTagsCondition($condition);
+        $this->prepareTagsCondition($condition);
 //        $this->prepareDelayedPayment($condition);
     }
 
@@ -447,7 +447,12 @@ class ClientManager extends GenericManager
      */
     protected function prepareTagsCondition(ClientConditionInterface $condition)
     {
-        //TODO need implementation for this method
+        if ($condition->getTags() && count($condition->getTags())) {
+            $this->qb->leftJoin('c.tags', 't');
+
+            $this->qb->andWhere($this->qb->expr()->in('t.id', ':tags'))
+                ->setParameter('tags', $condition->getTags());
+        }
     }
 
     /**

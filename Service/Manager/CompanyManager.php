@@ -75,7 +75,7 @@ class CompanyManager extends GenericManager
         $this->prepareDealRangeCondition($condition);
         $this->prepareActivityRangeCondition($condition);
         $this->prepareDealStatesCondition($condition);
-//        $this->prepareTagsCondition($condition);
+        $this->prepareTagsCondition($condition);
 //        $this->prepareDelayedPaymentCondition($condition);
 
     }
@@ -150,7 +150,7 @@ class CompanyManager extends GenericManager
 
     protected function prepareDealStatesCondition(CompanyConditionInterface $condition)
     {
-        if ($condition->getDealStates()) {
+        if ($condition->getDealStates() && count($condition->getDealStates())) {
             $this->qb->leftJoin('co.clients', 'c3');
             $this->qb->leftJoin('c3.deals', 'd2');
 
@@ -161,7 +161,13 @@ class CompanyManager extends GenericManager
 
     protected function prepareTagsCondition(CompanyConditionInterface $condition)
     {
-        //TODO need implementation
+        if ($condition->getTags() && count($condition->getTags())) {
+            $this->qb->leftJoin('co.clients', 'c4');
+            $this->qb->leftJoin('c4.tags', 't');
+
+            $this->qb->andWhere($this->qb->expr()->in('t.id', ':tags'))
+                ->setParameter('tags', $condition->getTags());
+        }
     }
 
 
