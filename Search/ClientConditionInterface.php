@@ -16,12 +16,24 @@ interface ClientConditionInterface extends PropertyAccountInterface, PropertyUse
 
     public function getCompany();
 
+    /**
+     * @return \DateTime
+     */
     public function getDealFrom();
 
+    /**
+     * @return \DateTime
+     */
     public function getDealTo();
 
+    /**
+     * @return \DateTime
+     */
     public function getActivityFrom();
 
+    /**
+     * @return \DateTime
+     */
     public function getActivityTo();
 
     public function getDealStates();
