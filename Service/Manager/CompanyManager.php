@@ -114,7 +114,7 @@ class CompanyManager extends GenericManager
             $createdTo->setTime(23, 59, 59);
 
             $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $$createdTo);
+                ->setParameter('createdTo', $createdTo);
         }
     }
 
