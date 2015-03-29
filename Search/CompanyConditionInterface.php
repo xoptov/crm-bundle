@@ -13,12 +13,24 @@ interface CompanyConditionInterface extends PropertyAccountInterface, Pagination
 
     public function getDealStates();
 
+    /**
+     * @return \DateTime
+     */
     public function getDealFrom();
 
+    /**
+     * @return \DateTime
+     */
     public function getDealTo();
 
+    /**
+     * @return \DateTime
+     */
     public function getActivityFrom();
 
+    /**
+     * @return \DateTime
+     */
     public function getActivityTo();
 
     public function getDelayedPayment();

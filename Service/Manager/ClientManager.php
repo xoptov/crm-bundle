@@ -374,16 +374,24 @@ class ClientManager extends GenericManager
         }
 
         if ($condition->getDealFrom() && $condition->getDealTo()) {
+
+            $createdTo = $condition->getDealTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->between('d1.createdAt', ':createdFrom', ':createdTo'))
                 ->setParameter('createdFrom', $condition->getDealFrom())
-                ->setParameter('createdTo', $condition->getDealTo());;
+                ->setParameter('createdTo', $createdTo);;
 
         } else if ($condition->getDealFrom()) {
             $this->qb->andWhere($this->qb->expr()->gte('d1.createdAt', ':createdFrom'))
                 ->setParameter('createdFrom', $condition->getDealFrom());
         } else if ($condition->getDealTo()) {
+
+            $createdTo = $condition->getDealTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $condition->getDealTo());
+                ->setParameter('createdTo', $createdTo);
         }
     }
 
@@ -397,9 +405,13 @@ class ClientManager extends GenericManager
         }
 
         if ($condition->getActivityFrom() && $condition->getActivityTo()) {
+
+            $createdTo = $condition->getActivityTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->between('a.createdAt', ':createdFrom', ':createdTo'))
                 ->setParameter('createdFrom', $condition->getActivityFrom())
-                ->setParameter('createdTo', $condition->getActivityTo());
+                ->setParameter('createdTo', $createdTo);
 
         } else if ($condition->getActivityFrom()) {
 
@@ -408,8 +420,11 @@ class ClientManager extends GenericManager
 
         } else if ($condition->getActivityTo()) {
 
+            $createdTo = $condition->getActivityTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->lte('a.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $condition->getActivityTo());
+                ->setParameter('createdTo', $createdTo);
 
         }
     }

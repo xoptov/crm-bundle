@@ -96,6 +96,10 @@ class CompanyManager extends GenericManager
         }
 
         if ($condition->getDealFrom() && $condition->getDealTo()) {
+
+            $createdTo = $condition->getDealTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->between('d1.createdAt', ':createdFrom', ':createdTo'))
                 ->setParameter('createdFrom', $condition->getDealFrom())
                 ->setParameter('createdTo', $condition->getDealTo());
@@ -106,7 +110,11 @@ class CompanyManager extends GenericManager
 
         } else if ($condition->getDealTo()) {
 
-            $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdTo'));
+            $createdTo = $condition->getDealTo();
+            $createdTo->setTime(23, 59, 59);
+
+            $this->qb->andWhere($this->qb->expr()->lte('d1.createdAt', ':createdTo'))
+                ->setParameter('createdTo', $createdTo);
         }
     }
 
@@ -118,9 +126,13 @@ class CompanyManager extends GenericManager
         }
 
         if ($condition->getActivityFrom() && $condition->getActivityTo()) {
+
+            $createdTo = $condition->getActivityTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->between('a.createdAt', ':createdFrom', ':createdTo'))
                 ->setParameter('createdFrom', $condition->getActivityFrom())
-                ->setParameter('createdTo', $condition->getActivityTo());
+                ->setParameter('createdTo', $createdTo);
         } else if ($condition->getActivityFrom()) {
 
             $this->qb->andWhere($this->qb->expr()->gte('a.createdAt', ':createdFrom'))
@@ -128,8 +140,11 @@ class CompanyManager extends GenericManager
 
         } else if ($condition->getActivityTo()) {
 
+            $createdTo = $condition->getActivityTo();
+            $createdTo->setTime(23, 59, 59);
+
             $this->qb->andWhere($this->qb->expr()->lte('a.createdAt', ':createdTo'))
-                ->setParameter('createdTo', $condition->getActivityTo());
+                ->setParameter('createdTo', $createdTo);
         }
     }
 
