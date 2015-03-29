@@ -129,7 +129,10 @@ class EventManager
         // Prepare information
         $dateTime = $event->getEventDate()->format('d.m.Y H:i');
         $status = $this->translator->trans('activity.status.' . $event->getStatus());
-        $record = $event->getRecordLink();
+
+// Commented by CRM-450 task
+//        $record = $event->getRecordLink();
+
         $duration = null;
 
         $answer = $call->getAnswerEvent();
@@ -151,8 +154,9 @@ class EventManager
         if ($duration)
             $note .= $this->translator->trans('activity.note.duration', array('%duration%' => $duration));
 
-        if ($record)
-            $note .= $this->translator->trans('activity.note.record', array('%record%' => $record));
+// Commented by CRM-450 task
+//        if ($record)
+//            $note .= $this->translator->trans('activity.note.record', array('%record%' => $record));
 
         if ($user = $activity->getUser())
             $note .= $this->translator->trans('activity.note.user', array('%firstName%' => $user->getFirstName(), '%phone%' => $user->getPhone()));
