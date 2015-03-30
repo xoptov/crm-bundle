@@ -148,42 +148,6 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setAccounts($accounts)
-    {
-        $this->accounts = $accounts;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAccounts()
-    {
-        return $this->accounts;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addAccount(AccountInterface $account)
-    {
-        $this->accounts->add($account);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeAccount(AccountInterface $account)
-    {
-        $this->accounts->removeElement($account);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setPhoto($photo)
     {
         $this->photo = $photo;

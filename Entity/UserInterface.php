@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Entity;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
+use FOS\UserBundle\Model\GroupInterface as BaseGroupInterface;
 
 interface UserInterface extends BaseUserInterface
 {
@@ -67,29 +68,6 @@ interface UserInterface extends BaseUserInterface
     public function getDeals();
 
     /**
-     * @param AccountInterface[] $accounts
-     * @return UserInterface
-     */
-    public function setAccounts($accounts);
-
-    /**
-     * @return UserInterface
-     */
-    public function getAccounts();
-
-    /**
-     * @param AccountInterface $account
-     * @return UserInterface
-     */
-    public function addAccount(AccountInterface $account);
-
-    /**
-     * @param AccountInterface $account
-     * @return UserInterface
-     */
-    public function removeAccount(AccountInterface $account);
-
-    /**
      * @param $groups
      * @return UserInterface
      */
@@ -99,6 +77,18 @@ interface UserInterface extends BaseUserInterface
      * @return mixed
      */
     public function getGroups();
+
+    /**
+     * @param BaseGroupInterface $group
+     * @return UserInterface
+     */
+    public function addGroup(BaseGroupInterface $group);
+
+    /**
+     * @param BaseGroupInterface $group
+     * @return UserInterface
+     */
+    public function removeGroup(BaseGroupInterface $group);
 
     /**
      * @param string $photo

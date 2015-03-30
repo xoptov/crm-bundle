@@ -58,8 +58,6 @@ class UserManager extends GenericManager
         /** @var User $user */
         $user = $this->userManager->createUser();
         $user->setPlainPassword(md5(rand(1000000, 9999999), false));
-        $user->setAccount($this->accountManager->getCurrentAccount());
-
 
         $user->setEnabled(true);
 
