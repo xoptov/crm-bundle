@@ -13,7 +13,8 @@ class DealEvent extends Event
     /**
      * @const
      */
-    const DEAL_EVENT = 'crm.deal.status_updated';
+    const DEAL_ADD_EVENT = 'crm.deal.status_created';
+    const DEAL_UPDATED_EVENT = 'crm.deal.status_updated';
 
     /**
      * @param DealInterface $dealEvent
