@@ -233,10 +233,9 @@ class DealController extends Controller
         if(!$deal) {
             $deal = $dealManager->create();
         }
-        $eventName = DealEvent::DEAL_EVENT;
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($deal, new DealMap());
-        $dispatcher->dispatch($eventName, $deal);
+        $dispatcher->dispatch(DealEvent::DEAL_EVENT, $deal);
         if(false != $errors = $transformer->validate($deal)) {
 
             return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
