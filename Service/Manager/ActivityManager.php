@@ -92,9 +92,10 @@ class ActivityManager extends GenericManager
     public function create()
     {
         $activity = new Activity();
+        $activity->setAccount($this->accountManager->getCurrentAccount());
 
         if(!$this->securityContext->getToken() instanceof AnonymousToken ) {
-            $activity->setAccount($this->accountManager->getCurrentAccount());
+            $activity->setUser($this->securityContext->getToken()->getUser());
         }
 
         return $activity;

@@ -36,6 +36,10 @@ class TaskManager extends GenericManager
         $task = new Task();
         $task->setAccount($this->accountManager->getCurrentAccount());
 
+        if (!$this->securityContext->getToken() instanceof AnonymousToken) {
+            $task->setUser($this->securityContext->getToken()->getUser());
+        }
+
         return $task;
     }
 

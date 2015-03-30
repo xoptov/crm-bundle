@@ -36,7 +36,7 @@ class UserMap implements MapInterface
             'middleName' => 'getMiddleName',
             'lastName' => 'getLastName',
             'photo' => [
-                'converter' => new ObjectScalarConverter(),
+                'converter' => 'perfico_crm.api.photo_converter',
                 'method' => 'getPhoto'
             ],
             'phone' => [
@@ -44,7 +44,7 @@ class UserMap implements MapInterface
                 'method' => 'getPhone'
             ],
             'groups' => [
-                'converter' => new ObjectScalarConverter(),
+                'converter' => 'perfico_crm.api.group_converter',
                 'method' => 'getGroups',
                 'collection' => true
             ]
