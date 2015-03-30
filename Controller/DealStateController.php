@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Event\DealStateEvent;
 use Perfico\CRMBundle\Entity\DealStateInterface;
 use Perfico\CRMBundle\Transformer\Mapping\DealStateMap;
 use Perfico\CoreBundle\Entity\DealState;
