@@ -46,9 +46,10 @@ class AccountSubscriber implements EventSubscriberInterface
 
         if ($account instanceof AccountInterface) {
             $this->accountManager->setCurrentAccount($account);
-        } else {
-            $response = new JsonResponse(['error' => 'Account for ' . $request->getHost() . ' not found'], Response::HTTP_NOT_FOUND);
-            $event->setResponse($response);
         }
+//        } else {
+//            $response = new JsonResponse(['error' => 'Account for ' . $request->getHost() . ' not found'], Response::HTTP_NOT_FOUND);
+//            $event->setResponse($response);
+//        }
     }
 } 

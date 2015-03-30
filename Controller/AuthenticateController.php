@@ -61,16 +61,15 @@ class AuthenticateController extends Controller
             return new JsonResponse(['error' => 'User with this username and password not found'], Response::HTTP_FORBIDDEN);
         }
 
-        if (!$user->hasRole('ROLE_SUPER_ADMIN')) {
-
-            $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
-
-            /** @var User $user */
-            if (!$user->getAccounts()->contains($account) ) {
-                return new JsonResponse(['error' => 'User have\'t access to this account'], Response::HTTP_FORBIDDEN);
-            }
-        }
-
+//        if (!$user->hasRole('ROLE_SUPER_ADMIN')) {
+//
+//            $account = $this->get('perfico_crm.account_manager')->getCurrentAccount();
+//
+//            /** @var User $user */
+//            if (!$user->getAccounts()->contains($account) ) {
+//                return new JsonResponse(['error' => 'User have\'t access to this account'], Response::HTTP_FORBIDDEN);
+//            }
+//        }
         $em = $this->get('doctrine.orm.entity_manager');
         $authToken = $this->get('perfico_crm.auth_token_manager')->generate($user, $expirationTime);
         $em->persist($authToken);
