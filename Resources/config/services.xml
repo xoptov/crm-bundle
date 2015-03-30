@@ -91,5 +91,10 @@
             <argument>%fos_user.model.group.class%</argument>
             <argument type="service" id="perfico_crm.account_manager"/>
         </service>
+
+        <service id="perfico_crm.call_subscriber" class="Perfico\CRMBundle\EventListener\CallSubscriber">
+            <argument type="service" id="snc_redis.default"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 </container>
