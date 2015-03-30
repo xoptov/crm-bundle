@@ -18,7 +18,7 @@ class DealEvent extends Event
     /**
      * @param DealInterface $dealEvent
      */
-    public function setPayment(DealInterface $dealEvent)
+    public function setDeal(DealInterface $dealEvent)
     {
         $this->dealEvent = $dealEvent;
     }
@@ -26,7 +26,7 @@ class DealEvent extends Event
     /**
      * @return DealInterface
      */
-    public function getPayment()
+    public function getDeal()
     {
         return $this->dealEvent;
     }

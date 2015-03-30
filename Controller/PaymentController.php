@@ -162,7 +162,10 @@ class PaymentController extends Controller
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($payment, new PaymentMap());
-        $dispatcher->dispatch($eventName, $payment);
+
+        $event = new PaymentEvent();
+        $event->setPayment($payment);
+        $dispatcher->dispatch($eventName, $event);
 
         if(false != $errors = $transformer->validate($payment)) {
 

@@ -19,7 +19,7 @@ class DealStateEvent extends Event
     /**
      * @param DealStateInterface $dealStateEvent
      */
-    public function setPayment(DealStateInterface $dealStateEvent)
+    public function setDealState(DealStateInterface $dealStateEvent)
     {
         $this->dealStateEvent = $dealStateEvent;
     }
@@ -27,7 +27,7 @@ class DealStateEvent extends Event
     /**
      * @return DealStateInterface
      */
-    public function getPayment()
+    public function getDealState()
     {
         return $this->dealStateEvent;
     }

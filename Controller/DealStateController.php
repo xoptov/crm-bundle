@@ -154,7 +154,10 @@ class DealStateController extends Controller
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($dealState, new DealStateMap());
-        $dispatcher->dispatch($eventName, $dealState);
+
+        $event = new DealStateEvent();
+        $event->setDealState($dealState);
+        $dispatcher->dispatch($eventName, $event);
 
         if(false != $errors = $transformer->validate($dealState)) {
 
