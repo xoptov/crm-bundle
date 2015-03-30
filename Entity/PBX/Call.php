@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Entity\PBX;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Perfico\CRMBundle\Entity\ActivityInterface;
 use Perfico\CRMBundle\Entity\AccountInterface;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
@@ -37,6 +38,7 @@ abstract class Call
     public function onCreate()
     {
         $this->createdAt = new \DateTime();
+        $this->callEvents = new ArrayCollection();
     }
 
     /**
@@ -110,6 +112,14 @@ abstract class Call
     public function getAccount()
     {
         return $this->account;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCallEvents()
+    {
+        return $this->callEvents;
     }
 
     /**

@@ -76,7 +76,7 @@ class EventManager
             $client->setFirstName('без имени')
                 ->setAccount($event->getCall()->getAccount());
 
-            $phone->setNumber('+' . $event->getSrcNumber())
+            $phone->setNumber($event->getSrcNumber())
                 ->setAccount($event->getCall()->getAccount())
                 ->setClient($client);
         }
