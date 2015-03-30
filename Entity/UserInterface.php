@@ -2,7 +2,9 @@
 
 namespace Perfico\CRMBundle\Entity;
 
-interface UserInterface
+use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
+
+interface UserInterface extends BaseUserInterface
 {
     /**
      * @return integer
