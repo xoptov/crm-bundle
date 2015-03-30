@@ -143,13 +143,17 @@ class DealStateController extends Controller
     protected function handleRequest(DealState $dealState = null)
     {
         $dealStateManager = $this->get('perfico_crm.deal_state_manager');
-
+        $dispatcher = $this->get('event_dispatcher');
         if(!$dealState) {
+            $eventName = DealStateEvent::DEAL_STATE_ADD_EVENT;
             $dealState = $dealStateManager->create();
+        } else {
+            $eventName = DealStateEvent::DEAL_STATE_UPDATE_EVENT;
         }
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($dealState, new DealStateMap());
+        $dispatcher->dispatch($eventName, $dealState);
 
         if(false != $errors = $transformer->validate($dealState)) {
 
