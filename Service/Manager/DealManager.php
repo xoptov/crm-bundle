@@ -5,6 +5,7 @@ namespace Perfico\CRMBundle\Service\Manager;
 use Perfico\CoreBundle\Entity\Deal;
 use Perfico\CoreBundle\Entity\Company;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
 class DealManager extends GenericManager
 {
@@ -84,6 +85,10 @@ class DealManager extends GenericManager
     {
         $deal = new Deal();
         $deal->setAccount($this->accountManager->getCurrentAccount());
+
+        if (!$this->securityContext->getToken() instanceof AnonymousToken) {
+            $deal->setUser($this->securityContext->getToken()->getUser());
+        }
 
         return $deal;
     }

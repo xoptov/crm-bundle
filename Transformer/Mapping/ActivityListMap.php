@@ -35,6 +35,10 @@ class ActivityListMap implements MapInterface
             'user' => [
                 'converter' => 'perfico_crm.api.user_converter',
                 'method' => 'getUser'
+            ],
+            'client' => [
+                'converter' => 'perfico_crm.api.client_converter',
+                'method' => 'getClient'
             ]
         ];
     }

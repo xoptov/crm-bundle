@@ -27,7 +27,8 @@ class CompanyContactsMap implements MapInterface
             ],
             'dealStatuses' => [
                 'converter' => 'perfico_crm.api.clients_list_statuses_converter',
-                'method' => 'getDeals'
+                'method' => 'getDeals',
+                'collection' => true
             ],
             'phones' => [
                 'converter' => new PhoneConverter(),

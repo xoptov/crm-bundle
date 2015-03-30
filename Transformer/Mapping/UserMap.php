@@ -35,16 +35,13 @@ class UserMap implements MapInterface
             'firstName' => 'getFirstName',
             'middleName' => 'getMiddleName',
             'lastName' => 'getLastName',
-            'photo' => [
-                'converter' => new ObjectScalarConverter(),
-                'method' => 'getPhoto'
-            ],
+            'photo' => 'getPhoto',
             'phone' => [
                 'converter' => new PhoneConverter(),
                 'method' => 'getPhone'
             ],
             'groups' => [
-                'converter' => new ObjectScalarConverter(),
+                'converter' => 'perfico_crm.api.group_converter',
                 'method' => 'getGroups',
                 'collection' => true
             ]
