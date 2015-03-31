@@ -9,7 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-one target-entity="Perfico\CRMBundle\Entity\AccountInterface" field="account">
+        <many-to-one target-entity="Perfico\CRMBundle\Entity\AccountInterface" field="account" inversed-by="groups">
             <join-columns>
                 <join-column name="account_id" referenced-column-name="id"/>
             </join-columns>
