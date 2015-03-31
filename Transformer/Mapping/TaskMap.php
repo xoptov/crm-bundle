@@ -23,10 +23,6 @@ class TaskMap implements MapInterface
                 'converter' => 'perfico_crm.api.user_converter',
                 'path' => 'user'
             ],
-            'setCompany' => [
-                'converter' => 'perfico_crm.api.company_converter',
-                'path' => 'company'
-            ],
             'setState' => [
                 'converter' => 'perfico_crm.api.task_state_converter',
                 'path' => 'state'
@@ -64,10 +60,6 @@ class TaskMap implements MapInterface
             'user' => [
                 'converter' => new ObjectScalarConverter(),
                 'method' => 'getUser'
-            ],
-            'company' => [
-                'converter' => new ObjectScalarConverter(),
-                'method' => 'getCompany'
             ],
             'state' => [
                 'converter' => new ObjectScalarConverter(),

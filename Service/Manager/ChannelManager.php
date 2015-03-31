@@ -28,9 +28,9 @@ class ChannelManager extends GenericManager
      */
     public function create()
     {
-        $client = new Channel();
-        $client->setAccount($this->accountManager->getCurrentAccount());
+        $channel = new Channel();
+        $channel->setAccount($this->accountManager->getCurrentAccount());
 
-        return $client;
+        return $channel;
     }
 } 
