@@ -45,7 +45,8 @@ class UserManager extends GenericManager
         $repo = $this->em->getRepository('UserBundle:User');
 
         return $repo->createQueryBuilder('u')
-            ->where('u.account = :account')
+            ->leftJoin('u.groups', 'g')
+            ->where('g.account = :account')
             ->setParameter('account', $this->accountManager->getCurrentAccount())
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit)
