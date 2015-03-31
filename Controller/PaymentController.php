@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Event\PaymentEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -151,13 +152,20 @@ class PaymentController extends Controller
     protected function handleRequest(Payment $payment = null)
     {
         $paymentManager = $this->get('perfico_crm.payment_manager');
-
+        $dispatcher = $this->get('event_dispatcher');
         if(!$payment) {
+            $eventName = PaymentEvent::PAYMENT_CREATE_EVENT;
             $payment = $paymentManager->create();
+        } else {
+            $eventName = PaymentEvent::PAYMENT_UPDATE_EVENT;
         }
 
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($payment, new PaymentMap());
+
+        $event = new PaymentEvent();
+        $event->setPayment($payment);
+        $dispatcher->dispatch($eventName, $event);
 
         if(false != $errors = $transformer->validate($payment)) {
 

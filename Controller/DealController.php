@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CRMBundle\Event\DealEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -228,14 +229,19 @@ class DealController extends Controller
     protected function handleRequest(Deal $deal = null)
     {
         $dealManager = $this->get('perfico_crm.deal_manager');
-
+        $dispatcher = $this->get('event_dispatcher');
         if(!$deal) {
+            $eventName = DealEvent::DEAL_ADD_EVENT;
             $deal = $dealManager->create();
+        } else {
+            $eventName = DealEvent::DEAL_UPDATED_EVENT;
         }
-
         $transformer = $this->get('perfico_crm.api.reverse_transformer');
         $transformer->bind($deal, new DealMap());
 
+        $event = new DealEvent();
+        $event->setDeal($deal);
+        $dispatcher->dispatch($eventName, $event);
         if(false != $errors = $transformer->validate($deal)) {
 
             return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
