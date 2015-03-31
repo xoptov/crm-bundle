@@ -5,11 +5,8 @@ namespace Perfico\CRMBundle\Service;
 use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Doctrine\GroupManager as BaseManager;
 use Perfico\CRMBundle\Service\Manager\AccountManager;
+use Perfico\CRMBundle\Entity\GroupInterface;
 
-/**
- * Class GroupManager
- * @package Perfico\CRMBundle\Service
- */
 class GroupManager extends BaseManager {
 
     protected $accountManager;
@@ -35,6 +32,7 @@ class GroupManager extends BaseManager {
 
     public function createGroup($name)
     {
+        /** @var GroupInterface $group */
         $group = parent::createGroup($name);
         $group->setAccount($this->accontManager->getCurrentAccount());
 

@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Entity;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 use FOS\UserBundle\Model\GroupInterface as BaseGroupInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 interface UserInterface extends BaseUserInterface
 {
@@ -68,13 +69,13 @@ interface UserInterface extends BaseUserInterface
     public function getDeals();
 
     /**
-     * @param $groups
+     * @param ArrayCollection $groups
      * @return UserInterface
      */
     public function setGroups($groups);
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getGroups();
 
