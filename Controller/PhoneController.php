@@ -178,13 +178,37 @@ class PhoneController extends Controller
      *      {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/phones/{id}")
      * @ParamConverter("phone", converter="account.doctrine.orm")
      * @param Phone $phone
      * @return Response
      */
     public function updateAction(Phone $phone)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_PHONE_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($phone);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Phone",
+     *  description="Update phone details",
+     *  input="Perfico\CoreBundle\Entity\Phone",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("PATCH")
+     * @Route("/phones/{id}")
+     * @ParamConverter("phone", converter="account.doctrine.orm")
+     * @param Phone $phone
+     * @return Response
+     */
+    public function patchAction(Phone $phone)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_PHONE_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

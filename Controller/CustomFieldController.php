@@ -127,13 +127,40 @@ class CustomFieldController extends Controller
      *    {"name"="number", "dataType"="integer", "required"=0}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/custom-fields/{id}")
      * @ParamConverter("customField", converter="account.doctrine.orm")
      * @param CustomField $customField
      * @return Response
      */
     public function updateAction(CustomField $customField)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CUSTOM_FIELD_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($customField);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Custom Fields",
+     *  description="Update custom field details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=0},
+     *    {"name"="number", "dataType"="integer", "required"=0}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/custom-fields/{id}")
+     * @ParamConverter("customField", converter="account.doctrine.orm")
+     * @param CustomField $customField
+     * @return Response
+     */
+    public function patchAction(CustomField $customField)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CUSTOM_FIELD_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

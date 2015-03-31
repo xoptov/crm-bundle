@@ -278,13 +278,48 @@ class UserController extends Controller
      *    {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/users/{id}")
      * @ParamConverter("user", converter="account.doctrine.orm")
      * @param User $user
      * @return Response
      */
     public function updateAction(User $user)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_USER_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($user);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="Update user details",
+     *  parameters={
+     *    {"name"="firstName", "dataType"="string", "required"=1},
+     *    {"name"="middleName", "dataType"="string", "required"=0},
+     *    {"name"="lastName", "dataType"="string", "required"=0},
+     *    {"name"="email", "dataType"="string", "required"=1},
+     *    {"name"="plainPassword", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"=0},
+     *    {"name"="groups", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only id of group"}
+     *      }
+     *    }
+     *  },
+     *  filters={
+     *    {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("PATCH")
+     * @Route("/users/{id}")
+     * @ParamConverter("user", converter="account.doctrine.orm")
+     * @param User $user
+     * @return Response
+     */
+    public function patchAction(User $user)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_USER_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

@@ -117,13 +117,37 @@ class SubTaskController extends Controller
      *    {"name"="completed", "dataType"="boolean", "required"=0}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/sub-tasks/{id}")
      * @ParamConverter("subTask", converter="account.doctrine.orm")
      * @param SubTask $subTask
      * @return Response
      */
     public function updateAction(SubTask $subTask)
+    {
+        return $this->handleRequest($subTask);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="SubTask",
+     *  description="Update sub-task details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="task", "dataType"="integer", "required"=1},
+     *    {"name"="note", "dataType"="string", "required"=1},
+     *    {"name"="completed", "dataType"="boolean", "required"=0}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/sub-tasks/{id}")
+     * @ParamConverter("subTask", converter="account.doctrine.orm")
+     * @param SubTask $subTask
+     * @return Response
+     */
+    public function patchAction(SubTask $subTask)
     {
         return $this->handleRequest($subTask);
     }

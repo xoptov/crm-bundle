@@ -160,13 +160,44 @@ class DealController extends Controller
      *    {"name"="user", "dataType"="integer", "required"=1}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/deals/{id}")
      * @ParamConverter("deal", converter="account.doctrine.orm")
      * @param Deal $deal
      * @return Response
      */
     public function updateAction(Deal $deal)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_DEAL_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($deal);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Deal",
+     *  description="Update deal details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="product", "dataType"="integer", "required"=1},
+     *    {"name"="amount", "dataType"="float", "required"=1},
+     *    {"name"="state", "dataType"="integer", "required"=1},
+     *    {"name"="client", "dataType"="integer", "required"=1},
+     *    {"name"="user", "dataType"="integer", "required"=1}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/deals/{id}")
+     * @ParamConverter("deal", converter="account.doctrine.orm")
+     * @param Deal $deal
+     * @return Response
+     */
+    public function patchAction(Deal $deal)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_DEAL_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
