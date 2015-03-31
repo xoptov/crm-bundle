@@ -400,10 +400,12 @@ class UserController extends Controller
         $user->setPhoto('users/' . $filename);
         $em->flush();
 
+        $converter = $this->get('perfico_crm.api.photo_converter');
+
         return new JsonResponse(array(
             'status' => 'success',
             'id' => $user->getId(),
-            'path' => $user->getPhoto()
+            'path' => $converter->reverseConvert($user->getPhoto())
         ));
     }
 
