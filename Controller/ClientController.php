@@ -420,13 +420,66 @@ class ClientController extends Controller
      *    }
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/clients/{id}")
      * @ParamConverter("client", converter="account.doctrine.orm")
      * @param Client $client
      * @return Response
      */
     public function updateAction(Client $client)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkObjectRole($client, 'EDIT')) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($client);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Client",
+     *  description="Update client details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="firstName", "dataType"="string", "required"=1},
+     *    {"name"="middleName", "dataType"="string", "required"=0},
+     *    {"name"="lastName", "dataType"="string", "required"=0},
+     *    {"name"="email", "dataType"="string", "required"=1},
+     *    {"name"="skype", "dataType"="string", "required"=0},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="channel", "dataType"="integer", "required"=0},
+     *    {"name"="company", "dataType"="integer", "required"=0},
+     *    {"name"="position", "dataType"="string", "required"=0},
+     *    {"name"="customField1", "dataType"="string", "required"=0},
+     *    {"name"="customField2", "dataType"="string", "required"=0},
+     *    {"name"="customField3", "dataType"="string", "required"=0},
+     *    {"name"="customField4", "dataType"="string", "required"=0},
+     *    {"name"="customField5", "dataType"="string", "required"=0},
+     *    {"name"="customField6", "dataType"="string", "required"=0},
+     *    {"name"="customField7", "dataType"="string", "required"=0},
+     *    {"name"="customField8", "dataType"="string", "required"=0},
+     *    {"name"="customField9", "dataType"="string", "required"=0},
+     *    {"name"="customField10", "dataType"="string", "required"=0},
+     *    {"name"="customField11", "dataType"="string", "required"=0},
+     *    {"name"="customField12", "dataType"="string", "required"=0},
+     *    {"name"="customField13", "dataType"="string", "required"=0},
+     *    {"name"="customField14", "dataType"="string", "required"=0},
+     *    {"name"="customField15", "dataType"="string", "required"=0},
+     *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }
+     *    }
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/clients/{id}")
+     * @ParamConverter("client", converter="account.doctrine.orm")
+     * @param Client $client
+     * @return Response
+     */
+    public function patchAction(Client $client)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkObjectRole($client, 'EDIT')) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

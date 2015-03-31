@@ -151,13 +151,41 @@ class ActivityController extends Controller
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/activities/{id}")
      * @ParamConverter("activity", converter="account.doctrine.orm")
      * @param Activity $activity
      * @return Response
      */
     public function updateAction(Activity $activity)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_ACTIVITY_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($activity);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Client Activity",
+     *  description="Update client activity details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="type", "dataType"="string", "required"=1},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/activities/{id}")
+     * @ParamConverter("activity", converter="account.doctrine.orm")
+     * @param Activity $activity
+     * @return Response
+     */
+    public function patchAction(Activity $activity)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_ACTIVITY_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

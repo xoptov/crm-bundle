@@ -146,13 +146,49 @@ class TaskController extends Controller
      *    }
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/tasks/{id}")
      * @ParamConverter("task", converter="account.doctrine.orm")
      * @param Task $task
      * @return Response
      */
     public function updateAction(Task $task)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_TASK_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($task);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Task",
+     *  description="Update task details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="deadLine", "dataType"="datetime", "required"=0},
+     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *    {"name"="user", "dataType"="integer", "required"=0},
+     *    {"name"="company", "dataType"="integer", "required"=0},
+     *    {"name"="state", "dataType"="integer", "required"=0},
+     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      }
+     *    }
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/tasks/{id}")
+     * @ParamConverter("task", converter="account.doctrine.orm")
+     * @param Task $task
+     * @return Response
+     */
+    public function patchAction(Task $task)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_TASK_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

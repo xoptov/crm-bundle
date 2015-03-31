@@ -113,7 +113,7 @@ class TaskStateController extends Controller
      *    {"name"="name", "dataType"="string", "required"=1}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/task-states/{id}")
      * @ParamConverter("taskState", converter="account.doctrine.orm")
      * @param TaskState $taskState

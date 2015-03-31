@@ -178,13 +178,40 @@ class GroupController extends Controller
      *      {"name"="token", "type"="text"}
      *  }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/groups/{id}")
      * @ParamConverter("group", converter="account.doctrine.orm")
      * @param Group $group
      * @return Response
      */
     public function updateAction(Group $group)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($group);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Group",
+     *  description="Update group details",
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="roles", "dataType"="string", "required"=0}
+     *  },
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Method("PATCH")
+     * @Route("/groups/{id}")
+     * @ParamConverter("group", converter="account.doctrine.orm")
+     * @param Group $group
+     * @return Response
+     */
+    public function patchAction(Group $group)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_GROUP_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

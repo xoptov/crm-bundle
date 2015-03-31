@@ -178,13 +178,42 @@ class CompanyController extends Controller
      *    {"name"="details", "dataType"="string", "required"=0}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/companies/{id}")
      * @ParamConverter("company", converter="account.doctrine.orm")
      * @param Company $company
      * @return Response
      */
     public function updateAction(Company $company)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkObjectRole($company, 'EDIT')) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($company);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Company",
+     *  description="Update company details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=0},
+     *    {"name"="inn", "dataType"="integer", "required"=0},
+     *    {"name"="phone", "dataType"="string", "required"=0},
+     *    {"name"="details", "dataType"="string", "required"=0}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/companies/{id}")
+     * @ParamConverter("company", converter="account.doctrine.orm")
+     * @param Company $company
+     * @return Response
+     */
+    public function patchAction(Company $company)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkObjectRole($company, 'EDIT')) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);

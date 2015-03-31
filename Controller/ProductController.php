@@ -116,13 +116,38 @@ class ProductController extends Controller
      *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/products/{id}")
      * @ParamConverter("product", converter="account.doctrine.orm")
      * @param Product $product
      * @return Response
      */
     public function updateAction(Product $product)
+    {
+        return $this->handleRequest($product);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Product",
+     *  description="Update product details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="sku", "dataType"="text", "required"=0},
+     *    {"name"="parent", "dataType"="integer", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/products/{id}")
+     * @ParamConverter("product", converter="account.doctrine.orm")
+     * @param Product $product
+     * @return Response
+     */
+    public function patchAction(Product $product)
     {
         return $this->handleRequest($product);
     }

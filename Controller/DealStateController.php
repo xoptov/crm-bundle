@@ -125,13 +125,36 @@ class DealStateController extends Controller
      *    {"name"="icon", "dataType"="string", "required"=1}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/deal-states/{id}")
      * @ParamConverter("dealState", converter="account.doctrine.orm")
      * @param DealState $dealState
      * @return Response
      */
     public function updateAction(DealState $dealState)
+    {
+        return $this->handleRequest($dealState);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Deal States",
+     *  description="Update deal state details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="name", "dataType"="string", "required"=1},
+     *    {"name"="icon", "dataType"="string", "required"=1}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/deal-states/{id}")
+     * @ParamConverter("dealState", converter="account.doctrine.orm")
+     * @param DealState $dealState
+     * @return Response
+     */
+    public function patchAction(DealState $dealState)
     {
         return $this->handleRequest($dealState);
     }

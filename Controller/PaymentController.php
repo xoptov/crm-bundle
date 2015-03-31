@@ -130,13 +130,40 @@ class PaymentController extends Controller
      *    {"name"="amount", "dataType"="float", "required"=1}
      *   }
      * )
-     * @Method("PUT|PATCH")
+     * @Method("PUT")
      * @Route("/payments/{id}")
      * @ParamConverter("payment", converter="account.doctrine.orm")
      * @param Payment $payment
      * @return Response
      */
     public function updateAction(Payment $payment)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_PAYMENT_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($payment);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Payment",
+     *  description="Update payment details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="amount", "dataType"="float", "required"=1}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/payments/{id}")
+     * @ParamConverter("payment", converter="account.doctrine.orm")
+     * @param Payment $payment
+     * @return Response
+     */
+    public function patchAction(Payment $payment)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_PAYMENT_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
