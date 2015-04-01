@@ -57,4 +57,15 @@ interface DealStateInterface
      * @return AccountInterface
      */
     public function getAccount();
+
+    /**
+     * @param boolean $value
+     * @return DealStateInterface
+     */
+    public function setRequirePayments($value);
+
+    /**
+     * @return bool
+     */
+    public function hasRequirePayments();
 } 
