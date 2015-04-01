@@ -4,19 +4,26 @@ namespace Perfico\CRMBundle\Service\Factory\PBX;
 
 use Perfico\CRMBundle\Entity\PBX\Call;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * This is class using for polymorphism in oop
  */
-class CallEventFactory
+class CallEventFactory implements EventFactoryInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function create()
     {
         return new CallEvent();
     }
 
-    public function hydration(CallEvent $event, Request $request, Call $call)
+    /**
+     * {@inheritdoc}
+     */
+    public function hydration(CallEventInterface $event, Request $request, Call $call)
     {
         $event->setCall($call)
             ->setType($request->get('type'))

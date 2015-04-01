@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
 use Perfico\CRMBundle\Service\Manager\ClientManager;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Perfico\CRMBundle\Service\Factory\PBX\EventFactoryInterface;
 use Perfico\CRMBundle\Service\Factory\PBX\AnswerEventFactory;
 use Perfico\CRMBundle\Service\Factory\PBX\CallEventFactory;
 use Perfico\CRMBundle\Service\Factory\PBX\HangupEventFactory;
@@ -40,7 +41,7 @@ class EventManager
 
     /**
      * @param Request $request
-     * @return AnswerEventFactory|CallEventFactory|HangupEventFactory
+     * @return EventFactoryInterface
      */
     public function getFactory(Request $request)
     {
