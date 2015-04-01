@@ -9,8 +9,9 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="name" type="string" column="name" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="icon" type="string" column="icon" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="name" type="string" column="name" length="255" nullable="true"/>
+        <field name="icon" type="string" column="icon" length="255" nullable="true"/>
+        <field name="requirePayments" type="boolean" column="require_payments"/>
         
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
