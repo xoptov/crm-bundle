@@ -27,9 +27,13 @@ abstract class DealState implements DealStateInterface
     /** @var AccountInterface */
     protected $account;
 
+    /** @var boolean */
+    protected $requirePayments;
+
     public function __construct()
     {
         $this->deals = new ArrayCollection();
+        $this->requirePayments = false;
     }
 
     /**
@@ -128,5 +132,23 @@ abstract class DealState implements DealStateInterface
     public function getAccount()
     {
         return $this->account;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRequirePayments($value)
+    {
+        $this->requirePayments = $value;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRequirePayments()
+    {
+        return $this->requirePayments;
     }
 } 
