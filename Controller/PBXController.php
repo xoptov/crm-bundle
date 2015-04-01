@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Monolog\Handler\StreamHandler;
 use Perfico\CRMBundle\Event\PBXEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +19,12 @@ class PBXController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $logFile = $this->container->getParameter('kernel.logs_dir') . '/telephony.log';
+        $streamHandler = new StreamHandler($logFile);
+        $logger = $this->get('logger');
+        $logger->pushHandler($streamHandler);
+        $logger->debug($request->getRequestUri());
+
         if ($request->get('call_id') == null) {
             throw new BadRequestHttpException('call_id must be specified');
         }

@@ -3,23 +3,28 @@
 namespace Perfico\CRMBundle\Service\Factory\PBX;
 
 use Perfico\CRMBundle\Entity\PBX\Call;
-use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEvent;
+use Perfico\CRMBundle\Entity\PBX\Sipuni\CallEventInterface;
 use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 class HangupEventFactory extends CallEventFactory
 {
+    /**
+     * {@inheritdoc}
+     */
     public function create()
     {
         return new HangupEvent();
     }
 
-    public function hydration(CallEvent $event, Request $request, Call $call)
+    /**
+     * {@inheritdoc}
+     */
+    public function hydration(CallEventInterface $event, Request $request, Call $call)
     {
         /**
          * @var HangupEvent $event
          */
-
         parent::hydration($event, $request, $call);
 
         $event->setStatus($request->get('status'));
