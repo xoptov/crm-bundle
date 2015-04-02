@@ -1,14 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xoptov
- * Date: 02.04.15
- * Time: 13:51
- */
 
 namespace Perfico\CRMBundle\Service\Manager;
 
+use Perfico\CRMBundle\Search\SearchConditionInterface;
 
-interface SearchManagerInterface {
+interface SearchManagerInterface
+{
+    public function search(SearchConditionInterface $conditions);
 
+    public function initQueryBuilder(SearchConditionInterface $conditions);
 } 
