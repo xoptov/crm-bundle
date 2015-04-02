@@ -23,6 +23,6 @@ class PhotoConverter extends AbstractEntityConverter
             return $this->cacheManager->getBrowserPath($object, 'user_photo_review');
         }
 
-        return null;
+        return $this->cacheManager->getBrowserPath('/assets/images/avatar.jpg', 'user_photo_review');
     }
 } 
