@@ -107,8 +107,11 @@ class UserManager extends GenericManager
         $qb = $this->em->createQueryBuilder();
         $query = $qb->select('u')
             ->from('UserBundle:User', 'u')
-            ->where('u.phone LIKE :phone')->setParameter('phone', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
-            ->andWhere('u.account = :account')->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->leftJoin('u.groups', 'g')
+            ->where('g.account = :account')
+            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->andwhere('u.phone LIKE :phone')
+            ->setParameter('phone', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
             ->setMaxResults(1)
             ->getQuery();
 
