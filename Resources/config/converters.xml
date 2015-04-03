@@ -35,6 +35,8 @@
 
         <parameter key="perfico_crm.entity_alias.sub_task" type="string">PerficoCRMBundle:SubTask</parameter>
 
+        <parameter key="default_user_avatar" type="string">http://www2.clever-web.net/assets/images/avatar.jpg</parameter>
+
     </parameters>
 
     <services>
@@ -152,6 +154,9 @@
         <service id="perfico_crm.api.photo_converter" class="Perfico\CRMBundle\Transformer\Converter\PhotoConverter" parent="perfico_crm.api.entity_converter">
             <call method="setCacheManager">
                 <argument type="service" id="liip_imagine.cache.manager"/>
+            </call>
+            <call method="setDefaultAvatar">
+                <argument type="string">%default_user_avatar%</argument>
             </call>
         </service>
 
