@@ -18,7 +18,7 @@ class PaymentManager extends GenericManager
 
         return $repo->createQueryBuilder('p')
             ->where('p.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -29,7 +29,7 @@ class PaymentManager extends GenericManager
     public function create()
     {
         $payment = new Payment();
-        $payment->setAccount($this->accountManager->getCurrentAccount());
+        $payment->setAccount($this->getCurrentAccount());
 
         return $payment;
     }

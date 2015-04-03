@@ -47,24 +47,24 @@ interface UserInterface extends BaseUserInterface
     public function getMiddleName();
 
     /**
-     * @param string $phone
+     * @param ArrayCollection $contacts
      * @return UserInterface
      */
-    public function setPhone($phone);
+    public function setContacts($contacts);
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getPhone();
+    public function getContacts();
 
     /**
-     * @param DealInterface[] $deals
-     * @return mixed
+     * @param ArrayCollection $deals
+     * @return UserInterface
      */
     public function setDeals($deals);
 
     /**
-     * @return DealInterface[]
+     * @return ArrayCollection
      */
     public function getDeals();
 

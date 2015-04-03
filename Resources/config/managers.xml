@@ -30,6 +30,8 @@
 
         <service id="perfico_crm.company_manager" class="Perfico\CRMBundle\Service\Manager\CompanyManager" parent="perfico_crm.generic_manager"/>
 
+        <service id="perfico_crm.contact_manager" class="Perfico\CRMBundle\Service\Manager\ContactManager" parent="perfico_crm.generic_manager"/>
+
         <service id="perfico_crm.task_manager" class="Perfico\CRMBundle\Service\Manager\TaskManager" parent="perfico_crm.generic_manager"/>
 
         <service id="perfico_crm.task_state_manager" class="Perfico\CRMBundle\Service\Manager\TaskStateManager" parent="perfico_crm.generic_manager"/>

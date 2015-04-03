@@ -19,7 +19,7 @@ class ProductManager extends GenericManager
 
         return $repo->createQueryBuilder('p')
             ->where('p.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -30,7 +30,7 @@ class ProductManager extends GenericManager
     public function create()
     {
         $product = new Product();
-        $product->setAccount($this->accountManager->getCurrentAccount());
+        $product->setAccount($this->getCurrentAccount());
 
         return $product;
     }
@@ -53,12 +53,9 @@ class ProductManager extends GenericManager
             ->getQuery()
             ->getSingleScalarResult();
 
-        if ($products)
-        {
+        if ($products) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

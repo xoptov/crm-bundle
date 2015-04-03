@@ -20,7 +20,7 @@ class DealManager extends GenericManager
 
         return $repo->createQueryBuilder('d')
             ->where('d.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -84,7 +84,7 @@ class DealManager extends GenericManager
     public function create()
     {
         $deal = new Deal();
-        $deal->setAccount($this->accountManager->getCurrentAccount());
+        $deal->setAccount($this->getCurrentAccount());
 
         if (!$this->securityContext->getToken() instanceof AnonymousToken) {
             $deal->setUser($this->securityContext->getToken()->getUser());

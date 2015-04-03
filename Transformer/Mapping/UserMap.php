@@ -17,7 +17,6 @@ class UserMap implements MapInterface
             'setLastName' => 'lastName',
             'setEmail' => 'email',
             'setUsername' => 'email',
-            'setPhone' => 'phone',
             'setGroups' => [
                 'converter' => 'perfico_crm.api.group_converter',
                 'path' => 'groups',
@@ -38,10 +37,6 @@ class UserMap implements MapInterface
             'photo' => [
                 'converter' => 'perfico_crm.api.photo_converter',
                 'method' => 'getPhoto'
-            ],
-            'phone' => [
-                'converter' => new PhoneConverter(),
-                'method' => 'getPhone'
             ],
             'groups' => [
                 'converter' => 'perfico_crm.api.group_converter',

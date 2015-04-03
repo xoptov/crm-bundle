@@ -18,7 +18,7 @@ class TaskStateManager extends GenericManager
 
         return $repo->createQueryBuilder('ds')
             ->where('ds.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -29,7 +29,7 @@ class TaskStateManager extends GenericManager
     public function create()
     {
         $taskState = new TaskState();
-        $taskState->setAccount($this->accountManager->getCurrentAccount());
+        $taskState->setAccount($this->getCurrentAccount());
 
         return $taskState;
     }

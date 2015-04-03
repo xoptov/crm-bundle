@@ -18,7 +18,7 @@ class SubTaskManager extends GenericManager
 
         return $repo->createQueryBuilder('st')
             ->where('st.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -43,7 +43,7 @@ class SubTaskManager extends GenericManager
     public function create()
     {
         $subTask = new SubTask();
-        $subTask->setAccount($this->accountManager->getCurrentAccount());
+        $subTask->setAccount($this->getCurrentAccount());
 
         return $subTask;
     }

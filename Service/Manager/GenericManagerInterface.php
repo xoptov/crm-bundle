@@ -9,4 +9,6 @@ interface GenericManagerInterface
     public function remove($entity);
 
     public function update($entity);
+
+    public function getCurrentAccount();
 } 

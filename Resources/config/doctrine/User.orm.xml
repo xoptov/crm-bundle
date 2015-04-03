@@ -12,14 +12,7 @@
         <field name="firstName" type="string" column="first_name" length="255" nullable="true"/>
         <field name="lastName" type="string" column="last_name" length="255" nullable="true"/>
         <field name="middleName" type="string" column="middle_name" length="255" nullable="true"/>
-        <field name="phone" type="string" column="phone" length="255" nullable="true"/>
         <field name="photo" type="string" column="photo" length="255" nullable="true"/>
-        
-        <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
-            <join-columns>
-                <join-column name="account_id" referenced-column-name="id" nullable="true"/>
-            </join-columns>
-        </many-to-one>
         
     </mapped-superclass>
 

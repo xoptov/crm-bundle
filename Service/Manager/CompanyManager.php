@@ -30,7 +30,7 @@ class CompanyManager extends GenericManager
 
         return $repo->createQueryBuilder('c')
             ->where('c.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -41,7 +41,7 @@ class CompanyManager extends GenericManager
     public function create()
     {
         $company = new Company();
-        $company->setAccount($this->accountManager->getCurrentAccount());
+        $company->setAccount($this->getCurrentAccount());
 
         if(!$this->securityContext->getToken() instanceof AnonymousToken ) {
             $company->setUser($this->securityContext->getToken()->getUser());

@@ -18,7 +18,7 @@ class DealStateManager extends GenericManager
 
         return $repo->createQueryBuilder('ds')
             ->where('ds.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -29,7 +29,7 @@ class DealStateManager extends GenericManager
     public function create()
     {
         $dealState = new DealState();
-        $dealState->setAccount($this->accountManager->getCurrentAccount());
+        $dealState->setAccount($this->getCurrentAccount());
 
         return $dealState;
     }

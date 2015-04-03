@@ -18,7 +18,7 @@ class TagManager extends GenericManager
 
         $builder = $repo->createQueryBuilder('ct')
             ->where('ct.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ;
 
         return $builder
@@ -32,7 +32,7 @@ class TagManager extends GenericManager
     public function create()
     {
         $tag = new Tag();
-        $tag->setAccount($this->accountManager->getCurrentAccount());
+        $tag->setAccount($this->getCurrentAccount());
 
         return $tag;
     }

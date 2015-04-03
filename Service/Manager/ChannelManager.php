@@ -18,7 +18,7 @@ class ChannelManager extends GenericManager
 
         return $repo->createQueryBuilder('c')
             ->where('c.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -29,7 +29,7 @@ class ChannelManager extends GenericManager
     public function create()
     {
         $channel = new Channel();
-        $channel->setAccount($this->accountManager->getCurrentAccount());
+        $channel->setAccount($this->getCurrentAccount());
 
         return $channel;
     }
