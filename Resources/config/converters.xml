@@ -35,8 +35,6 @@
 
         <parameter key="perfico_crm.entity_alias.sub_task" type="string">PerficoCRMBundle:SubTask</parameter>
 
-        <parameter key="default_user_avatar" type="string">http://www2.clever-web.net/assets/images/avatar.jpg</parameter>
-
     </parameters>
 
     <services>
