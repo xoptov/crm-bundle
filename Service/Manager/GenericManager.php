@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Perfico\CRMBundle\Entity\AccountInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 abstract class GenericManager implements GenericManagerInterface
@@ -46,5 +47,12 @@ abstract class GenericManager implements GenericManagerInterface
         $this->em->flush();
     }
 
+    /**
+     * @return AccountInterface
+     */
+    public function getCurrentAccount()
+    {
+        return $this->accountManager->getCurrentAccount();
+    }
 
 } 

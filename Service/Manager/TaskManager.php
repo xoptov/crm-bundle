@@ -3,7 +3,6 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Task;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
 
 class TaskManager extends GenericManager
@@ -20,7 +19,7 @@ class TaskManager extends GenericManager
 
         $builder = $repo->createQueryBuilder('c')
             ->where('c.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
         ;
 
         return $builder
@@ -34,7 +33,7 @@ class TaskManager extends GenericManager
     public function create()
     {
         $task = new Task();
-        $task->setAccount($this->accountManager->getCurrentAccount());
+        $task->setAccount($this->getCurrentAccount());
 
         return $task;
     }

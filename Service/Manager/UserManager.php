@@ -28,7 +28,7 @@ class UserManager extends GenericManager
         return $repo->createQueryBuilder('u')
             ->select('count(u)')
             ->where('u.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -47,7 +47,7 @@ class UserManager extends GenericManager
         return $repo->createQueryBuilder('u')
             ->leftJoin('u.groups', 'g')
             ->where('g.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
+            ->setParameter('account', $this->getCurrentAccount())
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit)
             ->getQuery()
@@ -98,23 +98,27 @@ class UserManager extends GenericManager
     }
 
     /**
-     * @param string $number
-     * @return mixed
+     * @param string $contactInfo
+     * @return null|User
      */
-    public function searchByPhone($number)
+    public function searchByContact($contactInfo)
     {
         /** @var QueryBuilder $qb */
-        $qb = $this->em->createQueryBuilder();
-        $query = $qb->select('u')
-            ->from('UserBundle:User', 'u')
-            ->leftJoin('u.groups', 'g')
-            ->where('g.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
-            ->andwhere('u.phone LIKE :phone')
-            ->setParameter('phone', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
-            ->setMaxResults(1)
-            ->getQuery();
+//        $qb = $this->em->createQueryBuilder();
+//        $query = $qb->select('u')
+//            ->from('UserBundle:User', 'u')
+//            ->leftJoin('u.groups', 'g')
+//            ->where('g.account = :account')
+//            ->setParameter('account', $this->getCurrentAccount())
+//            ->andwhere('u.phone LIKE :phone')
+//            ->setParameter('phone', '%' . preg_replace('/^(?:\+7|8)/', '', $number) . '%')
+//            ->setMaxResults(1)
+//            ->getQuery();
+//
+//        return $query->getOneOrNullResult();
 
-        return $query->getOneOrNullResult();
+        // TODO need implementation search with new logic
+
+        return null;
     }
 } 

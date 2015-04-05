@@ -4,12 +4,13 @@ namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Call;
 use Perfico\CRMBundle\Entity\ClientInterface;
+use Perfico\CRMBundle\Exception\ImplementationException;
 
 class CallManager extends GenericManager
 {
     public function create()
     {
-
+        throw new ImplementationException;
     }
 
     /**

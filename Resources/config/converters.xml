@@ -95,6 +95,12 @@
             </call>
         </service>
 
+        <service id="perfico_crm.api.contact_converter" class="Perfico\CRMBundle\Transformer\Converter\ContactConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.contact%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.tag_converter" class="Perfico\CRMBundle\Transformer\Converter\TagConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.tag%</argument>

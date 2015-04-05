@@ -19,23 +19,11 @@ abstract class User extends BaseUser implements UserInterface
     /** @var string */
     protected $middleName;
 
-    /** @var string */
-    protected $phone;
+    /** @link http://doctrine-orm.readthedocs.org/en/latest/reference/inheritance-mapping.html */
+    protected $contacts;
 
-    /**
-     * @link http://doctrine-orm.readthedocs.org/en/latest/reference/inheritance-mapping.html#association-override
-     * @var DealInterface[]
-     */
+    /** @link http://doctrine-orm.readthedocs.org/en/latest/reference/inheritance-mapping.html */
     protected $deals;
-
-    /**
-     * @var AccountInterface
-     * @deprecated please using accounts instead this field
-     */
-    protected $account;
-
-    /** @var AccountInterface[] */
-    protected $accounts;
 
     /** @var string */
     protected $photo;
@@ -43,8 +31,8 @@ abstract class User extends BaseUser implements UserInterface
     public function __construct()
     {
         parent::__construct();
+        $this->contacts = new ArrayCollection();
         $this->deals = new ArrayCollection();
-        $this->accounts = new ArrayCollection();
     }
 
     /**
@@ -112,9 +100,9 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setPhone($phone)
+    public function setContacts($contacts)
     {
-        $this->phone = $phone;
+        $this->contacts = $contacts;
 
         return $this;
     }
@@ -122,9 +110,9 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPhone()
+    public function getContacts()
     {
-        return $this->phone;
+        return $this->contacts;
     }
 
     /**

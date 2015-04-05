@@ -9,13 +9,14 @@ class CustomFieldManager extends GenericManager
     public function create()
     {
         $customField = new CustomField();
-        $customField->setAccount($this->accountManager->getCurrentAccount());
+        $customField->setAccount($this->getCurrentAccount());
 
         return $customField;
     }
 
     public function getAccountCustomFields()
     {
-        return $this->em->getRepository('CoreBundle:CustomField')->findBy(array('account' => $this->accountManager->getCurrentAccount()));
+        return $this->em->getRepository('CoreBundle:CustomField')
+            ->findBy(array('account' => $this->getCurrentAccount()));
     }
 } 

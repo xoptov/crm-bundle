@@ -3,8 +3,8 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Phone;
-use Perfico\CoreBundle\Entity\Client;
 use Doctrine\ORM\EntityRepository;
+use Perfico\CoreBundle\Entity\Client;
 
 class PhoneManager extends GenericManager
 {
@@ -19,24 +19,7 @@ class PhoneManager extends GenericManager
 
         return $repo->createQueryBuilder('p')
             ->where('p.account = :account')
-            ->setParameter('account', $this->accountManager->getCurrentAccount())
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param Client $client
-     * @return Phone[]
-     * @todo need refactoring this method
-     */
-    public function getClientPhones(Client $client)
-    {
-        /** @var EntityRepository $repo */
-        $repo = $this->em->getRepository('CoreBundle:Phone');
-
-        return $repo->createQueryBuilder('p')
-            ->where('p.client = :client')
-            ->setParameter('client', $client)
+            ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getResult();
     }
@@ -68,7 +51,7 @@ class PhoneManager extends GenericManager
     public function create()
     {
         $phone = new Phone();
-        $phone->setAccount($this->accountManager->getCurrentAccount());
+        $phone->setAccount($this->getCurrentAccount());
 
         return $phone;
     }
