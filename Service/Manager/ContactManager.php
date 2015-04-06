@@ -18,4 +18,14 @@ class ContactManager extends GenericManager
     {
         return $this->em->getRepository('CoreBundle:Contact')->findBy(['account' => $this->getCurrentAccount()]);
     }
+
+    /**
+     * @param string $value
+     * @return null
+     */
+    public function search($value)
+    {
+        // TODO need implementation
+        return null;
+    }
 } 

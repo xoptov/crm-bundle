@@ -35,8 +35,5 @@ class PerficoCRMExtension extends Extension
 
         // load converters
         $loader->load('converters.xml');
-
-        // load pbx services
-        $loader->load('pbx.xml');
     }
 }

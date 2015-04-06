@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-use Perfico\CRMBundle\Entity\PBX\Sipuni\HangupEventInterface;
+use Perfico\SipuniBundle\Entity\HangupEventInterface;
 
 class CallRecordConverter implements ConverterInterface
 {

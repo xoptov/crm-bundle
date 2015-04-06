@@ -5,7 +5,7 @@ namespace Perfico\CRMBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Perfico\CoreBundle\Entity\Call;
+use Perfico\CoreBundle\Entity\SipuniCall;
 use Perfico\CRMBundle\Transformer\Mapping\CallMap;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,10 +50,10 @@ class CallController extends Controller
      * @Method("GET")
      * @Route("/calls/{id}")
      * @ParamConverter("call", converter="account.doctrine.orm")
-     * @param Call $call
+     * @param SipuniCall $call
      * @return JsonResponse|Response
      */
-    public function getAction(Call $call)
+    public function getAction(SipuniCall $call)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CALL_VIEW_ALL'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
@@ -76,10 +76,10 @@ class CallController extends Controller
      * @Method("DELETE")
      * @Route("/calls/{id}")
      * @ParamConverter("call", converter="account.doctrine.orm")
-     * @param Call $call
+     * @param SipuniCall $call
      * @return Response
      */
-    public function removeAction(Call $call)
+    public function removeAction(SipuniCall $call)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CALL_REMOVE'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
