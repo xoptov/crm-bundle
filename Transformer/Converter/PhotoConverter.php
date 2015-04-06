@@ -8,6 +8,7 @@ class PhotoConverter extends AbstractEntityConverter
 {
     /** @var CacheManager */
     protected $cacheManager;
+    protected $defaultAvatar;
 
     /**
      * @param CacheManager $cacheManager
@@ -17,12 +18,17 @@ class PhotoConverter extends AbstractEntityConverter
         $this->cacheManager = $cacheManager;
     }
 
+    public function setDefaultAvatar($defaultAvatar)
+    {
+        $this->defaultAvatar = $defaultAvatar;
+    }
+
     public function reverseConvert($object)
     {
         if (is_string($object)) {
             return $this->cacheManager->getBrowserPath($object, 'user_photo_review');
         }
 
-        return null;
+        return $this->defaultAvatar;
     }
 } 

@@ -74,15 +74,14 @@ class TaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=1},
-     *    {"name"="note", "dataType"="string", "required"=0},
-     *    {"name"="deadLine", "dataType"="datetime", "required"=0},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="user", "dataType"="integer", "required"=0},
-     *    {"name"="company", "dataType"="integer", "required"=0},
-     *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
-     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="note", "dataType"="string", "required"=0},
+     *      {"name"="deadLine", "dataType"="datetime", "required"=0},
+     *      {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *      {"name"="user", "dataType"="integer", "required"=0},
+     *      {"name"="state", "dataType"="integer", "required"=0},
+     *      {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
      *      }
      *    }
      *   }
@@ -138,7 +137,6 @@ class TaskController extends Controller
      *    {"name"="deadLine", "dataType"="datetime", "required"=0},
      *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
      *    {"name"="user", "dataType"="integer", "required"=0},
-     *    {"name"="company", "dataType"="integer", "required"=0},
      *    {"name"="state", "dataType"="integer", "required"=0},
      *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
@@ -169,15 +167,14 @@ class TaskController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=1},
-     *    {"name"="note", "dataType"="string", "required"=0},
-     *    {"name"="deadLine", "dataType"="datetime", "required"=0},
-     *    {"name"="rememberAt", "dataType"="datetime", "required"=0},
-     *    {"name"="user", "dataType"="integer", "required"=0},
-     *    {"name"="company", "dataType"="integer", "required"=0},
-     *    {"name"="state", "dataType"="integer", "required"=0},
-     *    {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
-     *        {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
+     *      {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="note", "dataType"="string", "required"=0},
+     *      {"name"="deadLine", "dataType"="datetime", "required"=0},
+     *      {"name"="rememberAt", "dataType"="datetime", "required"=0},
+     *      {"name"="user", "dataType"="integer", "required"=0},
+     *      {"name"="state", "dataType"="integer", "required"=0},
+     *      {"name"="activities", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only activity id"}
      *      }
      *    }
      *   }
