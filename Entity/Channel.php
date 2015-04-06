@@ -10,6 +10,11 @@ abstract class Channel implements ChannelInterface
     /** @var string */
     protected $name;
 
+    /**
+     * @var string
+     */
+    protected $externalLink;
+
     /** @var AccountInterface */
     protected $account;
 
@@ -37,6 +42,24 @@ abstract class Channel implements ChannelInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExternalLink($link)
+    {
+        $this->externalLink = $link;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExternalLink()
+    {
+        return $this->externalLink;
     }
 
     /**

@@ -73,7 +73,8 @@ class ChannelController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="externalLink", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("POST")
@@ -122,7 +123,8 @@ class ChannelController extends Controller
      *      {"name"="token", "type"="text"}
      *  },
      *  parameters={
-     *    {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="externalLink", "dataType"="string", "required"=0}
      *   }
      * )
      * @Method("PUT")
@@ -132,6 +134,33 @@ class ChannelController extends Controller
      * @return Response
      */
     public function updateAction(Channel $channel)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CHANNEL_EDIT'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        return $this->handleRequest($channel);
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="Channel",
+     *  description="Update channel details",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=1},
+     *      {"name"="externalLink", "dataType"="string", "required"=0}
+     *   }
+     * )
+     * @Method("PATCH")
+     * @Route("/channels/{id}")
+     * @ParamConverter("channel", converter="account.doctrine.orm")
+     * @param Channel $channel
+     * @return Response
+     */
+    public function patchAction(Channel $channel)
     {
         if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CHANNEL_EDIT'])) {
             return new JsonResponse([], Response::HTTP_FORBIDDEN);
