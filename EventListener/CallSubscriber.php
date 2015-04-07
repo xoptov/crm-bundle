@@ -2,6 +2,7 @@
 
 namespace Perfico\CRMBundle\EventListener;
 
+use Perfico\SipuniBundle\PerficoSipuniEvents;
 use Perfico\SipuniBundle\Event\CallbackEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -17,30 +18,13 @@ class CallSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            CallbackEvent::CALL_EVENT => 'onFirstCall'
+            PerficoSipuniEvents::FIRST_CALL => 'onFirstCall'
         ];
     }
 
     public function onFirstCall(CallbackEvent $event)
     {
-        if (get_class($event->getCallEvent()) == 'Perfico\SipuniBundle\Entity\CallEvent') {
-            $call = $event->getCallEvent()->getCall();
-            if ($call->getCallEvents()->count() == 0) {
-
-                $client = $call->getActivity()->getClient();
-                $message = [
-                    'manager_id' => 0,
-                    'event' => 'incoming-call',
-                    'data' => [
-                        'client_id' => $client->getId(),
-                        'name' => $client->getFirstName(),
-                        'company' => null,
-                        'position' => $client->getPosition()
-                    ]
-                ];
-
-                $this->redis->publish('events', json_encode($message));
-            }
-        }
+        // TODO this need implementation for call processing
+        return;
     }
 } 
