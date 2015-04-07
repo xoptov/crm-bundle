@@ -30,8 +30,7 @@ class CallManagerConverter implements ConverterInterface
                     'id' => $user->getId(),
                     'firstName' => $user->getFirstName(),
                     'middleName' => $user->getMiddleName(),
-                    'lastName' => $user->getLastName(),
-                    'phone' => $user->getPhone()
+                    'lastName' => $user->getLastName()
                 ];
             }
         }

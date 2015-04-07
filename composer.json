@@ -12,9 +12,17 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.6.x-dev",
-        "phpoffice/phpexcel": "1.8.0"
+        "phpoffice/phpexcel": "1.8.0",
+        "perfico/sipuni-bundle": "dev-master",
+        "snc/redis-bundle": "1.1.8"
     },
     "autoload": {
         "psr-4": { "Perfico\\CRMBundle\\": "" }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:cleverweb/sipunibundle.git"
+        }
+    ]
 }
