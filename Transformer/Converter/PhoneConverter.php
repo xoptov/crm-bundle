@@ -25,7 +25,7 @@ class PhoneConverter implements ConverterInterface
     public function reverseConvert($object)
     {
         if ($object) {
-            return '+7' . $this->clear($object);
+            return $this->clear($object);
         }
 
         return null;
@@ -38,7 +38,7 @@ class PhoneConverter implements ConverterInterface
         /** @var PhoneInterface $phone */
         foreach($objects as $phone)
         {
-            $result[] = '+7' . $this->clear($phone->getNumber());
+            $result[] = $this->clear($phone->getNumber());
         }
 
         return implode(' ', $result);
