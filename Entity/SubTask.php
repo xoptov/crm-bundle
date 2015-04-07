@@ -2,14 +2,12 @@
 
 namespace Perfico\CRMBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 abstract class SubTask implements SubTaskInterface
 {
     /** @var integer */
     protected $id;
 
-    /** @var integer */
+    /** @var TaskInterface */
     protected $task;
 
     /** @var string */

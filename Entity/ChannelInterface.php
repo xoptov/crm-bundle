@@ -21,6 +21,17 @@ interface ChannelInterface
     public function getName();
 
     /**
+     * @param string $link
+     * @return ChannelInterface
+     */
+    public function setExternalLink($link);
+
+    /**
+     * @return string
+     */
+    public function getExternalLink();
+
+    /**
      * @param AccountInterface $account
      * @return ChannelInterface
      */

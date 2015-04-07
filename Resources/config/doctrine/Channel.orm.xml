@@ -9,7 +9,8 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="name" type="string" column="name" length="255" precision="0" scale="0" nullable="true"/>
+        <field name="name" type="string" column="name" length="255" nullable="true"/>
+        <field name="externalLink" type="string" column="external_link" length="255" nullable="true"/>
         
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-column name="account_id" referenced-column-name="id" nullable="true"/>
