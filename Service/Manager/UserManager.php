@@ -101,7 +101,7 @@ class UserManager extends GenericManager
      * @param string $contactInfo
      * @return null|User
      */
-    public function searchByContact($contactInfo)
+    public function searchByPhone($contactInfo)
     {
         /** @var QueryBuilder $qb */
 //        $qb = $this->em->createQueryBuilder();
@@ -117,7 +117,7 @@ class UserManager extends GenericManager
 //
 //        return $query->getOneOrNullResult();
 
-        // TODO need implementation search with new logic
+        // TODO need implementation search with new logic and using Contact::search() instead this method
 
         return null;
     }
