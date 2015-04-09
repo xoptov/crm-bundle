@@ -2,98 +2,30 @@
 
 namespace Perfico\CRMBundle\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Perfico\CRMBundle\Entity\CallInterface;
-use Perfico\CRMBundle\Entity\ClientInterface;
-use Perfico\CRMBundle\Entity\UserInterface;
-use Perfico\CRMBundle\Exception\CallDirectionException;
+use Perfico\CRMBundle\Entity\CompanyInterface;
 use Perfico\CRMBundle\PerficoCRMEvents;
-use Perfico\CRMBundle\Service\Manager\ClientManager;
-use Perfico\CRMBundle\Service\Telephony\PhoneManager;
-use Perfico\SipuniBundle\PerficoSipuniEvents;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
 use Perfico\SipuniBundle\Event\CallbackEvent;
+use Perfico\SipuniBundle\Entity\CallEventInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Perfico\CRMBundle\Service\Manager\ActivityManager;
-use Perfico\CRMBundle\Service\Manager\AccountManager;
-use Perfico\CRMBundle\Service\Telephony\CallManager;
 use Perfico\CRMBundle\Entity\Call;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CallSubscriber implements EventSubscriberInterface
 {
-    /** @var ActivityManager */
-    private $activityManager;
+    /** @var \Redis */
+    private $redis;
 
-    /** @var AccountManager */
-    private $accountManager;
-
-    /** @var CallManager */
-    private $callManager;
-
-    /** @var ClientManager */
-    private $clientManager;
-
-    /** @var  EventDispatcherInterface */
-    private $dispatcher;
-
-    public function __construct(ActivityManager $activityManager, AccountManager $accountManager, CallManager $callManager, ClientManager $clientManager, EventDispatcherInterface $dispatcher)
-    {
-        $this->activityManager = $activityManager;
-        $this->accountManager = $accountManager;
-        $this->callManager = $callManager;
-        $this->clientManager = $clientManager;
-        $this->dispatcher = $dispatcher;
-    }
-
-    /**
-     * @return array
-     */
     public static function getSubscribedEvents()
     {
         return [
-            PerficoSipuniEvents::FIRST_CALL => 'onFirstCall',
-            PerficoSipuniEvents::CALL => 'onCall',
-            PerficoSipuniEvents::ANSWER => 'onAnswer',
-            PerficoSipuniEvents::HANGUP => 'onHangup'
+            PerficoCRMEvents::CALL => 'onCall'
         ];
     }
 
-    public function onFirstCall(CallbackEvent $event)
+    public function __construct($redis)
     {
-        $callEvent = $event->getCallEvent();
-
-        /** @var Call $call */
-        $call = $callEvent->getCall();
-        $callerSystem = $this->callManager->getCallerSystem($callEvent);
-
-        $activity = $this->activityManager->create();
-        $activity->setType('call');
-        $this->activityManager->update($activity, false);
-
-        $call->setActivity($activity);
-        $call->setAccount($this->accountManager->getCurrentAccount());
-
-        $user = $callerSystem->searchSourceUser($callEvent);
-
-        if ($user instanceof UserInterface) {
-            $call->setDirection(CallInterface::DIRECTION_OUTBOUND);
-            $activity->setUser($user);
-        } else {
-            $call->setDirection(CallInterface::DIRECTION_INCOMING);
-            $client = $callerSystem->searchSourceClient($callEvent);
-
-            if ($client instanceof ClientInterface) {
-                $activity->setClient($client);
-            } else {
-                // TODO need remove this if-then logic since clients can call from Skype or Sip
-                if ($callerSystem instanceof PhoneManager) {
-                    $client = $this->clientManager->create();
-                    $this->clientManager->update($client, false);
-                    $callerSystem->prepareNewClient($client, $callEvent->getSrcNumber());
-                    $activity->setClient($client);
-                }
-            }
-        }
+        $this->redis = $redis;
     }
 
     public function onCall(CallbackEvent $event)
@@ -101,53 +33,39 @@ class CallSubscriber implements EventSubscriberInterface
         $callEvent = $event->getCallEvent();
         /** @var Call $call */
         $call = $callEvent->getCall();
-        $calledSystem = $this->callManager->getCalledSystem($callEvent);
+        $account = $call->getAccount();
 
-        if ($call->getDirection() == CallInterface::DIRECTION_INCOMING) {
-
-            $user = $calledSystem->searchDestinationUser($callEvent);
-
-            if ($user instanceof UserInterface) {
-                $call->addCallee($user);
-            } else {
-                $this->dispatcher->dispatch(PerficoCRMEvents::CALLEE_USER_NOT_FOUND, $event);
-            }
-
-            $this->dispatcher->dispatch(PerficoCRMEvents::CALL, $event);
-
-        } else if ($call->getDirection() == CallInterface::DIRECTION_OUTBOUND) {
-            $client = $calledSystem->searchDestinationClient($callEvent);
-
-            if ($client instanceof ClientInterface) {
-                $call->getActivity()->setClient($client);
-            } else {
-                $this->dispatcher->dispatch(PerficoCRMEvents::CALLEE_CLIENT_NOT_FOUND);
-            }
-        } else {
-            throw new CallDirectionException($callEvent);
+        if ($call->getDirection() != CallInterface::DIRECTION_INCOMING) {
+            return;
         }
-    }
 
-    public function onAnswer(CallbackEvent $event)
-    {
-        $callEvent = $event->getCallEvent();
-        /** @var Call $call */
-        $call = $callEvent->getCall();
-        $callSystem = $this->callManager->getCalledSystem($callEvent);
+        $converter = new ObjectScalarConverter();
 
-        if ($call->getDirection() == CallInterface::DIRECTION_INCOMING) {
-            $user = $callSystem->searchDestinationUser($callEvent);
+        if ($callEvent instanceof CallEventInterface) {
+            $client = $call->getActivity()->getClient();
+            $managerIds = [];
 
-            if ($user instanceof UserInterface) {
-                $call->getActivity()->setUser($user);
-            } else {
-                $this->dispatcher->dispatch(PerficoCRMEvents::CALLEE_USER_NOT_FOUND, $event);
+            if ($call->getCalledUsers()->count()) {
+                $managerIds = $converter->reverseConvertCollection($call->getCalledUsers());
             }
-        }
-    }
 
-    public function onHangup(CallbackEvent $event)
-    {
-        return;
+            $company = null;
+            if ($client->getCompany() instanceof CompanyInterface) {
+                $company = $client->getCompany()->getName();
+            }
+
+            $message = [
+                'managerIds' => $managerIds,
+                'event' => 'incoming-call',
+                'data' => [
+                    'clientId' => $client->getId(),
+                    'name' => $client->getFirstName() . ' ' . $client->getLastName(),
+                    'company' => $company,
+                    'position' => $client->getPosition()
+                ]
+            ];
+
+            $this->redis->publish('events.' . $account->getDomain(), json_encode($message));
+        }
     }
 } 
