@@ -2,13 +2,13 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-use Perfico\CRMBundle\Entity\Task;
+use Perfico\CRMBundle\Entity\TaskInterface;
 
 class TaskConverter extends AbstractEntityConverter
 {
     public function reverseConvert($object)
     {
-        if ($object instanceof Task) {
+        if ($object instanceof TaskInterface) {
             return [
                 'id' => $object->getId(),
                 'name' => $object->getName(),

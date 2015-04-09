@@ -2,10 +2,6 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\GroupDetailConverter;
-use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
-use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
-
 class UserMap implements MapInterface
 {
     public function getReverseMap()

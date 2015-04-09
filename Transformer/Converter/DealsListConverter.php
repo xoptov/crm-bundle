@@ -2,7 +2,7 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-use Perfico\CoreBundle\Entity\Payment;
+use Perfico\CRMBundle\Entity\PaymentInterface;
 
 class DealsListConverter implements ConverterInterface
 {
@@ -19,7 +19,7 @@ class DealsListConverter implements ConverterInterface
         $paid = 0;
         foreach ($objects as $object)
         {
-           if ($object instanceof Payment)
+           if ($object instanceof PaymentInterface)
            {
                $paid += $object->getAmount();
            }

@@ -46,7 +46,6 @@ class PhoneManager extends GenericManager
 
     /**
      * @return Phone
-     * @todo need refactoring this method
      */
     public function create()
     {

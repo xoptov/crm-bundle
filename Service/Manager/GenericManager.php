@@ -31,11 +31,15 @@ abstract class GenericManager implements GenericManagerInterface
 
     /**
      * @param mixed $entity
+     * @param boolean $flush
      */
-    public function update($entity)
+    public function update($entity, $flush = true)
     {
         $this->em->persist($entity);
-        $this->em->flush();
+
+        if ($flush) {
+            $this->em->flush();
+        }
     }
 
     /**

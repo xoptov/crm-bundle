@@ -2,13 +2,13 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-use Perfico\CRMBundle\Entity\Company;
+use Perfico\CRMBundle\Entity\CompanyInterface;
 
 class CompanyConverter extends AbstractEntityConverter
 {
     public function reverseConvert($object)
     {
-        if ($object instanceof Company) {
+        if ($object instanceof CompanyInterface) {
             return [
                 'id' => $object->getId(),
                 'name' => $object->getName(),

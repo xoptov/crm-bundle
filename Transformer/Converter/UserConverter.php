@@ -2,13 +2,13 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
-use Perfico\CRMBundle\Entity\User;
+use Perfico\CRMBundle\Entity\UserInterface;
 
 class UserConverter extends AbstractEntityConverter
 {
     public function reverseConvert($object)
     {
-        if ($object instanceof User) {
+        if ($object instanceof UserInterface) {
             return [
                 'id' => $object->getId(),
                 'firstName' => $object->getFirstName(),

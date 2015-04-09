@@ -93,7 +93,11 @@
         </service>
 
         <service id="perfico_crm.call_subscriber" class="Perfico\CRMBundle\EventListener\CallSubscriber">
-            <argument type="service" id="snc_redis.default"/>
+            <argument type="service" id="perfico_crm.activity_manager"/>
+            <argument type="service" id="perfico_crm.account_manager"/>
+            <argument type="service" id="perfico_crm.call_manager"/>
+            <argument type="service" id="perfico_crm.client_manager"/>
+            <argument type="service" id="event_dispatcher"/>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>

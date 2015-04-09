@@ -3,7 +3,7 @@
 namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Perfico\CoreBundle\Entity\Deal;
-use Perfico\CoreBundle\Entity\DealState;
+use Perfico\CRMBundle\Entity\DealStateInterface;
 
 class ClientsListDealStatesConverter extends AbstractEntityConverter
 {
@@ -17,7 +17,7 @@ class ClientsListDealStatesConverter extends AbstractEntityConverter
         $deal = $this->em->getReference('CoreBundle:Deal', $object->getId());
         $dealState = $deal->getState();
 
-        if ($dealState instanceof DealState) {
+        if ($dealState instanceof DealStateInterface) {
             return [
                 'id' => $dealState->getId(),
                 'name' => $dealState->getName(),
