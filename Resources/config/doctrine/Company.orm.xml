@@ -14,12 +14,6 @@
         <field name="phone" type="string" column="phone" length="255" nullable="true"/>
         <field name="details" type="text" column="details" nullable="true"/>
 
-        <many-to-one field="user" target-entity="Perfico\CRMBundle\Entity\UserInterface">
-            <join-columns>
-                <join-column name="user_id" referenced-column-name="id"/>
-            </join-columns>
-        </many-to-one>
-
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
                 <join-column name="account_id" referenced-column-name="id" nullable="true"/>

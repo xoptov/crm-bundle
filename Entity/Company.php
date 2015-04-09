@@ -19,9 +19,6 @@ abstract class Company implements CompanyInterface
     /** @var string */
     protected $details;
 
-    /** @var UserInterface */
-    protected $user;
-
     /** @var AccountInterface */
     protected $account;
 
@@ -103,22 +100,6 @@ abstract class Company implements CompanyInterface
     public function getDetails()
     {
         return $this->details;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
