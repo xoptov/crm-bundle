@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Transformer\Converter;
 
+use Perfico\CRMBundle\Entity\ActivityInterface;
+
 class CompanyLastActivityConverter extends AbstractEntityConverter
 {
     public function reverseConvert($object)
@@ -16,7 +18,7 @@ class CompanyLastActivityConverter extends AbstractEntityConverter
 
         $activity = $qb->getQuery()->getOneOrNullResult();
 
-        if ($activity) {
+        if ($activity instanceof ActivityInterface) {
             $dateConverter = new DateTimeConverter();
             return [
                 'id' => $activity->getId(),

@@ -9,16 +9,10 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="name" type="string" column="name" length="255" precision="0" scale="0" nullable="false"/>
-        <field name="inn" type="string" column="inn" length="20" precision="0" scale="0" nullable="true"/>
-        <field name="phone" type="string" column="phone" length="255" precision="0" scale="0" nullable="true"/>
-        <field name="details" type="string" column="details" length="255" precision="0" scale="0" nullable="true"/>
-
-        <many-to-one field="user" target-entity="Perfico\CRMBundle\Entity\UserInterface">
-            <join-columns>
-                <join-column name="user_id" referenced-column-name="id"/>
-            </join-columns>
-        </many-to-one>
+        <field name="name" type="string" column="name" length="255" nullable="false"/>
+        <field name="inn" type="string" column="inn" length="20" nullable="true"/>
+        <field name="phone" type="string" column="phone" length="255" nullable="true"/>
+        <field name="details" type="text" column="details" nullable="true"/>
 
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>

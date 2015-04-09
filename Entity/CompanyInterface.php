@@ -54,17 +54,6 @@ interface CompanyInterface
     public function getDetails();
 
     /**
-     * @param UserInterface $user
-     * @return CompanyInterface
-     */
-    public function setUser(UserInterface $user);
-
-    /**
-     * @return UserInterface
-     */
-    public function getUser();
-
-    /**
      * @param AccountInterface $account
      * @return CompanyInterface
      */

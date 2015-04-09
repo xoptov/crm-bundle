@@ -2,8 +2,8 @@
 
 namespace Perfico\CRMBundle\Transformer\Mapping;
 
-use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
+use Perfico\CRMBundle\Transformer\Converter\PhoneScalarConverter;
 
 class CompanyContactsMap implements MapInterface
 {
@@ -31,7 +31,7 @@ class CompanyContactsMap implements MapInterface
                 'collection' => true
             ],
             'phones' => [
-                'converter' => new PhoneConverter(),
+                'converter' => new PhoneScalarConverter(),
                 'method' => 'getPhones',
                 'collection' => true
             ],

@@ -4,7 +4,8 @@ namespace Perfico\CRMBundle\Transformer\Mapping;
 
 use Perfico\CRMBundle\Transformer\Converter\DateTimeConverter;
 use Perfico\CRMBundle\Transformer\Converter\BooleanConverter;
-use Perfico\CRMBundle\Transformer\Converter\PhoneConverter;
+use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
+use Perfico\CRMBundle\Transformer\Converter\PhoneScalarConverter;
 
 class ClientSearchMap implements MapInterface
 {
@@ -87,13 +88,13 @@ class ClientSearchMap implements MapInterface
                 'collection' => true
             ],
             'tags' => [
-                'converter' => 'perfico_crm.api.tag_converter',
+                'converter' => new ObjectScalarConverter(),
                 'method' => 'getTags',
                 'collection' => true
             ],
             'note' => 'getNote',
             'phones' => [
-                'converter' => new PhoneConverter(),
+                'converter' => new PhoneScalarConverter(),
                 'method' => 'getPhones',
                 'collection' => true
             ],

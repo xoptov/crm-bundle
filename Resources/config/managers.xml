@@ -24,7 +24,25 @@
             <argument type="service" id="security.context"/>
         </service>
 
-        <service id="perfico_crm.call_manager" class="Perfico\CRMBundle\Service\Manager\CallManager" parent="perfico_crm.generic_manager"/>
+        <service id="perfico_crm.call_manager" class="Perfico\CRMBundle\Service\Telephony\CallManager" parent="perfico_crm.generic_manager">
+            <call method="setManagers" >
+                <argument type="collection">
+                    <argument type="service" id="perfico_crm.telephony_phone_manager"/>
+                    <argument type="service" id="perfico_crm.telephony_sip_manager"/>
+                    <argument type="service" id="perfico_crm.telephony_skype_manager"/>
+                </argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.telephony_phone_manager" class="Perfico\CRMBundle\Service\Telephony\PhoneManager" parent="perfico_crm.phone_manager"/>
+
+        <service id="perfico_crm.telephony_sip_manager" class="Perfico\CRMBundle\Service\Telephony\SipManager">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+
+        <service id="perfico_crm.telephony_skype_manager" class="Perfico\CRMBundle\Service\Telephony\SkypeManager">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
 
         <service id="perfico_crm.client_manager" class="Perfico\CRMBundle\Service\Manager\ClientManager" parent="perfico_crm.generic_manager"/>
 

@@ -59,6 +59,12 @@
             </call>
         </service>
 
+        <service id="perfico_crm.api.phone_converter" class="Perfico\CRMBundle\Transformer\Converter\PhoneConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.phone%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.clients_list_statuses_converter" class="Perfico\CRMBundle\Transformer\Converter\ClientsListDealStatesConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.deal%</argument>

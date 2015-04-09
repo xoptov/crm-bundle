@@ -15,5 +15,7 @@ class GroupConverter extends AbstractEntityConverter
                 'roles' => $object->getRoles()
             ];
         }
+
+        return null;
     }
 } 

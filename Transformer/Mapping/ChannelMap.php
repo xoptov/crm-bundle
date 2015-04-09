@@ -7,7 +7,8 @@ class ChannelMap implements MapInterface
     public function getReverseMap()
     {
         return [
-            'setName' => 'name'
+            'setName' => 'name',
+            'setExternalLink' => 'externalLink'
         ];
     }
 
@@ -15,7 +16,8 @@ class ChannelMap implements MapInterface
     {
         return [
             'id' => 'getId',
-            'name' => 'getName'
+            'name' => 'getName',
+            'externalLink' => 'getExternalLink'
         ];
     }
 } 

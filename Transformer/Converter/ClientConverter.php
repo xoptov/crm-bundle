@@ -3,12 +3,13 @@
 namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Perfico\CoreBundle\Entity\Client;
+use Perfico\CRMBundle\Entity\ClientInterface;
 
 class ClientConverter extends AbstractEntityConverter
 {
     public function reverseConvert($object)
     {
-        if ($object instanceof Client) {
+        if ($object instanceof ClientInterface) {
             return [
                 'id' => $object->getId(),
                 'firstName' => $object->getFirstName(),
@@ -17,7 +18,6 @@ class ClientConverter extends AbstractEntityConverter
                 'note' => $object->getNote(),
                 'position' => $object->getPosition(),
                 'email' => $object->getEmail(),
-                'skype' => $object->getSkype(),
                 'customField1' => $object->getCustomField1(),
                 'customField2' => $object->getCustomField2(),
                 'customField4' => $object->getCustomField3(),
