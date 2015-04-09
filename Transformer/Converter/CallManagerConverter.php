@@ -6,7 +6,7 @@ use Perfico\CRMBundle\Entity\ActivityInterface;
 use Perfico\CRMBundle\Entity\UserInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 
-class CallManagerConverter implements ConverterInterface
+class CallManagerConverter extends AbstractEntityConverter
 {
     /** @var CacheManager */
     protected $cacheManager;
