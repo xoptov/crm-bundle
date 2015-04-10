@@ -74,7 +74,7 @@ class PhoneManager extends BasePhoneManager implements TelephonyManager
         $query = $qb->select('c')
             ->from('CoreBundle:Client', 'c')
             ->leftJoin('c.phones', 'p')
-            ->where('p.account = :account')->setParameter('account', $call->getAccount())
+            ->where('c.account = :account')->setParameter('account', $call->getAccount())
             ->andWhere('p.number LIKE :number')->setParameter('number', '%' . $number . '%')
             ->setMaxResults(1)
             ->getQuery();
@@ -96,7 +96,7 @@ class PhoneManager extends BasePhoneManager implements TelephonyManager
         $query = $qb->select('c')
             ->from('CoreBundle:Client', 'c')
             ->leftJoin('c.phones', 'p')
-            ->where('p.account = :account')->setParameter('account', $call->getAccount())
+            ->where('c.account = :account')->setParameter('account', $call->getAccount())
             ->andWhere('p.number LIKE :number')->setParameter('number', '%' . $number . '%')
             ->setMaxResults(1)
             ->getQuery();
