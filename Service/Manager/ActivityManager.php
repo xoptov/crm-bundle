@@ -117,7 +117,7 @@ class ActivityManager extends GenericManager
 
         $note .= $this->translator->trans('activity.note.manager', array(
             '%manager%' => $call->getUser()->getFullName(),
-            '%phone%' => $call->getAnswerEvent()->getSrcNumber()
+            '%phone%' => $call->getAnswerEvent()->getDstNumber()
         ));
 
         $call->getActivity()->setNote($note);
