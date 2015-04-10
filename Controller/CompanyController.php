@@ -108,7 +108,10 @@ class CompanyController extends Controller
         $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new CompanySearchMap());
         $companies = $this->get('perfico_crm.company_manager')->search($condition);
 
-        $result = $this->get('perfico_crm.api.transformer')->transformCollection($companies, new CompanySearchMap(), 'companies');
+        $result = [
+            'items' => $this->get('perfico_crm.api.transformer')->transformCollection($companies, new CompanySearchMap(), 'companies'),
+            'total' => $this->get('perfico_crm.company_manager')->resultCount($condition)
+        ];
 
         return new JsonResponse($result);
     }
