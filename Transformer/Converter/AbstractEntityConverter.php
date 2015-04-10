@@ -4,6 +4,7 @@ namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Collections\Collection;
+use Perfico\CRMBundle\Service\Manager\AccountManager;
 
 /**
  * This class needed as start point for inheritance by children services

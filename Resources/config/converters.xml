@@ -45,6 +45,7 @@
 
         <service id="perfico_crm.api.entity_converter" class="Perfico\CRMBundle\Transformer\Converter\AbstractEntityConverter" abstract="true">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="perfico_crm.account_manager"/>
         </service>
 
         <service id="perfico_crm.api.channel_converter" class="Perfico\CRMBundle\Transformer\Converter\ChannelConverter" parent="perfico_crm.api.entity_converter">
@@ -152,6 +153,9 @@
         <service id="perfico_crm.api.group_converter" class="Perfico\CRMBundle\Transformer\Converter\GroupConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.group%</argument>
+            </call>
+            <call method="setAccountManager">
+                <argument type="service" id="perfico_crm.account_manager"/>
             </call>
         </service>
 
