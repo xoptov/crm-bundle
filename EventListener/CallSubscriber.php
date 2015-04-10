@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\EventListener;
 
 use Perfico\CRMBundle\Entity\CallInterface;
+use Perfico\CRMBundle\Entity\ClientInterface;
 use Perfico\CRMBundle\Entity\CompanyInterface;
 use Perfico\CRMBundle\PerficoCRMEvents;
 use Perfico\CRMBundle\Transformer\Converter\ObjectScalarConverter;
@@ -42,7 +43,11 @@ class CallSubscriber implements EventSubscriberInterface
         $converter = new ObjectScalarConverter();
 
         if ($callEvent instanceof CallEventInterface) {
-            $client = $call->getActivity()->getClient();
+            if (!$call->getClient() instanceof ClientInterface) {
+                return;
+            }
+
+            $client = $call->getClient();
             $managerIds = [];
 
             if ($call->getCalledUsers()->count()) {

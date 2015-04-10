@@ -22,7 +22,7 @@ class SipManager implements TelephonyManager
      */
     public function checkFormat($value)
     {
-        return preg_match('/^0[0-9]{9}$/', $value);
+        return preg_match('/^0[0-9]{8}$/', $value);
     }
 
     /**
