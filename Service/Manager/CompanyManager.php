@@ -10,6 +10,7 @@ use Perfico\CRMBundle\Service\Search\PreparePaginationTrait;
 use Perfico\CRMBundle\Service\Search\PreparePhoneTrait;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 class CompanyManager extends GenericManager
 {
@@ -48,6 +49,25 @@ class CompanyManager extends GenericManager
         }
 
         return $company;
+    }
+
+    /**
+     * @param CompanyConditionInterface $condition
+     * @return array
+     */
+    public function resultCount(CompanyConditionInterface $condition)
+    {
+        $this->qb = $this->em->createQueryBuilder();
+        $this->qb->select('COUNT(co)')->from('CoreBundle:Company', 'co');
+        $this->initQueryBuilder($condition);
+
+        try {
+            $count = (int)$this->qb->getQuery()->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            $count = 0;
+        }
+
+        return $count;
     }
 
     /**

@@ -22,7 +22,7 @@ class CallMap implements MapInterface
                 'method' => 'getCreatedAt'
             ],
             'user' => [
-                'converter' => new CallManagerConverter(),
+                'converter' => 'perfico_crm.api.call_manager_converter',
                 'method' => 'getActivity'
             ],
             'record' => [
