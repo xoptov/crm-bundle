@@ -57,4 +57,47 @@ interface CallInterface
      * @return UserInterface|null
      */
     public function getLastCallee();
+
+    /**
+     * @param integer $seconds
+     * @return CallInterface
+     */
+    public function setDuration($seconds);
+
+    /**
+     * @return integer
+     */
+    public function getDuration();
+
+    /**
+     * @param UserInterface $user
+     * @return CallInterface
+     */
+    public function setUser(UserInterface $user);
+
+    /**
+     * @return UserInterface
+     */
+    public function getUser();
+
+    /**
+     * @param ClientInterface $client
+     * @return CallInterface
+     */
+    public function setClient(ClientInterface $client);
+
+    /**
+     * @return ClientInterface
+     */
+    public function getClient();
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartTalk();
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndTalk();
 } 

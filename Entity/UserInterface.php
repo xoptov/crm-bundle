@@ -47,6 +47,11 @@ interface UserInterface extends BaseUserInterface
     public function getMiddleName();
 
     /**
+     * @return string
+     */
+    public function getFullName();
+
+    /**
      * @param ArrayCollection $contacts
      * @return UserInterface
      */

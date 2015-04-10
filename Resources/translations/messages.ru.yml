@@ -16,7 +16,7 @@ activity:
         status: "Статус: %status%\n"
         duration: "Продолжительность: %duration%\n"
         record: "Прослушать запись: %record%\n"
-        user: "Менеджер: %firstName% %phone%\n"
+        manager: "Менеджер: %manager% %phone%\n"
 
 errors:
     deal_state:

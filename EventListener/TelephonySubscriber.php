@@ -9,6 +9,7 @@ use Perfico\CRMBundle\Exception\CallDirectionException;
 use Perfico\CRMBundle\PerficoCRMEvents;
 use Perfico\CRMBundle\Service\Manager\ClientManager;
 use Perfico\CRMBundle\Service\Telephony\PhoneManager;
+use Perfico\SipuniBundle\Entity\AnswerEvent;
 use Perfico\SipuniBundle\PerficoSipuniEvents;
 use Perfico\SipuniBundle\Event\CallbackEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -70,26 +71,28 @@ class TelephonySubscriber implements EventSubscriberInterface
         $this->activityManager->update($activity, false);
 
         $call->setActivity($activity);
+        unset($activity);
+
         $call->setAccount($this->accountManager->getCurrentAccount());
 
         $user = $callerSystem->searchSourceUser($callEvent);
 
         if ($user instanceof UserInterface) {
             $call->setDirection(CallInterface::DIRECTION_OUTBOUND);
-            $activity->setUser($user);
+            $call->setUser($user);
         } else {
             $call->setDirection(CallInterface::DIRECTION_INCOMING);
             $client = $callerSystem->searchSourceClient($callEvent);
 
             if ($client instanceof ClientInterface) {
-                $activity->setClient($client);
+                $call->setClient($client);
             } else {
                 // TODO need remove this if-then logic since clients can call from Skype or Sip
                 if ($callerSystem instanceof PhoneManager) {
                     $client = $this->clientManager->create();
                     $this->clientManager->update($client, false);
                     $callerSystem->prepareNewClient($client, $callEvent->getSrcNumber());
-                    $activity->setClient($client);
+                    $call->setClient($client);
                 }
             }
         }
@@ -118,7 +121,7 @@ class TelephonySubscriber implements EventSubscriberInterface
             $client = $calledSystem->searchDestinationClient($callEvent);
 
             if ($client instanceof ClientInterface) {
-                $call->getActivity()->setClient($client);
+                $call->setClient($client);
             } else {
                 $this->dispatcher->dispatch(PerficoCRMEvents::CALLEE_CLIENT_NOT_FOUND);
             }
@@ -138,7 +141,7 @@ class TelephonySubscriber implements EventSubscriberInterface
             $user = $callSystem->searchDestinationUser($callEvent);
 
             if ($user instanceof UserInterface) {
-                $call->getActivity()->setUser($user);
+                $call->setUser($user);
             } else {
                 $this->dispatcher->dispatch(PerficoCRMEvents::CALLEE_USER_NOT_FOUND, $event);
             }
@@ -147,6 +150,22 @@ class TelephonySubscriber implements EventSubscriberInterface
 
     public function onHangup(CallbackEvent $event)
     {
-        return;
+        $callEvent = $event->getCallEvent();
+        /** @var Call $call */
+        $call = $callEvent->getCall();
+
+        if ($call->getDirection() == CallInterface::DIRECTION_INCOMING) {
+            if ($call->getUser() instanceof UserInterface && $call->getAnswerEvent() instanceof AnswerEvent) {
+                $this->callManager->calcTalkDuration($call);
+                $this->activityManager->prepareIncomingCallNote($call);
+            }
+        } else if ($call->getDirection() == CallInterface::DIRECTION_OUTBOUND) {
+            if ($call->getAnswerEvent() instanceof AnswerEvent) {
+                $this->callManager->calcTalkDuration($call);
+            }
+        } else {
+            throw new CallDirectionException($callEvent);
+        }
     }
+
 } 

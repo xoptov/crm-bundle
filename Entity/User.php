@@ -100,6 +100,14 @@ abstract class User extends BaseUser implements UserInterface
     /**
      * {@inheritdoc}
      */
+    public function getFullName()
+    {
+        return trim($this->getFirstName() . ' ' . $this->getLastName());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setContacts($contacts)
     {
         $this->contacts = $contacts;

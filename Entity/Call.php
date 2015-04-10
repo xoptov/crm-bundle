@@ -2,8 +2,10 @@
 
 namespace Perfico\CRMBundle\Entity;
 
+use Perfico\SipuniBundle\Entity\AnswerEvent;
 use Perfico\SipuniBundle\Entity\Call as BaseCall;
 use Doctrine\Common\Collections\ArrayCollection;
+use Perfico\SipuniBundle\Entity\HangupEventInterface;
 
 abstract class Call extends BaseCall implements CallInterface
 {
@@ -18,6 +20,9 @@ abstract class Call extends BaseCall implements CallInterface
 
     /** @var ArrayCollection */
     protected $calledUsers;
+
+    /** @var integer */
+    protected $duration;
 
     public function __construct()
     {
@@ -104,5 +109,83 @@ abstract class Call extends BaseCall implements CallInterface
     public function getLastCallee()
     {
         return $this->calledUsers->last();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDuration($seconds)
+    {
+        $this->duration = $seconds;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->activity->setUser($user);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser()
+    {
+        if ($this->activity instanceof ActivityInterface) {
+            return $this->activity->getUser();
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setClient(ClientInterface $client)
+    {
+        $this->activity->setClient($client);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getClient()
+    {
+        if ($this->activity instanceof ActivityInterface) {
+            return $this->activity->getClient();
+        }
+
+        return null;
+    }
+
+    public function getStartTalk()
+    {
+        if ($this->answerEvent instanceof AnswerEvent) {
+            return $this->answerEvent->getEventDate();
+        }
+        
+        return null;
+    }
+
+    public function getEndTalk()
+    {
+        if ($this->hangupEvent instanceof HangupEventInterface) {
+            return $this->hangupEvent->getEventDate();
+        }
+
+        return null;
     }
 } 
