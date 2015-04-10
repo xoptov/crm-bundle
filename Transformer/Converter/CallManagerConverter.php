@@ -11,12 +11,19 @@ class CallManagerConverter extends AbstractEntityConverter
     /** @var CacheManager */
     protected $cacheManager;
 
+    protected $defaultAvatar;
+
     /**
      * @param CacheManager $cacheManager
      */
     public function setCacheManager(CacheManager $cacheManager)
     {
         $this->cacheManager = $cacheManager;
+    }
+
+    public function setDefaultAvatar($defaultAvatar)
+    {
+        $this->defaultAvatar = $defaultAvatar;
     }
 
     public function convert($value)
@@ -42,7 +49,7 @@ class CallManagerConverter extends AbstractEntityConverter
                     $photo = $this->cacheManager->getBrowserPath($user->getPhoto(), 'user_photo_review');
                 }
                 else {
-                    $photo = null;
+                    $photo = $this->defaultAvatar;
                 }
                 return [
                     'id' => $user->getId(),

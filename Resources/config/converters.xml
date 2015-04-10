@@ -162,6 +162,9 @@
             <call method="setCacheManager">
                 <argument type="service" id="liip_imagine.cache.manager"/>
             </call>
+            <call method="setDefaultAvatar">
+                <argument type="string">%default_user_avatar%</argument>
+            </call>
         </service>
 
     </services>
