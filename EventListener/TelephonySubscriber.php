@@ -9,6 +9,7 @@ use Perfico\CRMBundle\Exception\CallDirectionException;
 use Perfico\CRMBundle\PerficoCRMEvents;
 use Perfico\CRMBundle\Service\Manager\ClientManager;
 use Perfico\CRMBundle\Service\Telephony\PhoneManager;
+use Perfico\CRMBundle\Service\Telephony\SipManager;
 use Perfico\SipuniBundle\Entity\AnswerEvent;
 use Perfico\SipuniBundle\PerficoSipuniEvents;
 use Perfico\SipuniBundle\Event\CallbackEvent;
@@ -80,6 +81,14 @@ class TelephonySubscriber implements EventSubscriberInterface
         if ($user instanceof UserInterface) {
             $call->setDirection(CallInterface::DIRECTION_OUTBOUND);
             $call->setUser($user);
+
+            // Dispatch PerficoSipuniEvents::CALL when using SIP system for outbound call
+            if ($callerSystem instanceof SipManager) {
+                $e = new CallbackEvent();
+                $e->setCallEvent($callEvent);
+                $this->dispatcher->dispatch(PerficoSipuniEvents::CALL, $e);
+            }
+
         } else {
             $call->setDirection(CallInterface::DIRECTION_INCOMING);
             $client = $callerSystem->searchSourceClient($callEvent);
