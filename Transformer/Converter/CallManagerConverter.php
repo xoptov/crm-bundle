@@ -4,9 +4,28 @@ namespace Perfico\CRMBundle\Transformer\Converter;
 
 use Perfico\CRMBundle\Entity\ActivityInterface;
 use Perfico\CRMBundle\Entity\UserInterface;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 
-class CallManagerConverter implements ConverterInterface
+class CallManagerConverter extends AbstractEntityConverter
 {
+    /** @var CacheManager */
+    protected $cacheManager;
+
+    protected $defaultAvatar;
+
+    /**
+     * @param CacheManager $cacheManager
+     */
+    public function setCacheManager(CacheManager $cacheManager)
+    {
+        $this->cacheManager = $cacheManager;
+    }
+
+    public function setDefaultAvatar($defaultAvatar)
+    {
+        $this->defaultAvatar = $defaultAvatar;
+    }
+
     public function convert($value)
     {
     }
@@ -26,12 +45,19 @@ class CallManagerConverter implements ConverterInterface
             $user = $object->getUser();
 
             if ($user instanceof UserInterface) {
+                if (is_string($user->getPhoto())) {
+                    $photo = $this->cacheManager->getBrowserPath($user->getPhoto(), 'user_photo_review');
+                }
+                else {
+                    $photo = $this->defaultAvatar;
+                }
                 return [
                     'id' => $user->getId(),
                     'firstName' => $user->getFirstName(),
                     'middleName' => $user->getMiddleName(),
                     'lastName' => $user->getLastName(),
-                    'phone' => $user->getPhone()
+                    'phone' => $user->getPhone(),
+                    'photo' => $photo
                 ];
             }
         }
