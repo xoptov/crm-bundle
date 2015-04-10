@@ -5,6 +5,7 @@ namespace Perfico\CRMBundle\Service\Manager;
 use Perfico\CoreBundle\Entity\Activity;
 use Perfico\CoreBundle\Entity\Client;
 use Perfico\CoreBundle\Entity\Company;
+use Perfico\CRMBundle\Entity\Call;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\EntityRepository;
@@ -99,5 +100,26 @@ class ActivityManager extends GenericManager
         }
 
         return $activity;
+    }
+
+    public function prepareIncomingCallNote(Call $call)
+    {
+        $status = $this->translator->trans('activity.status.' . $call->getHangupEvent()->getStatus());
+
+        $note = $this->translator->trans('activity.note.datetime', array('%dateTime%' => $call->getEndTalk()->format('d.m.Y H:i')));
+        $note .= $this->translator->trans('activity.note.status', array('%status%' => $status));
+
+        if ($call->getStartTalk() && $call->getEndTalk()) {
+            $note .= $this->translator->trans('activity.note.duration', array(
+                '%duration%' => $call->getStartTalk()->diff($call->getEndTalk())->format('%H:%I:%S')
+            ));
+        }
+
+        $note .= $this->translator->trans('activity.note.manager', array(
+            '%manager%' => $call->getUser()->getFullName(),
+            '%phone%' => $call->getAnswerEvent()->getSrcNumber()
+        ));
+
+        $call->getActivity()->setNote($note);
     }
 } 

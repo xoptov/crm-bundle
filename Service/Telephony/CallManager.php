@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Service\Telephony;
 
 use Perfico\CRMBundle\Entity\Call;
+use Perfico\CRMBundle\Entity\CallInterface;
 use Perfico\CRMBundle\Entity\ClientInterface;
 use Perfico\CRMBundle\Exception\CallSystemDetermineException;
 use Perfico\CRMBundle\Exception\ImplementationException;
@@ -85,5 +86,21 @@ class CallManager extends GenericManager
         }
 
         throw new CallSystemDetermineException;
+    }
+
+    /**
+     * @param CallInterface $call
+     * @return int
+     */
+    public function calcTalkDuration(CallInterface $call)
+    {
+        if ($call->getStartTalk() && $call->getEndTalk()) {
+            $duration = $call->getEndTalk()->getTimestamp() - $call->getStartTalk()->getTimestamp();
+            $call->setDuration($duration);
+
+            return $duration;
+        }
+
+        return null;
     }
 }
