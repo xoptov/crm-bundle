@@ -25,11 +25,9 @@ class AccountManager
         $this->baseDomain = $baseDomain;
     }
 
-    public function create(UserInterface $user)
+    public function create()
     {
-        $domain = 'crm-' . substr(md5($user->getId(), false), 0, 7);
         $account = new Account();
-        $account->setDomain($domain);
         $this->em->persist($account);
 
         return $account;
