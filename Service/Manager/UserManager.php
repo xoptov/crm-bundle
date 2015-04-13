@@ -27,7 +27,8 @@ class UserManager extends GenericManager
 
         return $repo->createQueryBuilder('u')
             ->select('count(u)')
-            ->where('u.account = :account')
+            ->leftJoin('u.groups', 'g')
+            ->where('g.account = :account')
             ->setParameter('account', $this->getCurrentAccount())
             ->getQuery()
             ->getSingleScalarResult();
