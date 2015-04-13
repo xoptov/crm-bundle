@@ -72,6 +72,12 @@
             </call>
         </service>
 
+        <service id="perfico_crm.api.clients_last_activity" class="Perfico\CRMBundle\Transformer\Converter\LastActivityConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.activity%</argument>
+            </call>
+        </service>
+
         <service id="perfico_crm.api.deal_converter" class="Perfico\CRMBundle\Transformer\Converter\DealConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.deal%</argument>
