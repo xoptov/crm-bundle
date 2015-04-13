@@ -33,6 +33,12 @@
             </join-columns>
         </many-to-one>
 
+        <many-to-one field="type" target-entity="Perfico\CRMBundle\Entity\TaskTypeInterface">
+            <join-columns>
+                <join-column name="type_id" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
+
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
                 <join-column name="account_id" referenced-column-name="id" nullable="true"/>

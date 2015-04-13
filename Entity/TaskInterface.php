@@ -89,6 +89,17 @@ interface TaskInterface
     public function getState();
 
     /**
+     * @param TaskTypeInterface $type
+     * @return TaskInterface
+     */
+    public function setType(TaskTypeInterface $type);
+
+    /**
+     * @return TaskTypeInterface
+     */
+    public function getType();
+
+    /**
      * @param AccountInterface $account
      * @return ClientInterface
      */

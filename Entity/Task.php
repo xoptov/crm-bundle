@@ -33,6 +33,9 @@ abstract class Task implements TaskInterface
     /** @var TaskStateInterface */
     protected $state;
 
+    /** @var TaskTypeInterface */
+    protected $type;
+
     /** @var AccountInterface */
     protected $account;
 
@@ -184,6 +187,24 @@ abstract class Task implements TaskInterface
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType(TaskTypeInterface $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
