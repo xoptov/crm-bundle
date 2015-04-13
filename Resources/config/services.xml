@@ -72,6 +72,11 @@
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_USER_" object_class="Perfico\UserBundle\Entity\User"/>
         </service>
 
+        <service id="perfico_crm.security.contact_handler" class="Perfico\CRMBundle\Permissions\Handlers\ContactHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_CONTACT_" object_class="Perfico\CoreBundle\Entity\Contact"/>
+        </service>
+
+
         <service id="perfico_crm.account_subscriber" class="Perfico\CRMBundle\EventListener\AccountSubscriber">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
             <argument type="service" id="perfico_crm.account_manager"/>

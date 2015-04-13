@@ -3,6 +3,7 @@
 namespace Perfico\CRMBundle\Service\Manager;
 
 use Perfico\CoreBundle\Entity\Contact;
+use Perfico\UserBundle\Entity\User;
 
 class ContactManager extends GenericManager
 {
@@ -17,6 +18,11 @@ class ContactManager extends GenericManager
     public function getContacts()
     {
         return $this->em->getRepository('CoreBundle:Contact')->findBy(['account' => $this->getCurrentAccount()]);
+    }
+
+    public function getUserContacts(User $user)
+    {
+        return $this->em->getRepository('CoreBundle:Contact')->findBy(['account' => $this->getCurrentAccount(), 'user' => $user]);
     }
 
     /**

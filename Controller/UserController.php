@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Controller;
 
+use Perfico\CoreBundle\Entity\Contact;
+use Perfico\CRMBundle\Transformer\Mapping\ContactMap;
 use Perfico\CRMBundle\Transformer\Mapping\UserMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -430,5 +432,29 @@ class UserController extends Controller
         $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse(array('status' => 'success'));
+    }
+
+    /**
+     * @ApiDoc(
+     *  section="User",
+     *  description="Select contacts for manager",
+     *  filters={
+     *      {"name"="token", "type"="text"}
+     *  }
+     * )
+     * @Route("/users/{id}/contacts")
+     * @Method("GET")
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function contactsAction(User $user)
+    {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_USER_VIEW_ALL'])) {
+            return new JsonResponse([], Response::HTTP_FORBIDDEN);
+        }
+
+        $contacts = $this->get('perfico_crm.contact_manager')->getUserContacts($user);
+
+        return new JsonResponse($this->get('perfico_crm.api.transformer')->transformCollection($contacts, new ContactMap(), 'contacts'));
     }
 }
