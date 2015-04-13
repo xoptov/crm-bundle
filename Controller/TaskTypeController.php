@@ -50,7 +50,7 @@ class TaskTypeController extends Controller
      */
     public function getAction(TaskType $taskType)
     {
-        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_TASK_TYPE_VIEW_ALL', 'ROLE_TASK_TYPE_VIEW_OWN'])) {
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_TASK_TYPE_VIEW_ALL'])) {
             return new JsonResponse([], 403);
         }
 
