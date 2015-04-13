@@ -7,6 +7,7 @@
 
         <field name="direction" type="string" column="direction" length="8" nullable="true"/>
         <field name="duration" type="integer" column="duration" nullable="true"/>
+        <field name="number" type="string" column="number" nullable="true"/>
 
         <many-to-one field="activity" target-entity="Perfico\CRMBundle\Entity\ActivityInterface">
             <join-column name="activity_id" referenced-column-name="id" on-delete="SET NULL"/>

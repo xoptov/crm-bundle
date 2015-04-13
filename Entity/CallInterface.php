@@ -100,4 +100,15 @@ interface CallInterface
      * @return \DateTime
      */
     public function getEndTalk();
+
+    /**
+     * @param string $number
+     * @return CallInterface
+     */
+    public function setNumber($number);
+
+    /**
+     * @return string
+     */
+    public function getNumber();
 } 
