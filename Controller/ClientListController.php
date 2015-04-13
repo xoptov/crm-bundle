@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
 use Perfico\CRMBundle\Search\ClientCondition;
 use Perfico\CRMBundle\Transformer\Mapping\ClientSearchMap;
+use Perfico\CRMBundle\Entity\UserInterface;
 
 class ClientListController extends Controller
 {
@@ -147,6 +148,13 @@ class ClientListController extends Controller
         $condition->setAccount($account);
 
         $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientSearchMap());
+
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CLIENT_VIEW_ALL'])) {
+            /** @var UserInterface $user */
+            $user = $this->getUser();
+            $condition->setUser($user->getId());
+        }
+
         $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
         $result = [

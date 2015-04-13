@@ -10,6 +10,7 @@ use Perfico\CRMBundle\Transformer\Mapping\DealMap;
 use Perfico\CRMBundle\Transformer\Mapping\PhoneMap;
 use Perfico\CRMBundle\Transformer\Mapping\ClientMap;
 use Perfico\CoreBundle\Entity\Client;
+use Perfico\CRMBundle\Entity\UserInterface;
 use Perfico\CRMBundle\Transformer\Mapping\CallMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -98,6 +99,13 @@ class ClientController extends Controller
         $condition->setAccount($account);
 
         $this->get('perfico_crm.api.reverse_transformer')->bind($condition, new ClientSearchMap());
+
+        if (!$this->get('perfico_crm.permission_manager')->checkAnyRole(['ROLE_CLIENT_VIEW_ALL'])) {
+            /** @var UserInterface $user */
+            $user = $this->getUser();
+            $condition->setUser($user->getId());
+        }
+
         $clients = $this->get('perfico_crm.client_manager')->search($condition);
 
         $result = [
