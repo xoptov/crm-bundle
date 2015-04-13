@@ -101,6 +101,11 @@ class ClientSearchMap implements MapInterface
             'user' => [
                 'converter' => 'perfico_crm.api.user_converter',
                 'method' => 'getUser'
+            ],
+            'lastActivity' => [
+                'converter' => 'perfico_crm.api.clients_last_activity',
+                'method' => 'getActivities',
+                'collection' => true
             ]
         ];
     }
