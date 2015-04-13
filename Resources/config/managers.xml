@@ -54,6 +54,8 @@
 
         <service id="perfico_crm.task_state_manager" class="Perfico\CRMBundle\Service\Manager\TaskStateManager" parent="perfico_crm.generic_manager"/>
 
+        <service id="perfico_crm.task_type_manager" class="Perfico\CRMBundle\Service\Manager\TaskTypeManager" parent="perfico_crm.generic_manager"/>
+
         <service id="perfico_crm.sub_task_manager" class="Perfico\CRMBundle\Service\Manager\SubTaskManager" parent="perfico_crm.generic_manager"/>
 
         <service id="perfico_crm.tag_manager" class="Perfico\CRMBundle\Service\Manager\TagManager" parent="perfico_crm.generic_manager"/>

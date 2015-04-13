@@ -52,6 +52,10 @@
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_TASK_STATE_" object_class="Perfico\CoreBundle\Entity\TaskState"/>
         </service>
 
+        <service id="perfico_crm.security.task_type_handler" class="Perfico\CRMBundle\Permissions\Handlers\TaskTypeHandler">
+            <tag name="perfico_crm.permission_handler" role_prefix="ROLE_TASK_TYPE_" object_class="Perfico\CoreBundle\Entity\TaskType"/>
+        </service>
+
         <service id="perfico_crm.security.sub_task_handler" class="Perfico\CRMBundle\Permissions\Handlers\SubTaskHandler">
             <tag name="perfico_crm.permission_handler" role_prefix="ROLE_SUB_TASK_" object_class="Perfico\CoreBundle\Entity\SubTask"/>
         </service>

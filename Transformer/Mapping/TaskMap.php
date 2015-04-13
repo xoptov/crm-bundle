@@ -27,6 +27,10 @@ class TaskMap implements MapInterface
                 'converter' => 'perfico_crm.api.task_state_converter',
                 'path' => 'state'
             ],
+            'setType' => [
+                'converter' => 'perfico_crm.api.task_type_converter',
+                'path' => 'type'
+            ],
             'setActivities' => [
                 'converter' => 'perfico_crm.api.activity_converter',
                 'path' => 'activities',
@@ -64,6 +68,10 @@ class TaskMap implements MapInterface
             'state' => [
                 'converter' => new ObjectScalarConverter(),
                 'method' => 'getState'
+            ],
+            'type' => [
+                'converter' => new ObjectScalarConverter(),
+                'method' => 'getType'
             ],
             'activities' => [
                 'converter' => new ObjectScalarConverter(),

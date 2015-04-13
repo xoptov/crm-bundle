@@ -33,6 +33,8 @@
 
         <parameter key="perfico_crm.entity_alias.task_state" type="string">PerficoCRMBundle:TaskState</parameter>
 
+        <parameter key="perfico_crm.entity_alias.task_type" type="string">PerficoCRMBundle:TaskType</parameter>
+
         <parameter key="perfico_crm.entity_alias.sub_task" type="string">PerficoCRMBundle:SubTask</parameter>
 
     </parameters>
@@ -135,6 +137,12 @@
         <service id="perfico_crm.api.task_state_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskStateConverter" parent="perfico_crm.api.entity_converter">
             <call method="setEntityClass">
                 <argument type="string">%perfico_crm.entity_alias.task_state%</argument>
+            </call>
+        </service>
+
+        <service id="perfico_crm.api.task_type_converter" class="Perfico\CRMBundle\Transformer\Converter\TaskTypeConverter" parent="perfico_crm.api.entity_converter">
+            <call method="setEntityClass">
+                <argument type="string">%perfico_crm.entity_alias.task_type%</argument>
             </call>
         </service>
 
