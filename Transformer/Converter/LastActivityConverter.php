@@ -16,7 +16,7 @@ class LastActivityConverter extends AbstractEntityConverter
         $activity = $objects->last();
 
 
-        if ($activity instanceof $activity) {
+        if ($activity instanceof ActivityInterface) {
             $qb = $this->em->createQueryBuilder();
             $query = $qb->select('a')
                 ->from('CoreBundle:Activity', 'a')
