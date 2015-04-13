@@ -120,6 +120,13 @@ class UserHandler extends AbstractHandler
         $permissions['tags']['remove'] = $this->securityContext->isGranted('ROLE_TAG_REMOVE');
         $permissions['tags']['add'] = $this->securityContext->isGranted('ROLE_TAG_ADD');
 
+        /** Contact permissions */
+        if ($this->securityContext->isGranted('ROLE_CONTACT_VIEW_ALL', 'ROLE_CONTACT_VIEW_ONW'))
+            $permissions['contacts']['view'] = true;
+
+        $permissions['contacts']['edit'] = $this->securityContext->isGranted('ROLE_CONTACT_EDIT');
+        $permissions['contacts']['remove'] = $this->securityContext->isGranted('ROLE_CONTACT_REMOVE');
+        $permissions['contacts']['add'] = $this->securityContext->isGranted('ROLE_CONTACT_ADD');
 
         return $permissions;
     }
