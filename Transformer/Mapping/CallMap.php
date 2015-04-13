@@ -25,6 +25,7 @@ class CallMap implements MapInterface
                 'converter' => 'perfico_crm.api.call_manager_converter',
                 'method' => 'getActivity'
             ],
+            'number' => 'getNumber',
             'record' => [
                 'converter' => new CallRecordConverter(),
                 'method' => 'getHangupEvent'

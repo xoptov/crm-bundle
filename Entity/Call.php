@@ -24,6 +24,9 @@ abstract class Call extends BaseCall implements CallInterface
     /** @var integer */
     protected $duration;
 
+    /** @var string */
+    protected $number;
+
     public function __construct()
     {
         parent::__construct();
@@ -171,6 +174,9 @@ abstract class Call extends BaseCall implements CallInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getStartTalk()
     {
         if ($this->answerEvent instanceof AnswerEvent) {
@@ -180,6 +186,9 @@ abstract class Call extends BaseCall implements CallInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getEndTalk()
     {
         if ($this->hangupEvent instanceof HangupEventInterface) {
@@ -187,5 +196,23 @@ abstract class Call extends BaseCall implements CallInterface
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 } 

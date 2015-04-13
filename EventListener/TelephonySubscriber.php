@@ -166,6 +166,7 @@ class TelephonySubscriber implements EventSubscriberInterface
         if ($call->getDirection() == CallInterface::DIRECTION_INCOMING) {
             if ($call->getUser() instanceof UserInterface && $call->getAnswerEvent() instanceof AnswerEvent) {
                 $this->callManager->calcTalkDuration($call);
+                $call->setNumber($call->getAnswerEvent()->getDstNumber());
                 $this->activityManager->prepareIncomingCallNote($call);
             }
         } else if ($call->getDirection() == CallInterface::DIRECTION_OUTBOUND) {
