@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 interface AccountInterface
 {
     public function onCreate();
@@ -36,4 +38,26 @@ interface AccountInterface
      * @return \DateTime
      */
     public function getCreatedAt();
+
+    /**
+     * @param GroupInterface[] $groups
+     * @return AccountInterface
+     */
+    public function setGroups($groups);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getGroups();
+
+    /**
+     * @param GroupInterface[] $contacts
+     * @return AccountInterface
+     */
+    public function setContacts($contacts);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getContacts();
 } 

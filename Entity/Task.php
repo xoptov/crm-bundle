@@ -39,7 +39,7 @@ abstract class Task implements TaskInterface
     /** @var AccountInterface */
     protected $account;
 
-    /** @var ActivityInterface */
+    /** @var ArrayCollection */
     protected $activities;
 
     public function __construct()
