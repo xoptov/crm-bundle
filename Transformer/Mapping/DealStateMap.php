@@ -17,7 +17,8 @@ class DealStateMap implements MapInterface
         return [
             'id' => 'getId',
             'name' => 'getName',
-            'icon' => 'getIcon'
+            'icon' => 'getIcon',
+            'requirePayments' => 'hasRequirePayments'
         ];
     }
 } 

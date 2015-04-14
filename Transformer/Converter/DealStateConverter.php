@@ -12,7 +12,8 @@ class DealStateConverter extends AbstractEntityConverter
             return [
                 'id' => $object->getId(),
                 'name' => $object->getName(),
-                'icon' => $object->getIcon()
+                'icon' => $object->getIcon(),
+                'requirePayments' => $object->hasRequirePayments()
             ];
         }
 
