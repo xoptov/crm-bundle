@@ -14,6 +14,7 @@ use Perfico\CoreBundle\Entity\Client;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Doctrine\ORM\QueryBuilder;
 use Perfico\CRMBundle\Search\ClientConditionInterface;
+use Doctrine\ORM\EntityRepository;
 
 class ClientManager extends GenericManager
 {
@@ -41,6 +42,34 @@ class ClientManager extends GenericManager
         }
 
         return $client;
+    }
+
+    /**
+     * @param null $onlyForUser
+     * @return Client[]
+     * @deprecated
+     */
+    public function getAccountClients($onlyForUser = null)
+    {
+        /** @var EntityRepository $repo */
+        $repo = $this->em->getRepository('CoreBundle:Client');
+
+        $builder = $repo->createQueryBuilder('c')
+            ->where('c.account = :account')
+            ->setParameter('account', $this->accountManager->getCurrentAccount())
+        ;
+
+        if ($onlyForUser) {
+            $builder->andWhere('c.user = :user')
+                ->setParameter('user', $onlyForUser)
+            ;
+        }
+
+        $builder->orderBy('c.createdAt', 'DESC');
+
+        return $builder
+            ->getQuery()
+            ->getResult();
     }
 
     /**
