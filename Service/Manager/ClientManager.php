@@ -103,7 +103,7 @@ class ClientManager extends GenericManager
 
         $this->initQueryBuilder($condition);
         $this->preparePagination($this->qb, $condition);
-
+        $this->qb->orderBy('c.createdAt', 'DESC');
         return $this->qb->getQuery()->getResult();
     }
 
