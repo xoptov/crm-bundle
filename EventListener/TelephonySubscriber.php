@@ -96,12 +96,16 @@ class TelephonySubscriber implements EventSubscriberInterface
             if ($client instanceof ClientInterface) {
                 $call->setClient($client);
             } else {
-                // TODO need remove this if-then logic since clients can call from Skype or Sip
-                if ($callerSystem instanceof PhoneManager) {
+
+                if ($callerSystem instanceof PhoneManager) { // TODO need remove this condition since clients can call from Skype or Sip
                     $client = $this->clientManager->create();
                     $this->clientManager->update($client, false);
                     $callerSystem->prepareNewClient($client, $callEvent->getSrcNumber());
                     $call->setClient($client);
+
+                    $e = new CallbackEvent();
+                    $e->setCallEvent($callEvent);
+                    $this->dispatcher->dispatch(PerficoCRMEvents::NEW_THE_CALLER, $e);
                 }
             }
         }

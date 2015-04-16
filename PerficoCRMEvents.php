@@ -17,4 +17,6 @@ class PerficoCRMEvents
     const CALLEE_CLIENT_NOT_FOUND = 'perifco_crm.event.callee_client_not_found';
 
     const CALLEE_USER_NOT_FOUND = 'perfico_crm.event.callee_user_not_found';
+
+    const NEW_THE_CALLER = 'perfico_crm.event.new_the_caller';
 } 

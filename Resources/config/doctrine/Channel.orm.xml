@@ -5,6 +5,11 @@
 
     <mapped-superclass name="Perfico\CRMBundle\Entity\Channel" table="channel">
 
+        <indexes>
+            <index columns="account_id" name="fk_channel_account1_idx"/>
+            <index columns="external_link" name="external_link_idx"/>
+        </indexes>
+
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
