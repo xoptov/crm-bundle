@@ -115,5 +115,11 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="perfico_crm.client_subscriber" class="Perfico\CRMBundle\EventListener\ClientSubscriber">
+            <argument type="service" id="perfico_crm.channel_manager"/>
+            <argument type="service" id="perfico_crm.account_manager"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
     </services>
 </container>

@@ -10,9 +10,7 @@ abstract class Channel implements ChannelInterface
     /** @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $externalLink;
 
     /** @var AccountInterface */
