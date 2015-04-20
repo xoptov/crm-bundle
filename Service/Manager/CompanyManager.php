@@ -44,10 +44,6 @@ class CompanyManager extends GenericManager
         $company = new Company();
         $company->setAccount($this->getCurrentAccount());
 
-        if(!$this->securityContext->getToken() instanceof AnonymousToken ) {
-            $company->setUser($this->securityContext->getToken()->getUser());
-        }
-
         return $company;
     }
 
