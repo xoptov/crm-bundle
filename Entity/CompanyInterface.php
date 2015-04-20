@@ -96,4 +96,4 @@ interface CompanyInterface
      * @return TagInterface[]
      */
     public function getTags();
-} 
+}
