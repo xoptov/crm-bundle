@@ -132,6 +132,7 @@ class CompanyController extends Controller
      *    {"name"="site", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }
      *    }
      *   }
      * )
@@ -188,6 +189,7 @@ class CompanyController extends Controller
      *    {"name"="site", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }
      *    }
      *   }
      * )
@@ -222,6 +224,7 @@ class CompanyController extends Controller
      *    {"name"="site", "dataType"="string", "required"=0},
      *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
      *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *      }
      *    }
      *   }
      * )
