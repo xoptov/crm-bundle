@@ -13,12 +13,25 @@
         <field name="inn" type="string" column="inn" length="20" nullable="true"/>
         <field name="phone" type="string" column="phone" length="255" nullable="true"/>
         <field name="details" type="text" column="details" nullable="true"/>
+        <field name="note" type="string" column="note" length="255" nullable="true"/>
+        <field name="site" type="string" column="site" length="255" nullable="true"/>
 
         <many-to-one field="account" target-entity="Perfico\CRMBundle\Entity\AccountInterface">
             <join-columns>
                 <join-column name="account_id" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
+
+        <many-to-many field="tags" target-entity="Perfico\CRMBundle\Entity\TagInterface">
+            <join-table name="company_has_tags">
+                <join-columns>
+                    <join-column name="tag_id" referenced-column-name="id" nullable="true"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="company_id" referenced-column-name="id" nullable="true"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
 
     </mapped-superclass>
 

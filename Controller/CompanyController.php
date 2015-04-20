@@ -127,7 +127,12 @@ class CompanyController extends Controller
      *    {"name"="name", "dataType"="string", "required"=1},
      *    {"name"="inn", "dataType"="integer", "required"=0},
      *    {"name"="phone", "dataType"="string", "required"=0},
-     *    {"name"="details", "dataType"="string", "required"=0}
+     *    {"name"="details", "dataType"="string", "required"=0},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="site", "dataType"="string", "required"=0},
+     *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *    }
      *   }
      * )
      * @Method("POST")
@@ -178,7 +183,12 @@ class CompanyController extends Controller
      *    {"name"="name", "dataType"="string", "required"=0},
      *    {"name"="inn", "dataType"="integer", "required"=0},
      *    {"name"="phone", "dataType"="string", "required"=0},
-     *    {"name"="details", "dataType"="string", "required"=0}
+     *    {"name"="details", "dataType"="string", "required"=0},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="site", "dataType"="string", "required"=0},
+     *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *    }
      *   }
      * )
      * @Method("PUT")
@@ -207,7 +217,12 @@ class CompanyController extends Controller
      *    {"name"="name", "dataType"="string", "required"=0},
      *    {"name"="inn", "dataType"="integer", "required"=0},
      *    {"name"="phone", "dataType"="string", "required"=0},
-     *    {"name"="details", "dataType"="string", "required"=0}
+     *    {"name"="details", "dataType"="string", "required"=0},
+     *    {"name"="note", "dataType"="string", "required"=0},
+     *    {"name"="site", "dataType"="string", "required"=0},
+     *    {"name"="tags", "dataType"="array", "required"=0, "readonly"=0, "children"={
+     *          {"name"="id", "dataType"="integer", "required"=0, "description"="set only tag id"}
+     *    }
      *   }
      * )
      * @Method("PATCH")
