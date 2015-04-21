@@ -2,6 +2,8 @@
 
 namespace Perfico\CRMBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 abstract class Company implements CompanyInterface
 {
     /** @var integer */
@@ -21,6 +23,20 @@ abstract class Company implements CompanyInterface
 
     /** @var AccountInterface */
     protected $account;
+
+    /** @var string */
+    protected $note;
+
+    /** @var string */
+    protected $site;
+
+    /** @var TagInterface */
+    protected $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -119,4 +135,59 @@ abstract class Company implements CompanyInterface
     {
         return $this->account;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 }

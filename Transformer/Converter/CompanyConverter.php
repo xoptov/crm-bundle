@@ -14,7 +14,9 @@ class CompanyConverter extends AbstractEntityConverter
                 'name' => $object->getName(),
                 'phone' => $object->getPhone(),
                 'inn' => $object->getInn(),
-                'details' => $object->getDetails()
+                'details' => $object->getDetails(),
+                'note' => $object->getNote(),
+                'site' => $object->getSite()
             ];
         }
 

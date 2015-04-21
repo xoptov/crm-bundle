@@ -63,4 +63,37 @@ interface CompanyInterface
      * @return AccountInterface
      */
     public function getAccount();
-} 
+
+    /**
+     * @param string $note
+     * @return CompanyInterface
+     */
+    public function setNote($note);
+
+    /**
+     * @return string
+     */
+    public function getNote();
+
+    /**
+     * @param string $site
+     * @return CompanyInterface
+     */
+    public function setSite($site);
+
+    /**
+     * @return string
+     */
+    public function getSite();
+
+    /**
+     * @param TagInterface[] $tags
+     * @return CompanyInterface
+     */
+    public function setTags($tags);
+
+    /**
+     * @return TagInterface[]
+     */
+    public function getTags();
+}
