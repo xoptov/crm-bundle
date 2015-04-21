@@ -38,6 +38,10 @@ class ClientSubscriber implements EventSubscriberInterface
         /** @var Call $call */
         $call = $callEvent->getCall();
 
+        // Prepare new client information
+        $client = $call->getClient();
+        $client->setFirstName('from call center');
+
         if ($callEvent->getTreeName() || $callEvent->getTreeNumber()) {
             $condition = new ChannelCondition();
             $condition->setAccount($this->accountManager->getCurrentAccount());
